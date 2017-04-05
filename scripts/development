@@ -1,0 +1,5 @@
+export NODE_ENV=development
+cd dist
+../node_modules/nodemon/bin/nodemon.js index.js \
+--ignore ../assets/ \
+--ignore ./built/bundle

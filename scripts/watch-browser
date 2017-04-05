@@ -1,0 +1,2 @@
+export NODE_ENV=development
+webpack --config=webpack.browser.config.js  --watch --progress

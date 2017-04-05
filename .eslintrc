@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended","plugin:react/recommended"],
+  "globals":{
+    "React":true,
+    "ReactDOM":true,
+    "classNames":true,
+    "$update":true
+  },
+  "env":{
+    "browser":true,
+    "node":true,
+    "es6": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules":{
+    "react/display-name":0,
+    "no-mixed-spaces-and-tabs":0,
+    "no-unused-vars":1
+  }
+}
