@@ -1,5 +1,7 @@
 # React Server Example
 
+react server render 例子,bundle使用webpack.
+
 # Run Example
 
 ## 克隆项目并安装相关依赖
