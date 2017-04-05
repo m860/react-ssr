@@ -23,7 +23,7 @@ var entries = {
 		"react",
 		"react-dom",
 		"react-router",
-		"classNames",
+		"classnames",
 		"immutability-helper"
 	]
 };
@@ -48,13 +48,13 @@ walkSync(path.resolve(__dirname, 'components'), {
 });
 
 var plugins = [
-	new webpack.ProvidePlugin({
+	/*new webpack.ProvidePlugin({
 		React: 'react'
 		, ReactDOM: "react-dom"
-		, classNames: "classNames"
+		, classnames: "classnames"
 		, "$update": "immutability-helper"
 	})
-	, new EventCallbackWebpackPlugin('done', function (compilation) {
+	, */new EventCallbackWebpackPlugin('done', function (compilation) {
 		var stats = compilation.toJson();
 		var bundles = stats.assetsByChunkName;
 		var bundleHash=hash(JSON.stringify(bundles));

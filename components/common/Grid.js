@@ -4,13 +4,13 @@
 import React ,{Component,PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 import BaseComponent from '../BaseComponent'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 export default class Grid extends BaseComponent{
 	render(){
 		let props=Object.assign({},this.props);
 		if(props.className){
-			props.className=classNames(props.className,"pure-g")
+			props.className=classnames(props.className,"pure-g")
 		}
 		else{
 			props.className="pure-g";

@@ -10,6 +10,7 @@ import BaseComponent from './BaseComponent'
 import Header from './common/Header'
 import View from './common/View'
 import '../assets/sass/common.sass'
+import Test from './Test'
 
 @renderInBrowser("home")
 export default class Home extends BaseComponent {
@@ -17,9 +18,8 @@ export default class Home extends BaseComponent {
 		return (
 			<View>
 				<Header/>
-				<div className="pure-u-5-5">
-					<p>1</p>
-					<p>1</p>
+				<div className="pure-u-1">
+					<Test title="Test"/>
 				</div>
 			</View>
 		);
