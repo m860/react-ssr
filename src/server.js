@@ -15,7 +15,7 @@ import App from './components/App'
 
 const args = yargs
 	.default('port', 3000, 'express listen port')
-	.help()
+	.help('help')
 	.argv;
 
 const port = args['port'];
