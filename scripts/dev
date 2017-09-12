@@ -1,0 +1,2 @@
+cd dist
+../node_modules/nodemon/bin/nodemon.js server.js --ignore ../src

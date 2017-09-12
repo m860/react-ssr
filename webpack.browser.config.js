@@ -10,7 +10,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var EventCallbackWebpackPlugin = require("event-callback-webpack-plugin").default
-var helper = require("./helpers/helper.es5");
+var helper = require("./src/libs/helpers/helper.es5");
 var isProduction = helper.isProduction;
 var displayEnvironment = helper.displayEnvironment;
 var hash=require("string-hash");
@@ -19,14 +19,17 @@ displayEnvironment();
 
 var entries = {
 	Vendor: [
+		/*
 		"babel-polyfill",
 		"react",
 		"react-dom",
 		"react-router",
 		"classnames",
 		"immutability-helper"
+		*/
 	]
 };
+/*
 walkSync(path.resolve(__dirname, 'components'), {
 	listeners: {
 		file: function (root, fileStats, next) {
@@ -46,6 +49,7 @@ walkSync(path.resolve(__dirname, 'components'), {
 		}
 	}
 });
+*/
 
 var plugins = [
 	/*new webpack.ProvidePlugin({
@@ -54,7 +58,7 @@ var plugins = [
 		, classnames: "classnames"
 		, "$update": "immutability-helper"
 	})
-	, */new EventCallbackWebpackPlugin('done', function (compilation) {
+	, *//*new EventCallbackWebpackPlugin('done', function (compilation) {
 		var stats = compilation.toJson();
 		var bundles = stats.assetsByChunkName;
 		var bundleHash=hash(JSON.stringify(bundles));
@@ -70,7 +74,7 @@ var plugins = [
 			fs.writeFileSync(bundlesPath, JSON.stringify(bundles));
 		}
 	})
-	, new webpack.LoaderOptionsPlugin({
+	, */new webpack.LoaderOptionsPlugin({
 		options: {
 			postcss: [
 				autoprefixer({
@@ -84,11 +88,13 @@ var plugins = [
 			}
 		}
 	})
+	/*
 	, new webpack.optimize.CommonsChunkPlugin({
 		name: "Vendor",
 		filename: isProduction() ? "Vendor.[hash].js" : "Vendor.js"
 	})
-	, new ExtractTextPlugin(isProduction() ? "[contenthash].css" : "[name].css")
+	*/
+	, new ExtractTextPlugin(isProduction() ? "[contenthash].css" : "[name].[contenthash].css")
 	, new webpack.DefinePlugin({
 		'process.env': {
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
@@ -110,12 +116,12 @@ if (isProduction()) {
 
 
 var config = {
-	entry: entries,
+	entry: path.resolve(__dirname,'src/client.js'),
 	target: "web",
 	output: {
-		path: path.resolve(__dirname, 'dist/built/bundle'),
-		filename: isProduction() ? '[hash].js' : '[name].js'
-		, chunkFilename: isProduction() ? "[chunkhash].js" : "[name].js"
+		path: path.resolve(__dirname, 'dist/bundle'),
+		filename: 'bundle.js'
+		, chunkFilename: isProduction() ? "[chunkhash].js" : "[name].[chunkhash].js"
 	},
 	module: {
 		rules: [{

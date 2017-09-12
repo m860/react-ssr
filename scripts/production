@@ -3,4 +3,4 @@ export NODE_ENV=production
 webpack --config=webpack.node.config.js --progress
 webpack --config=webpack.browser.config.js --progress
 cd dist
-node index.js
+node client.js

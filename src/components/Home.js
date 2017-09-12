@@ -5,11 +5,11 @@ import React, {Component, PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 import {
 	renderInBrowser
-} from '../helpers/react.helper'
+} from '../libs/helpers/react.helper'
 import BaseComponent from './BaseComponent'
 import Header from './common/Header'
 import View from './common/View'
-import '../assets/sass/common.sass'
+import '../src/assets/sass/common.sass'
 import Test from './Test'
 
 @renderInBrowser("home")

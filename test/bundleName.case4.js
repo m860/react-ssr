@@ -3,10 +3,10 @@
  */
 import React ,{Component,PropTypes} from 'react'
 import ReactDOM from 'react-dom'
-import '../assets/sass/test.sass'
+import '../app/assets/sass/test.sass'
 import {
 	renderInBrowser
-} from '../helpers/react.helper'
+} from '../src/libs/helpers/react.helper'
 import BaseComponent from './BaseComponent'
 
 @renderInBrowser({

@@ -5,7 +5,7 @@ import React, {Component, PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 import BaseComponent from '../BaseComponent'
 import Grid from './Grid'
-import '../../assets/sass/Header.sass'
+import '../../src/assets/sass/Header.sass'
 
 export default class Header extends BaseComponent {
 	render() {

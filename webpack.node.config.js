@@ -4,7 +4,7 @@
 var path = require("path");
 var webpack = require("webpack");
 var fs = require("fs");
-var helper = require('./helpers/helper.es5');
+var helper = require('./src/libs/helpers/helper.es5');
 var isProduction = helper.isProduction;
 var EventCallbackWebpackPlugin = require("event-callback-webpack-plugin").default;
 var exec = require("child_process").exec;
@@ -66,7 +66,7 @@ var config = {
 	target: "node",
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js'
+		filename: 'server.js'
 	},
 	externals: nodeModules,
 	module: {

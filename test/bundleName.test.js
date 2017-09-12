@@ -1,7 +1,7 @@
 /**
  * Created by jean.h.ma on 3/28/17.
  */
-import {getBundleName} from '../helpers/helper.es5'
+import {getBundleName} from '../src/libs/helpers/helper.es5'
 import path from 'path'
 
 describe('bundle name', ()=> {

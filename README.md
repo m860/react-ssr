@@ -20,24 +20,18 @@ $ npm run production
 
 ## development模式
 
-开发模式需要开3个终端
+开发模式需要开2个终端
 
 第一个终端运行
 
 ```shell
-$ npm run watch:browser
+$ npm run build:watch
 ```
 
 第二个终端运行
 
 ```shell
-$ npm run watch:node
-```
-
-第三个终端运行
-
-```shell
-$ npm run development 
+$ npm run dev
 ```
 
 ## build
