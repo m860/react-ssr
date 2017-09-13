@@ -22,37 +22,33 @@ const port = args['port'];
 
 const server = express();
 
-server.use('/public',express.static('./public'));
+server.use('/public', express.static('./public'));
 
-
-server.get('/*',(req, res)=> {
-	if (req.url) {
-		const context = {}
-		const server = (
-			<StaticRouter
-				location={req.url}
-				context={context}>
-				<App/>
-			</StaticRouter>
-		);
-		const markup=renderToStaticMarkup(server);
-		res.send(`
-			<html>
-			<head>
-			  <title></title>
-			</head>
-			<body>
-			<div id="view">${markup}</div>
-			<script src="/public/bundle.js"></script>
-			</body>
-			</html>
-		`)
+let _html;
+const getHtml = ()=> {
+	if (_html) {
+		return _html;
 	}
-})
+	_html = fs.readFileSync('./public/index.html', 'utf8');
+	return _html;
+}
+
+server.get('/*', (req, res)=> {
+	const context = {}
+	const markup = renderToStaticMarkup(
+		<StaticRouter
+			location={req.url}
+			context={context}>
+			<App/>
+		</StaticRouter>
+	);
+	const html = getHtml().replace('#HTML#', markup);
+	res.send(html);
+});
 
 
 server.listen(port, ()=> {
-	console.log(`please access http://127.0.0.1:${port} in browser`);
+	console.log(`address http://127.0.0.1:${port}`);
 });
 
 
