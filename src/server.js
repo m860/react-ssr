@@ -4,13 +4,13 @@
 import React from 'react';
 import {StaticRouter} from 'react-router-dom';
 import express from 'express';
-import path from 'path';
+//import path from 'path';
 import fs from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import 'babel-polyfill'
 import yargs from 'yargs'
 // import expressMiddleware from './libs/expressMiddleWare/index'
-// import './libs/logger'
+import logger from  './libs/logger'
 import App from './components/App'
 
 const args = yargs
@@ -48,7 +48,7 @@ server.get('/*', (req, res)=> {
 
 
 server.listen(port, ()=> {
-	console.log(`address http://127.0.0.1:${port}`);
+	logger.info(`address http://127.0.0.1:${port}`);
 });
 
 

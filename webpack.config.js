@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var fs = require('fs')
 var autoprefixer = require('autoprefixer')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-//import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 //var StatsPlugin = require('stats-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -101,6 +101,15 @@ var config = function (server, env) {
 			})
 		]
 	};
+	if (isProduction) {
+		configuration.plugins.push(new UglifyJSPlugin({
+			comments: false,
+			compress: {
+				warnings: false,
+				drop_console: true
+			}
+		}));
+	}
 	return configuration;
 };
 
