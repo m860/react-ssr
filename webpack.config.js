@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
-//var StatsPlugin = require('stats-webpack-plugin');
+var StatsPlugin = require('stats-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var nodeModules = {};
@@ -73,12 +73,12 @@ var config = function (server, env) {
 				template: './src/index.html',
 				inject: false
 			})
-			/*
+
 			 , new StatsPlugin('stats.json', {
 			 chunkModules: true,
 			 exclude: [/node_modules/]
 			 })
-			 */
+
 			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].[contenthash].css")
 			, new webpack.DefinePlugin({
 				'process.env': {

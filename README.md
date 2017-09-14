@@ -42,6 +42,7 @@ $ npm run build
 
 ## TODO
 - [x] AsyncComponent - 异步组件
+    - [ ] 服务端异步组件问题
 - [ ] redux
 - [ ] authentication
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
+import Index from './pages/Index'
+import Base from './Base'
+import Async from 'react-component-async-module'
 
 const BasicExample = () => (
 	<div>
@@ -67,4 +69,24 @@ const Topic = ({match}) => (
 	</div>
 )
 
-export default BasicExample
+//export default  BasicExample;
+
+
+import PageA from './pages/PageA'
+//import PageB from './pages/PageB'
+
+export default function () {
+	return (
+		<div>
+			<Route exact path="/" component={Index}/>
+			<Route path="/pagea" component={PageA}/>
+			<Route path="/pageb" render={()=>(
+				<Async modules={[System.import('./pages/PageB.js')]}>
+				{PageB=>{
+					return <PageB/>
+				}}
+				</Async>
+			)}/>
+		</div>
+	);
+}

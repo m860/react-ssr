@@ -34,6 +34,7 @@ const getHtml = ()=> {
 }
 
 server.get('/*', (req, res)=> {
+	logger.info(`req.url=${req.url}`);
 	const context = {}
 	const markup = renderToStaticMarkup(
 		<StaticRouter
