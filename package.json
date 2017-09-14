@@ -6,10 +6,8 @@
   "scripts": {
     "test": "jest",
     "dev": "scripts/dev",
-    "production": "scripts/production",
-    "watch:browser": "scripts/watch-browser",
-    "watch:node": "scripts/watch-node",
-    "build:watch": "scripts/build --watch"
+    "dev:watch": "scripts/build --watch",
+    "build": "scripts/build --env.NODE_ENV=production"
   },
   "repository": {
     "type": "git",

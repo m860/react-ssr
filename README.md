@@ -40,6 +40,11 @@ $ npm run dev
 $ npm run build
 ```
 
+## TODO
+- [ ] AsyncComponent - 异步组件
+- [ ] redux
+- [ ] authentication
+
 # Usage
 
 ## 创建react component

@@ -5,30 +5,27 @@ var autoprefixer = require('autoprefixer')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 //import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 var CleanWebpackPlugin = require('clean-webpack-plugin')
-var StatsPlugin = require('stats-webpack-plugin');
+//var StatsPlugin = require('stats-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var yargs = require('yargs')
-const args = yargs
-	.boolean('server')
-	.argv;
 
 var nodeModules = {};
 fs.readdirSync(path.join(__dirname, 'node_modules'))
 	.filter(x => ['.bin'].indexOf(x) === -1)
-	.forEach(mod => nodeModules[mod] = `commonjs ${mod}`);
+	.forEach(mod => nodeModules[mod] = 'commonjs ' + mod);
 
-var config = function (server) {
+var config = function (server, env) {
+	var isProduction = env !== 'development';
 	var configuration = {
 		entry: path.join(__dirname, 'src', server ? 'server.js' : "client.js"),
 		target: server ? 'node' : "web",
 		output: {
 			path: path.join(__dirname, 'dist', server ? '' : 'public'),
 			filename: server ? 'server.js' : "bundle.js",
-			chunkFilename: '[id].[hash].js',
-			//publicPath: '/'
+			chunkFilename: isProduction ? '[chunkhash].js' : '[id].[chunkhash].js',
+			publicPath: server ? '' : '/public/'
 		},
 		externals: (server ? nodeModules : {}),
-		devtool: 'source-map',
+		devtool: isProduction ? 'source-map' : "",
 		module: {
 			rules: [{
 				test: /\.js$/,
@@ -58,14 +55,14 @@ var config = function (server) {
 				})
 			}, {
 				test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-				loader: "file-loader?name=[name].[ext]"
+				loader: "file-loader?name=" + (isProduction ? "[hash]" : "[name]") + ".[ext]"
 			}, {
 				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-				loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"
+				loader: "url-loader?limit=10000&mimetype=application/font-woff&name=" + (isProduction ? "[hash]" : "[name]") + ".[ext]"
 			}, {
 				test: /\.(jpe?g|png|gif|svg)$/i,
 				loaders: [
-					'file-loader?hash=sha512&digest=hex&name=[name].[ext]',
+					'file-loader?hash=sha512&digest=hex&name=' + (isProduction ? "[hash]" : "[name]") + '.[ext]',
 					'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
 				]
 			}]
@@ -77,15 +74,15 @@ var config = function (server) {
 				inject: false
 			})
 			/*
-			, new StatsPlugin('stats.json', {
-				chunkModules: true,
-				exclude: [/node_modules/]
-			})
-			*/
-			, new ExtractTextPlugin("[name].[contenthash].css")
+			 , new StatsPlugin('stats.json', {
+			 chunkModules: true,
+			 exclude: [/node_modules/]
+			 })
+			 */
+			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].[contenthash].css")
 			, new webpack.DefinePlugin({
 				'process.env': {
-					NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+					NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development')
 				}
 			})
 			, new webpack.LoaderOptionsPlugin({
@@ -104,12 +101,19 @@ var config = function (server) {
 			})
 		]
 	};
-	if (!server) {
-		configuration.output.publicPath = '/public/';
-	}
 	return configuration;
 };
 
 module.exports = function (env) {
-	return [config(true), config(false)];
+	if (!env) {
+		env = {};
+	}
+	if (!env.NODE_ENV) {
+		env.NODE_ENV = 'development';
+	}
+	var NODE_ENV = env.NODE_ENV;
+	console.log('**********************');
+	console.log('* ' + NODE_ENV);
+	console.log('**********************');
+	return [config(true, NODE_ENV), config(false, NODE_ENV)];
 };
