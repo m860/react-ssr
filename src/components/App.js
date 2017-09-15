@@ -6,6 +6,7 @@ import {
 import Index from './pages/Index'
 import Base from './Base'
 import Async from 'react-component-async-module'
+import AsyncMix from './common/AsyncMix'
 
 const BasicExample = () => (
 	<div>
@@ -81,7 +82,7 @@ export default function () {
 			<Route exact path="/" component={Index}/>
 			<Route path="/pagea" component={PageA}/>
 			<Route path="/pageb" render={()=>(
-				<Async modules={[System.import('./pages/PageB.js')]}>
+				<Async modules={[__SERVER__?require('./pages/PageB.js').default: System.import('./pages/PageB.js')]}>
 				{PageB=>{
 					return <PageB/>
 				}}

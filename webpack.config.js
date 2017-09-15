@@ -74,16 +74,17 @@ var config = function (server, env) {
 				inject: false
 			})
 
-			 , new StatsPlugin('stats.json', {
-			 chunkModules: true,
-			 exclude: [/node_modules/]
-			 })
+			, new StatsPlugin('stats.json', {
+				chunkModules: true,
+				exclude: [/node_modules/]
+			})
 
 			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].[contenthash].css")
 			, new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development')
-				}
+				},
+				'__SERVER__': JSON.stringify(server)
 			})
 			, new webpack.LoaderOptionsPlugin({
 				options: {
