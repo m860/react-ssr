@@ -34,10 +34,10 @@ const getHtml = ()=> {
 }
 
 server.post('/api/*', (req, res)=> {
-	res.send('I am POST API');
+	res.send('I am POST API :)');
 });
 server.get('/api/*',(req, res)=> {
-	res.send('I am GET API');
+	res.send('I am GET API :)');
 })
 
 server.get('/*', (req, res)=> {

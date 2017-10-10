@@ -78,12 +78,12 @@ var config = function (server, env) {
 				template: './src/index.html',
 				inject: false
 			})
-
+			/*
 			, new StatsPlugin('stats.json', {
 				chunkModules: true,
 				exclude: [/node_modules/]
 			})
-
+			*/
 			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].[contenthash].css")
 			, new webpack.DefinePlugin({
 				'process.env': {
@@ -112,7 +112,7 @@ var config = function (server, env) {
 			new EventCallbackWebpackPlugin('done', () => {
 				if (!running) {
 					running = true;
-					exec('cd dist && node server.js', (error, stdout, stderr) => {
+					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --ignore ../src', (error, stdout, stderr) => {
 						if (error) {
 							console.error(`exec error: ${error}`);
 							return;
