@@ -7,6 +7,11 @@ var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var StatsPlugin = require('stats-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var LiveReloadPlugin = require('webpack-livereload-plugin')
+var EventCallbackWebpackPlugin = require('event-callback-webpack-plugin').default
+var exec = require('child_process').exec;
+
+var running = false;
 
 var nodeModules = {};
 fs.readdirSync(path.join(__dirname, 'node_modules'))
@@ -95,10 +100,27 @@ var config = function (server, env) {
 					]
 				}
 			}),
-			new CleanWebpackPlugin([server ? 'dist' : "dist/public"], {
-				root: __dirname,
-				verbose: true,
-				dry: false
+			/*
+			 new CleanWebpackPlugin([server ? 'dist' : "dist/public"], {
+			 root: __dirname,
+			 verbose: true,
+			 dry: false
+			 }),
+			 */
+			new webpack.HotModuleReplacementPlugin(),
+			new LiveReloadPlugin(),
+			new EventCallbackWebpackPlugin('done', () => {
+				if (!running) {
+					running = true;
+					exec('cd dist && node server.js', (error, stdout, stderr) => {
+						if (error) {
+							console.error(`exec error: ${error}`);
+							return;
+						}
+						console.log(`stdout: ${stdout}`);
+						console.log(`stderr: ${stderr}`);
+					});
+				}
 			})
 		]
 	};

@@ -12,24 +12,7 @@ $ cd react-server-example
 $ npm install
 ```
 
-## production模式
-
-```shell
-$ npm run production
-```
-
 ## development模式
-
-开发模式需要开2个终端
-
-第一个终端运行
-
-```shell
-$ npm run build:watch
-```
-
-第二个终端运行
-
 ```shell
 $ npm run dev
 ```

@@ -6,7 +6,7 @@ export default class Index extends BasePage{
 	render(){
 		return (
 			<div>
-				Page B
+				Page B  test
 			</div>
 		);
 	}
