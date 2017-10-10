@@ -33,6 +33,13 @@ const getHtml = ()=> {
 	return _html;
 }
 
+server.post('/api/*', (req, res)=> {
+	res.send('I am POST API');
+});
+server.get('/api/*',(req, res)=> {
+	res.send('I am GET API');
+})
+
 server.get('/*', (req, res)=> {
 	logger.info(`req.url=${req.url}`);
 	const context = {}
