@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "scripts/dev.sh",
-    "build": "scripts/build --env.NODE_ENV=production"
+    "build": "scripts/build.sh"
   },
   "repository": {
     "type": "git",
