@@ -52,7 +52,8 @@ $ npm run build
         
         <img src="https://raw.githubusercontent.com/m860/react-server-example/master/screenshot/dist.png"/>
         
-- [ ] redux
+- [x] redux
+- [x] redux-persist
 - [ ] ApplicationSetting
 - [ ] Http
 - [ ] Loading

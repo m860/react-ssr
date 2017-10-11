@@ -8,15 +8,22 @@ import reducers from '../ar/index'
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
+import {persistStore, autoRehydrate} from "redux-persist";
 
 export const store = createStore(
 	reducers,
 	undefined,
 	compose(
 		applyMiddleware(thunk)
-		//, autoRehydrate()
+		, autoRehydrate()
 	)
 );
+
+persistStore(store, {
+	blacklist: []
+}, ()=> {
+	console.log('store is ready!');
+});
 
 import Index from './pages/Index'
 import PageA from './pages/PageA'

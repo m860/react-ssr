@@ -9,9 +9,9 @@ import fs from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import 'babel-polyfill'
 import yargs from 'yargs'
-// import expressMiddleware from './libs/expressMiddleWare/index'
 import logger from  './libs/logger'
 import App from './components/App'
+import service from './service/index'
 
 const args = yargs
 	.default('port', 3000, 'express listen port')
@@ -21,6 +21,7 @@ const args = yargs
 const port = args['port'];
 
 const server = express();
+service(server);
 
 server.use('/public', express.static('./public'));
 
@@ -32,13 +33,6 @@ const getHtml = ()=> {
 	_html = fs.readFileSync('./public/index.html', 'utf8');
 	return _html;
 }
-
-server.post('/api/*', (req, res)=> {
-	res.send('I am POST API :)');
-});
-server.get('/api/*',(req, res)=> {
-	res.send('I am GET API :)');
-})
 
 server.get('/*', (req, res)=> {
 	logger.info(`req.url=${req.url}`);
