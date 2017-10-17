@@ -1,7 +1,7 @@
 import React from 'react'
 import Base from '../Base'
 import PropTypes from 'prop-types'
-import axios from 'axios'
+import axiosInstances from '../../configuration/axios.instance'
 
 export default class extends Base {
 	static propTypes = {
@@ -12,16 +12,12 @@ export default class extends Base {
 	};
 
 	static childContextTypes = {
-		http: PropTypes.func
+		http: PropTypes.object
 	};
-
-	constructor(props) {
-		super(props);
-	}
 
 	getChildContext() {
 		return {
-			http: axios
+			http: axiosInstances
 		};
 	}
 

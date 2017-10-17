@@ -13,7 +13,7 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
-import Http from './public/Http'
+import Axios from './public/Axios'
 import Routes from './Routes'
 import {EventEmitter} from 'fbemitter'
 
@@ -56,9 +56,9 @@ export default class extends React.Component {
 		}
 		return (
 			<Provider store={store}>
-				<Http>
+				<Axios>
 					<Routes/>
-				</Http>
+				</Axios>
 			</Provider>
 		);
 	}

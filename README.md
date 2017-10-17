@@ -55,7 +55,7 @@ $ npm run build
 - [x] redux
 - [x] redux-persist
 - [ ] ApplicationSetting
-- [ ] Http
+- [ ] Axios
 - [ ] Loading
 - [ ] LoadingView
 - [ ] ToastView
