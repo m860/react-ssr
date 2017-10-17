@@ -3,6 +3,8 @@ import BasePage from './BasePage'
 import {Link} from "react-router-dom"
 import Layout from '../public/Layout'
 import Navigator from '../public/Navigator'
+import PropTypes from 'prop-types'
+import {RoutePaths} from '../Routes'
 
 export default class extends BasePage {
 	render() {
@@ -10,12 +12,13 @@ export default class extends BasePage {
 			<Layout>
 				<Navigator/>
 				<ul>
-					<li>
-						<Link to='/pagea'>Page A</Link>
-					</li>
-					<li>
-						<Link to='/pageb'>Page B</Link>
-					</li>
+					{RoutePaths.map((path,index)=>{
+						return (
+							<li key={`path-${index}`}>
+								<Link to={path}>{path}</Link>
+							</li>
+						);
+					})}
 				</ul>
 			</Layout>
 		);

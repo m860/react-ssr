@@ -13,6 +13,7 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
+import Http from './public/Http'
 import Routes from './Routes'
 
 
@@ -34,7 +35,9 @@ persistStore(store, {
 export default function () {
 	return (
 		<Provider store={store}>
-			<Routes/>
+			<Http>
+				<Routes/>
+			</Http>
 		</Provider>
 	);
 }
