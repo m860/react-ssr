@@ -66,6 +66,7 @@
     "classnames": "^2.2.4",
     "colors": "^1.1.2",
     "express": "^4.15.4",
+    "fbemitter": "^2.1.1",
     "font-awesome": "^4.7.0",
     "immutability-helper": "^2.3.1",
     "log4js": "^2.3.3",

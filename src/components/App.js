@@ -14,7 +14,8 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
 import Http from './public/Http'
-import routes from './Routes'
+import Routes from './Routes'
+import {EventEmitter} from 'fbemitter'
 
 export const store = createStore(
 	reducers,
@@ -25,24 +26,40 @@ export const store = createStore(
 	)
 );
 
+const storeEmitter = new EventEmitter();
+const STORE_READY = "STORE_READY";
+
 persistStore(store, {
 	blacklist: []
 }, ()=> {
-	console.log('store is ready!');
+	console.info('store is ready!');
+	storeEmitter.emit(STORE_READY);
 });
 
-export default function () {
-	return (
-		<Provider store={store}>
-			<Http>
-				<span>
-					{routes.map((route, index)=> {
-						return React.cloneElement(route, {
-							key: `route-${index}`
-						});
-					})}
-				</span>
-			</Http>
-		</Provider>
-	);
+export default class extends React.Component {
+	constructor(props) {
+		super(props);
+		storeEmitter.addListener(STORE_READY, ()=> {
+			this.setState({
+				storeIsReady: true
+			});
+		})
+		this.state = {
+			storeIsReady: false
+		};
+	}
+
+	render() {
+		if (!this.state.storeIsReady) {
+			//TODO show loading for restore store
+			return null;
+		}
+		return (
+			<Provider store={store}>
+				<Http>
+					<Routes/>
+				</Http>
+			</Provider>
+		);
+	}
 }
