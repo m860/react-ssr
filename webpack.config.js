@@ -26,7 +26,7 @@ var config = function (server, env) {
 		output: {
 			path: path.join(__dirname, 'dist', server ? '' : 'public'),
 			filename: server ? 'server.js' : "bundle.js",
-			chunkFilename: isProduction ? '[chunkhash].js' : '[id].[chunkhash].js',
+			chunkFilename: isProduction ? '[chunkhash].js' : '[id].js',
 			publicPath: server ? '' : '/public/'
 		},
 		externals: (server ? nodeModules : {}),
@@ -84,7 +84,7 @@ var config = function (server, env) {
 				exclude: [/node_modules/]
 			})
 			*/
-			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].[contenthash].css")
+			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].css")
 			, new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development')

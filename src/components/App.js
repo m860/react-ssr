@@ -9,6 +9,7 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
+import '../assets/sass/App.sass'
 
 export const store = createStore(
 	reducers,
