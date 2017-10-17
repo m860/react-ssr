@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import Layout from '../public/Layout'
 import Navigator from '../public/Navigator'
 
-export default class Index extends BasePage {
+export default class extends BasePage {
 	render() {
 		return (
 			<Layout>
