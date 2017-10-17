@@ -79,11 +79,11 @@ var config = function (server, env) {
 				inject: false
 			})
 			/*
-			, new StatsPlugin('stats.json', {
-				chunkModules: true,
-				exclude: [/node_modules/]
-			})
-			*/
+			 , new StatsPlugin('stats.json', {
+			 chunkModules: true,
+			 exclude: [/node_modules/]
+			 })
+			 */
 			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].css")
 			, new webpack.DefinePlugin({
 				'process.env': {
@@ -100,14 +100,12 @@ var config = function (server, env) {
 					]
 				}
 			}),
-			/*
-			 new CleanWebpackPlugin([server ? 'dist' : "dist/public"], {
-			 root: __dirname,
-			 verbose: true,
-			 dry: false
-			 }),
-			 */
-			//new webpack.HotModuleReplacementPlugin(),
+			new CleanWebpackPlugin([server ? 'dist' : "dist/public"], {
+				root: __dirname,
+				verbose: true,
+				dry: false
+			}),
+			new webpack.HotModuleReplacementPlugin(),
 			new LiveReloadPlugin(),
 			new EventCallbackWebpackPlugin('done', () => {
 				if (!running) {

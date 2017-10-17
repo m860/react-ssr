@@ -12,7 +12,7 @@ export default class extends BasePage {
 			<Layout>
 				<Navigator/>
 				<ul>
-					{RoutePaths.map((path,index)=>{
+					{RoutePaths.map((path, index)=> {
 						return (
 							<li key={`path-${index}`}>
 								<Link to={path}>{path}</Link>

@@ -14,8 +14,7 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
 import Http from './public/Http'
-import Routes from './Routes'
-
+import routes from './Routes'
 
 export const store = createStore(
 	reducers,
@@ -36,7 +35,13 @@ export default function () {
 	return (
 		<Provider store={store}>
 			<Http>
-				<Routes/>
+				<span>
+					{routes.map((route, index)=> {
+						return React.cloneElement(route, {
+							key: `route-${index}`
+						});
+					})}
+				</span>
 			</Http>
 		</Provider>
 	);
