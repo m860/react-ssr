@@ -1,11 +1,9 @@
 import React from "react";
 import Base from '../Base'
 import PropTypes from "prop-types";
-import {connect} from 'react-redux'
 import ActivityIndicator from './ActivityIndicator'
-import Loading from './Loading'
 
-export default class LoadingView extends Base {
+export default class Loading extends Base {
 	static propTypes = {
 		visible: PropTypes.bool
 	};
@@ -14,10 +12,12 @@ export default class LoadingView extends Base {
 	};
 
 	render() {
+		if (!this.props.visible) {
+			return null;
+		}
 		return (
-			<div className="loading-view">
-				{this.props.children}
-				<Loading visible={this.props.visible}/>
+			<div className="loading">
+				<ActivityIndicator/>
 			</div>
 		);
 	}

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
 import ActivityIndicator from './ActivityIndicator'
+import Loading from './Loading'
 
 @connect(({loading})=> {
 	return {
@@ -24,10 +25,7 @@ export default class Layout extends Base {
 				style={this.props.style}
 				className={classnames('layout',this.props.className)}>
 				{this.props.children}
-				{this.props.visible &&
-				<div className="loading">
-					<ActivityIndicator/>
-				</div>}
+				<Loading visible={this.props.visible}/>
 			</div>
 		);
 	}
