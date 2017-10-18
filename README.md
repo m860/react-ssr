@@ -54,7 +54,7 @@ $ npm run build
         
 - [x] redux
 - [x] redux-persist
-- [x] ApplicationSetting
+- [x] `async` ApplicationSetting
 - [ ] ~~Axios~~
 - [x] Loading
 - [x] LoadingView
@@ -63,7 +63,7 @@ $ npm run build
 - [ ] Register
 - [ ] FileUploader
 - [ ] authentication
-- [ ] 服务端redux,异步数据造成server render失效
+- [x] 服务端redux,异步数据造成server render失效
 
 ## CSS Media Query
 

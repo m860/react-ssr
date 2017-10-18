@@ -13,7 +13,11 @@ import ApplicationSetting from './public/ApplicationSetting'
 
 export const store = createStore(
 	reducers,
-	undefined,
+	__SERVER__ ? {
+		application: {
+			setting: require('../configuration/configuration.server.json')
+		}
+	} : undefined,
 	compose(
 		applyMiddleware(thunk)
 		, autoRehydrate()
@@ -27,6 +31,7 @@ persistStore(store, {
 	blacklist: []
 }, ()=> {
 	storeEmitter.emit(STORE_READY);
+	console.log(store.getState())
 });
 
 export default class App extends React.Component {
@@ -37,8 +42,9 @@ export default class App extends React.Component {
 				storeIsReady: true
 			});
 		})
+		//noinspection JSUnresolvedVariable
 		this.state = {
-			storeIsReady: false
+			storeIsReady: __SERVER__ ? true : false
 		};
 	}
 
