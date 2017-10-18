@@ -5,10 +5,14 @@ log4js.configure({
 		console: {
 			type: "console"
 		},
+		file: {
+			type: 'file',
+			filename: 'log.log'
+		}
 	},
 	categories: {
 		default: {
-			appenders: ['console'],
+			appenders: ['file'],
 			level: 'all'
 		}
 	}

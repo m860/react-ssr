@@ -35,7 +35,6 @@ const getHtml = ()=> {
 }
 
 server.get('/*', (req, res)=> {
-	logger.info(`req.url=${req.url}`);
 	const context = {}
 	const markup = renderToStaticMarkup(
 		<StaticRouter
@@ -44,7 +43,11 @@ server.get('/*', (req, res)=> {
 			<App/>
 		</StaticRouter>
 	);
+	if (markup === "") {
+		logger.error(`url=${req.url} server render empty`);
+	}
 	const html = getHtml().replace('#HTML#', markup);
+	logger.info(`url=${req.url} : #${markup}#`);
 	res.send(html);
 });
 

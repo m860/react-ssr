@@ -63,6 +63,7 @@ $ npm run build
 - [ ] Register
 - [ ] FileUploader
 - [ ] authentication
+- [ ] 服务端redux,异步数据造成server render失效
 
 ## CSS Media Query
 
