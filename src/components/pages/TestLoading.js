@@ -4,7 +4,10 @@ import LayoutWithNavigator from '../public/LayoutWithNavigator'
 import PropTypes from 'prop-types'
 import ActivityIndicator from '../public/ActivityIndicator'
 import LoadingView from '../public/LoadingView'
+import {connect} from 'react-redux'
+import {showLoading, hideLoading} from '../../ar/loading.ar'
 
+@connect()
 export default class TestLoading extends BasePage {
 	constructor(props) {
 		super(props);
@@ -32,6 +35,15 @@ export default class TestLoading extends BasePage {
 							})
 						}}
 						type="button">show loading
+					</button>
+					<button
+						onClick={()=>{
+							this.props.dispatch(showLoading());
+							setTimeout(()=>{
+								this.props.dispatch(hideLoading());
+							},1000);
+						}}
+						type="button">show global loading
 					</button>
 				</LoadingView>
 			</LayoutWithNavigator>
