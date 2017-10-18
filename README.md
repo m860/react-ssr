@@ -54,10 +54,10 @@ $ npm run build
         
 - [x] redux
 - [x] redux-persist
-- [ ] ApplicationSetting
-- [ ] Axios
-- [ ] Loading
-- [ ] LoadingView
+- [x] ApplicationSetting
+- [ ] ~~Axios~~
+- [x] Loading
+- [x] LoadingView
 - [ ] ToastView
 - [ ] Login
 - [ ] Register
