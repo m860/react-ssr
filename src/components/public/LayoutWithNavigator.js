@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import Layout from './Layout'
 import Navigator from './Navigator'
 
-export default class extends Base {
+export default class LayoutWithNavigator extends Base {
 	static propTypes = {
 		children: PropTypes.any.isRequired
 	};

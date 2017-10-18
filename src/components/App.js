@@ -29,7 +29,7 @@ persistStore(store, {
 	storeEmitter.emit(STORE_READY);
 });
 
-export default class extends React.Component {
+export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		storeEmitter.addListener(STORE_READY, ()=> {

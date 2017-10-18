@@ -3,7 +3,7 @@ import Base from '../Base'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-export default class extends Base {
+export default class Navigator extends Base {
 	static propTypes = {
 		...Base.propTypes
 	};

@@ -1,0 +1,12 @@
+@keyframes activity-indicator-rotating
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+.activity-indicator
+  width: 60px
+  height: 60px
+  circle
+    transform-origin: center
+    animation: activity-indicator-rotating 0.5s linear infinite

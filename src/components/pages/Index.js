@@ -6,7 +6,7 @@ import Navigator from '../public/Navigator'
 import PropTypes from 'prop-types'
 import {RoutePaths} from '../Routes'
 
-export default class extends BasePage {
+export default class Index extends BasePage {
 	static contextTypes = {
 		setting: PropTypes.any
 	};

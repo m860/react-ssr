@@ -1,5 +1,4 @@
-import React from 'react'
-import Base from '../Base'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchApplicationSetting} from '../../ar/application.ar'
 import PropTypes from 'prop-types'
@@ -9,7 +8,7 @@ import PropTypes from 'prop-types'
 		setting: application.setting
 	}
 })
-export default class extends Base {
+export default class ApplicationSetting extends Component {
 	static childContextTypes = {
 		setting: PropTypes.any
 	};
@@ -32,14 +31,6 @@ export default class extends Base {
 	}
 
 	componentDidMount() {
-		super.componentDidMount();
 		this.props.dispatch(fetchApplicationSetting());
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		if (this.props.setting !== nextProps.setting) {
-			return true;
-		}
-		return false;
 	}
 }
