@@ -7,7 +7,12 @@ import PropTypes from 'prop-types'
 import {RoutePaths} from '../Routes'
 
 export default class extends BasePage {
+	static contextTypes = {
+		setting: PropTypes.any
+	};
+
 	render() {
+		console.log(this.context)
 		return (
 			<Layout>
 				<Navigator/>

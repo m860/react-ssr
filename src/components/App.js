@@ -1,21 +1,15 @@
 import "normalize-css/normalize.css";
 import "font-awesome/css/font-awesome.css";
 import '../assets/sass/App.sass'
-
 import React from 'react'
-import {
-	Route,
-	Link
-} from 'react-router-dom'
-import Async from 'react-component-async-module'
 import reducers from '../ar/index'
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
-import Axios from './public/Axios'
 import Routes from './Routes'
 import {EventEmitter} from 'fbemitter'
+import ApplicationSetting from './public/ApplicationSetting'
 
 export const store = createStore(
 	reducers,
@@ -32,7 +26,6 @@ const STORE_READY = "STORE_READY";
 persistStore(store, {
 	blacklist: []
 }, ()=> {
-	console.info('store is ready!');
 	storeEmitter.emit(STORE_READY);
 });
 
@@ -52,13 +45,15 @@ export default class extends React.Component {
 	render() {
 		if (!this.state.storeIsReady) {
 			//TODO show loading for restore store
+			console.info('restoring store data ...');
 			return null;
 		}
+		console.info('restore store data is completed')
 		return (
 			<Provider store={store}>
-				<Axios>
+				<ApplicationSetting>
 					<Routes/>
-				</Axios>
+				</ApplicationSetting>
 			</Provider>
 		);
 	}
