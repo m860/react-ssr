@@ -1,0 +1,56 @@
+import update from 'immutability-helper'
+import {ToastType, ActionType} from '../types'
+import guid from 'guid'
+
+const initialState = {
+	messages: []
+};
+
+const SHOW_TOAST = Symbol();
+const HIDE_TOAST = Symbol();
+
+export function showToast(toast: ToastType|String): ActionType {
+	const id = guid.raw();
+	let payload = {id};
+	if (toast.constructor.name === "String") {
+		payload = Object.assign({
+			message: toast
+		}, payload);
+	}
+	else {
+		payload = Object.assign({}, payload, toast);
+	}
+	return function (dispatch) {
+		dispatch({
+			type: SHOW_TOAST,
+			payload: payload
+		});
+		setTimeout(()=> {
+			console.log(`hide toast id=${id}`)
+			dispatch({
+				type: HIDE_TOAST,
+				payload: id
+			});
+		}, payload.duration || 5 * 1000);
+	}
+}
+
+
+export default function (state = initialState, action = {}) {
+	switch (action.type) {
+		case SHOW_TOAST:
+			return update(state, {
+				messages: {$push: [action.payload]}
+			});
+		case HIDE_TOAST:
+			const index = state.messages.map(f=>f.id).indexOf(action.payload);
+			if (index >= 0) {
+				return update(state, {
+					messages: {$splice: [[index, 1]]}
+				});
+			}
+			return state;
+		default:
+			return state;
+	}
+}

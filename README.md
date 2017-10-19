@@ -58,7 +58,7 @@ $ npm run build
 - [ ] ~~Axios~~
 - [x] Loading
 - [x] LoadingView
-- [ ] ToastView
+- [x] Toast
 - [ ] Login
 - [ ] Register
 - [ ] FileUploader

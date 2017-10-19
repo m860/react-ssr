@@ -10,6 +10,7 @@ import {persistStore, autoRehydrate} from "redux-persist";
 import Routes from './Routes'
 import {EventEmitter} from 'fbemitter'
 import ApplicationSetting from './public/ApplicationSetting'
+import Toast from './public/Toast'
 
 export const store = createStore(
 	reducers,
@@ -28,7 +29,9 @@ const storeEmitter = new EventEmitter();
 const STORE_READY = "STORE_READY";
 
 persistStore(store, {
-	blacklist: []
+	blacklist: [
+		'toast'
+	]
 }, ()=> {
 	storeEmitter.emit(STORE_READY);
 	console.log(store.getState())
@@ -57,9 +60,12 @@ export default class App extends React.Component {
 		console.info('restore store data is completed')
 		return (
 			<Provider store={store}>
-				<ApplicationSetting>
-					<Routes/>
-				</ApplicationSetting>
+				<span>
+					<ApplicationSetting>
+						<Routes/>
+					</ApplicationSetting>
+					<Toast/>
+				</span>
 			</Provider>
 		);
 	}
