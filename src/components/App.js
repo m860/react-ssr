@@ -15,7 +15,7 @@ export const store = createStore(
 	reducers,
 	__SERVER__ ? {
 		application: {
-			setting: require('../configuration/configuration.client.json')
+			setting: require('../configuration/application-setting.client.json')
 		}
 	} : undefined,
 	compose(

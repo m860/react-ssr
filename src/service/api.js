@@ -1,6 +1,6 @@
 import express from 'express'
 import sendJSON from '../libs/middleware/sendJSON'
-import configuration from '../configuration/configuration.client.json'
+import configuration from '../configuration/application-setting.client.json'
 import logger, {clientLogger} from '../libs/logger'
 
 const api = express();

@@ -1,4 +1,4 @@
-import {local} from '../configuration/axios.instance'
+import {api} from '../configuration/axios.instance'
 import update from 'immutability-helper'
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
 const FETCH_APPLICATION_SETTING = Symbol();
 export function fetchApplicationSetting() {
 	return async function (dispatch) {
-		const {data} = await local.get('/configuration');
+		const {data} = await api.get('/configuration');
 		if (data.success) {
 			dispatch({
 				type: FETCH_APPLICATION_SETTING,
