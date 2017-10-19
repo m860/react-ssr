@@ -4,8 +4,6 @@ import Async from 'react-component-async-module'
 
 const routes = [
 	<Route exact path="/" component={require('./pages/Index').default}/>,
-	<Route exact path="/pagea" component={require('./pages/PageA').default}/>,
-	<Route exact path="/test/http" component={require('./pages/TestHttp').default}/>,
 	<Route exact path="/test/loading" component={require('./pages/TestLoading').default}/>,
 	<Route exact path="/test/clientlogs" component={require('./pages/TestClientLog').default}/>,
 	<Route exact path="/test/toast" component={require('./pages/TestToast').default}/>,
