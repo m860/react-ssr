@@ -22,7 +22,7 @@ export default class TestClientLog extends BasePage {
 					onClick={()=>{
 						throw new Error('I am a client error');
 					}}
-					type="button">throw a error
+					type="button">throw a error (客户端的错误日志会被记录到服务端)
 				</button>
 			</LayoutWithNavigator>
 		);
