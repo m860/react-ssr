@@ -7,6 +7,7 @@ const routes = [
 	<Route exact path="/pagea" component={require('./pages/PageA').default}/>,
 	<Route exact path="/test/http" component={require('./pages/TestHttp').default}/>,
 	<Route exact path="/test/loading" component={require('./pages/TestLoading').default}/>,
+	<Route exact path="/test/clientlogs" component={require('./pages/TestClientLog').default}/>,
 ];
 
 export default class Routes extends Component {

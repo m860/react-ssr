@@ -63,8 +63,10 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "body-parser": "^1.18.2",
     "classnames": "^2.2.4",
     "colors": "^1.1.2",
+    "dateformat": "^3.0.2",
     "express": "^4.15.4",
     "fbemitter": "^2.1.1",
     "font-awesome": "^4.7.0",

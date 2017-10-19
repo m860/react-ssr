@@ -110,7 +110,7 @@ var config = function (server, env) {
 			new EventCallbackWebpackPlugin('done', () => {
 				if (!running) {
 					running = true;
-					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay 10 --ignore ../src', (error, stdout, stderr) => {
+					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay 5 --ignore ../src', (error, stdout, stderr) => {
 						if (error) {
 							console.error(`exec error: ${error}`);
 							return;

@@ -12,6 +12,13 @@ import yargs from 'yargs'
 import logger from  './libs/logger'
 import App from './components/App'
 import service from './service/index'
+import bodyParser from 'body-parser'
+
+// 不处理未捕获异常,由PM2来处理和记录
+// process.on('uncaughtException', (err)=> {
+// 	console.log('uncaughtException')
+// 	logger.error(`uncaughtException:${err.stack}`);
+// });
 
 const args = yargs
 	.default('port', 3000, 'express listen port')
@@ -21,6 +28,13 @@ const args = yargs
 const port = args['port'];
 
 const server = express();
+
+// parse application/x-www-form-urlencoded
+server.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+server.use(bodyParser.json());
+
 service(server);
 
 server.use('/public', express.static('./public'));
