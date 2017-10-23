@@ -13,15 +13,24 @@ $ npm install
 ```
 
 ## development模式
+
 ```shell
 $ npm run dev
+$ npm run dev:spa #single page application
 ```
 
 ## build
 
 ```shell
 $ npm run build
+$ npm run build:spa #single page application
 ```
+
+## Globals
+
+### __SERVER__
+### __SPA__
+
 
 ## TODO
 - [x] AsyncComponent - 异步组件
