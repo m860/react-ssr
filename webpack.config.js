@@ -18,7 +18,7 @@ fs.readdirSync(path.join(__dirname, 'node_modules'))
 	.filter(x => ['.bin'].indexOf(x) === -1)
 	.forEach(mod => nodeModules[mod] = 'commonjs ' + mod);
 
-var config = function (server, env) {
+var config = function (server, env, options) {
 	var isProduction = env !== 'development';
 	var configuration = {
 		entry: path.join(__dirname, 'src', server ? 'server.js' : "client.js"),
@@ -27,7 +27,7 @@ var config = function (server, env) {
 			path: path.join(__dirname, 'dist', server ? '' : 'public'),
 			filename: server ? 'server.js' : "bundle.js",
 			chunkFilename: isProduction ? '[chunkhash].js' : '[id].js',
-			publicPath: server ? '' : '/public/'
+			publicPath: server ? '' : (options.spa ? '' : '/public/')
 		},
 		externals: (server ? nodeModules : {}),
 		devtool: isProduction ? 'source-map' : "",
@@ -89,7 +89,8 @@ var config = function (server, env) {
 				'process.env': {
 					NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development')
 				},
-				'__SERVER__': JSON.stringify(server)
+				'__SERVER__': JSON.stringify(server),
+				'__SPA__': JSON.stringify(options.spa)
 			})
 			, new webpack.LoaderOptionsPlugin({
 				options: {
@@ -108,8 +109,9 @@ var config = function (server, env) {
 			new webpack.HotModuleReplacementPlugin(),
 			new LiveReloadPlugin(),
 			new EventCallbackWebpackPlugin('done', () => {
-				if (!running) {
+				if (!running && env === 'development') {
 					running = true;
+					console.log('start server ...');
 					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay 5 --ignore ../src', (error, stdout, stderr) => {
 						if (error) {
 							console.error(`exec error: ${error}`);
@@ -136,14 +138,18 @@ var config = function (server, env) {
 
 module.exports = function (env) {
 	if (!env) {
-		env = {};
+		env = {
+			NODE_ENV: 'development',
+			spa: false
+		};
 	}
 	if (!env.NODE_ENV) {
-		env.NODE_ENV = 'development';
+		env.NODE_ENV = 'development'
 	}
 	var NODE_ENV = env.NODE_ENV;
 	console.log('**********************');
-	console.log('* ' + NODE_ENV);
+	console.log('* environment : ' + NODE_ENV);
+	console.log('* spa : ' + env.spa);
 	console.log('**********************');
-	return [config(true, NODE_ENV), config(false, NODE_ENV)];
+	return [config(true, NODE_ENV, env), config(false, NODE_ENV, env)];
 };

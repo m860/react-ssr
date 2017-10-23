@@ -13,6 +13,7 @@ import logger from  './libs/logger'
 import App from './components/App'
 import service from './service/index'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {
@@ -29,8 +30,12 @@ const port = args['port'];
 
 const server = express();
 
+if (__SPA__) {
+	server.use(cors());
+}
+
 // parse application/x-www-form-urlencoded
-server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.urlencoded({extended: false}));
 
 // parse application/json
 server.use(bodyParser.json());

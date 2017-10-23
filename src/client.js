@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import {render} from 'react-dom';
 import App, {store} from './components/App'
 import {api} from './configuration/axios.instance'
@@ -18,9 +18,19 @@ window.addEventListener('error', (event)=> {
 	return false;
 }, false);
 
-render(
-	<BrowserRouter>
-		<App/>
-	</BrowserRouter>
-	, document.getElementById('view')
-);
+if (__SPA__) {
+	render(
+		<HashRouter>
+			<App/>
+		</HashRouter>
+		, document.getElementById('view')
+	);
+}
+else {
+	render(
+		<BrowserRouter>
+			<App/>
+		</BrowserRouter>
+		, document.getElementById('view')
+	);
+}
