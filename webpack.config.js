@@ -31,6 +31,12 @@ var config = function (server, env, options) {
 		},
 		externals: (server ? nodeModules : {}),
 		devtool: isProduction ? 'source-map' : "",
+		resolve: {
+			alias: {
+				'initDataHandlers': 'export default void 0'
+			},
+			extensions: server ? [".server.js", ".js", ".server.json", ".json"] : [".client.js", ".js", ".client.json", ".json"]
+		},
 		module: {
 			rules: [{
 				test: /\.js$/,
@@ -73,6 +79,7 @@ var config = function (server, env, options) {
 			}]
 		},
 		plugins: [
+			new webpack.IgnorePlugin(server ? /\.(client\.js|client\.json)$/ : /\.(server\.js|server\.json)$/),
 			new HtmlWebpackPlugin({
 				filename: "index.html",
 				template: './src/index.html',
@@ -145,6 +152,9 @@ module.exports = function (env) {
 	}
 	if (!env.NODE_ENV) {
 		env.NODE_ENV = 'development'
+	}
+	if (env.spa === undefined) {
+		env.spa = false;
 	}
 	var NODE_ENV = env.NODE_ENV;
 	console.log('**********************');

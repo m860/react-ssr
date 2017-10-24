@@ -34,21 +34,20 @@ $ npm run build:spa #single page application
 
 ## 服务端render初始化页面数据
 
-当在服务端render时,初始化的数据通过`this.context.data`进行传递,需要实现一个静态方法`static fetchData`,此方法可以返回一个javascript对象或者是Promise对象.
+当在服务端render时,初始化的数据通过`this.context.data`进行传递.`Routes`配置时需要配置`initDataHandler`,内部需要实现数据的初始化,方法可以返回一个javascript对象或者是Promise对象.
 
 ```javascript
+//route 配置
+//PS:__SERVER__ 表示只有server才引用打包
+<Route exact path="/test/fetchdata" component={require('./pages/TestFetchData').default}
+		   initDataHandler={__SERVER__&&require('../initDataHandlers/users').default}/>
+
 //example
 class Example extends PureComponent{
-	static fetchData=()=>{
-		//这里是在服务端render时初始化数据
-		return [{
-			name:"abc",
-			age:1
-		}]
-	}
 	constructor(props,context){
 		super(props);
 		this.state={
+			//如果context.data存在即服务端render,则使用初始化的数据,否则不使用
 			users:context.data?context.data:[]
 		};
 	}

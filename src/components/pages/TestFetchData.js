@@ -8,17 +8,9 @@ import {connect} from 'react-redux'
 import {showLoading, hideLoading} from '../../ar/loading.ar'
 import {showToast} from '../../ar/toast.ar'
 import {api} from '../../configuration/axios.instance'
-import logger from '../../libs/console'
 
 @connect()
 export default class TestFetchData extends BasePage {
-	static fetchData = ()=> {
-		logger.info('TestFetchData fetchData ...');
-		return [{
-			name: "abc",
-			age: 1000
-		}];
-	}
 	static contextTypes = {
 		data: PropTypes.any
 	};

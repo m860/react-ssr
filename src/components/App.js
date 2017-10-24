@@ -13,12 +13,11 @@ import ApplicationSetting from './public/ApplicationSetting'
 import Toast from './public/Toast'
 
 export const store = createStore(
-	reducers,
-	__SERVER__ ? {
+	reducers, {
 		application: {
-			setting: require('../configuration/application-setting.client.json')
+			setting: __SERVER__ && require('../configuration/application-setting')
 		}
-	} : undefined,
+	},
 	compose(
 		applyMiddleware(thunk)
 		, autoRehydrate()

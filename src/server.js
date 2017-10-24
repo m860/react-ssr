@@ -9,7 +9,7 @@ import fs from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import 'babel-polyfill'
 import yargs from 'yargs'
-import logger from  './libs/logger'
+import logger from  './libs/logger.server'
 import App from './components/App'
 import service from './service/index'
 import bodyParser from 'body-parser'
@@ -66,10 +66,10 @@ server.use((req, res, next)=> {
 		});
 		logger.info(`will match path=${url}:path=${routes[i].props.path},exact=${routes[i].props.exact ? true : false},strict=false result=${matched}`);
 		if (matched) {
-			const component = routes[i].props.component;
-			if (component && component.fetchData) {
+			const handler = routes[i].props.initDataHandler;
+			if (handler) {
 				logger.info(`start fetchData ...`)
-				const fetchResult = component.fetchData();
+				const fetchResult = handler();
 				if (fetchResult instanceof Promise) {
 					fetchResult.then(data=> {
 						req.dataContext = data;
