@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import App, {store} from './components/App'
 import {api} from './configuration/axios.instance'
 import {showToast} from './ar/toast.ar'
+import DataWrapper from './components/public/DataWrapper'
 
 window.addEventListener('error', (event)=> {
 	event.preventDefault();
@@ -29,7 +30,9 @@ if (__SPA__) {
 else {
 	render(
 		<BrowserRouter>
-			<App/>
+			<DataWrapper>
+				<App/>
+			</DataWrapper>
 		</BrowserRouter>
 		, document.getElementById('view')
 	);

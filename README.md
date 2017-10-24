@@ -32,6 +32,45 @@ $ npm run build:spa #single page application
 ### __SPA__
 
 
+## 服务端render初始化页面数据
+
+当在服务端render时,初始化的数据通过`this.context.data`进行传递,需要实现一个静态方法`static fetchData`,此方法可以返回一个javascript对象或者是Promise对象.
+
+```javascript
+//example
+class Example extends PureComponent{
+	static fetchData=()=>{
+		//这里是在服务端render时初始化数据
+		return [{
+			name:"abc",
+			age:1
+		}]
+	}
+	constructor(props,context){
+		super(props);
+		this.state={
+			users:context.data?context.data:[]
+		};
+	}
+	fetchUsers(){
+		//do something
+		//客户端获取数据
+	}
+	render(){
+		return (
+			<ul>
+                {this.state.users.map((user, index)=> {
+                    return <li key={index}>{user.name}:{user.age}</li>
+                })}
+            </ul>
+		);
+	}
+	componentDidMount(){
+		this.fetchUsers();
+	}
+}
+```
+
 ## TODO
 - [x] AsyncComponent - 异步组件
     - [x] 服务端异步组件问题 - 在编译时解决,如果是服务端编译则不进行代码分割,如果是客户端编译则使用代码分割
