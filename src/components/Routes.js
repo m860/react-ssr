@@ -7,6 +7,7 @@ export const routes = [
 	<Route exact path="/test/loading" component={require('./pages/TestLoading').default}/>,
 	<Route exact path="/test/clientlogs" component={require('./pages/TestClientLog').default}/>,
 	<Route exact path="/test/toast" component={require('./pages/TestToast').default}/>,
+	<Route exact path="/test/transition" component={require('./pages/TestTransition').default}/>,
 	<Route exact path="/test/fetchdata" component={require('./pages/TestFetchData').default}
 		   initDataHandler={__SERVER__?require('../initDataHandlers/users').default:!1}/>,
 ];

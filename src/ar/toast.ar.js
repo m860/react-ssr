@@ -14,11 +14,16 @@ export function showToast(toast: ToastType|String): ActionType {
 	let payload = {id};
 	if (toast.constructor.name === "String") {
 		payload = Object.assign({
-			message: toast
+			message: toast,
+			timeout: 200,
+			duration: 5 * 1000
 		}, payload);
 	}
 	else {
-		payload = Object.assign({}, payload, toast);
+		payload = Object.assign({
+			duration: 5 * 1000,
+			timeout: 200
+		}, payload, toast);
 	}
 	return function (dispatch) {
 		dispatch({
@@ -31,7 +36,7 @@ export function showToast(toast: ToastType|String): ActionType {
 				type: HIDE_TOAST,
 				payload: id
 			});
-		}, payload.duration || 5 * 1000);
+		}, payload.duration);
 	}
 }
 
