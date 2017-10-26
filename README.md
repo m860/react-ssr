@@ -40,10 +40,13 @@ $ npm run build:spa #single page application
 //route 配置
 //PS:__SERVER__ 表示只有server才引用打包
 <Route exact path="/test/fetchdata" component={require('./pages/TestFetchData').default}
-		   initDataHandler={__SERVER__&&require('../initDataHandlers/users').default}/>
+		   initDataHandler={__SERVER__?require('../initDataHandlers/users').default:0}/>
 
 //example
 class Example extends PureComponent{
+	static contextTypes = {
+        data: PropTypes.any
+    };
 	constructor(props,context){
 		super(props);
 		this.state={
