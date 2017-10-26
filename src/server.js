@@ -9,7 +9,7 @@ import fs from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import 'babel-polyfill'
 import yargs from 'yargs'
-import logger from  './libs/logger.server'
+import logger from  './libs/logger'
 import App from './components/App'
 import service from './service/index'
 import bodyParser from 'body-parser'
@@ -64,13 +64,15 @@ server.use((req, res, next)=> {
 			exact: routes[i].props.exact ? true : false,
 			strict: false
 		});
-		logger.info(`will match path=${url}:path=${routes[i].props.path},exact=${routes[i].props.exact ? true : false},strict=false result=${matched}`);
+		logger.info(`will match path=${url}:path=${routes[i].props.path},exact=${routes[i].props.exact ? true : false},strict=false result=${JSON.stringify(matched)}`);
 		if (matched) {
+			logger.info(`[${url}] is matched`);
 			const handler = routes[i].props.initDataHandler;
 			if (handler) {
 				logger.info(`start fetchData ...`)
 				const fetchResult = handler();
 				if (fetchResult instanceof Promise) {
+					logger.info(`fetch result is Promise`);
 					fetchResult.then(data=> {
 						req.dataContext = data;
 						next();
@@ -79,14 +81,16 @@ server.use((req, res, next)=> {
 					});
 				}
 				else {
+					logger.info(`fetch result is not Promise`);
 					if (fetchResult) {
 						req.dataContext = fetchResult;
 					}
 					next();
 				}
 			}
-			logger.info(`[${url}] is matched`);
-			return;
+			else {
+				next();
+			}
 		}
 	}
 	next();

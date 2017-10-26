@@ -15,7 +15,7 @@ import Toast from './public/Toast'
 export const store = createStore(
 	reducers, {
 		application: {
-			setting: __SERVER__ && require('../configuration/application-setting')
+			setting: __SERVER__ ? require('../configuration/application-setting') : null
 		}
 	},
 	compose(
