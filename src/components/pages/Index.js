@@ -5,6 +5,7 @@ import Layout from '../public/Layout'
 import Navigator from '../public/Navigator'
 import PropTypes from 'prop-types'
 import {RoutePaths} from '../Routes'
+import logger from '../../libs/logger'
 
 export default class Index extends BasePage {
 	static contextTypes = {
@@ -12,7 +13,7 @@ export default class Index extends BasePage {
 	};
 
 	render() {
-		console.log(this.context)
+		logger.info(this.context)
 		return (
 			<Layout>
 				<Navigator/>

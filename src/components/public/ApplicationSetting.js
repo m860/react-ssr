@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchApplicationSetting} from '../../ar/application.ar'
 import PropTypes from 'prop-types'
+import logger from '../../libs/logger'
 
 @connect(({application})=> {
 	return {
@@ -23,10 +24,10 @@ export default class ApplicationSetting extends Component {
 
 	render() {
 		if (!this.props.setting) {
-			console.info('application setting is undefined')
+			logger.info('application setting is undefined')
 			return null;
 		}
-		console.info('application setting is ready')
+		logger.info('application setting is ready')
 		return React.Children.only(this.props.children);
 	}
 

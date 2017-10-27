@@ -10,7 +10,7 @@ import ActivityIndicator from './ActivityIndicator'
 import Loading from './Loading'
 import Transition from 'react-transition-group/Transition'
 import update from 'immutability-helper'
-
+import logger from '../../libs/logger'
 
 const transitionStyles = {
 	entering: {
@@ -54,7 +54,7 @@ export default class ToastItem extends Base {
 			|| this.props.type === 'error') {
 			iconClassName = 'fa-exclamation-circle'
 		}
-		console.log(this.props)
+		logger.info(this.props)
 		return (
 			<Transition
 				in={this.state.in}

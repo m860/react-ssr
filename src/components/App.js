@@ -11,6 +11,7 @@ import Routes from './Routes'
 import {EventEmitter} from 'fbemitter'
 import ApplicationSetting from './public/ApplicationSetting'
 import Toast from './public/Toast'
+import logger from '../libs/logger'
 
 export const store = createStore(
 	reducers, {
@@ -33,7 +34,7 @@ persistStore(store, {
 	]
 }, ()=> {
 	storeEmitter.emit(STORE_READY);
-	console.log(store.getState())
+	logger.info(store.getState())
 });
 
 export default class App extends React.Component {
@@ -53,10 +54,10 @@ export default class App extends React.Component {
 	render() {
 		if (!this.state.storeIsReady) {
 			//TODO show loading for restore store
-			console.info('restoring store data ...');
+			logger.info('restoring store data ...');
 			return null;
 		}
-		console.info('restore store data is completed')
+		logger.info('restore store data is completed')
 		return (
 			<Provider store={store}>
 				<span>
