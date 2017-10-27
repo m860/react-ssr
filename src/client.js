@@ -9,8 +9,8 @@ import DataWrapper from './components/public/DataWrapper'
 window.addEventListener('error', (event)=> {
 	event.preventDefault();
 	api.post('/clientlogs', {
-		message: event.error.message,
-		stack: event.error.stack
+		message: event.error ? event.error.message : event.message,
+		stack: event.error ? event.error.stack : ''
 	});
 	store.dispatch(showToast({
 		type: 'error',

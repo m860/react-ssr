@@ -10,6 +10,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var LiveReloadPlugin = require('webpack-livereload-plugin')
 var EventCallbackWebpackPlugin = require('event-callback-webpack-plugin').default
 var exec = require('child_process').exec;
+var openurl = require('openurl')
 
 var running = false;
 
@@ -119,7 +120,16 @@ var config = function (server, env, options) {
 				if (!running && env === 'development') {
 					running = true;
 					console.log('start server ...');
-					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay 5 --ignore ../src').stdout.pipe(process.stdout);
+					var delay = 5;
+					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay ' + delay + ' --ignore ../src').stdout.pipe(process.stdout);
+					setTimeout(function () {
+						if (server) {
+							openurl.open('http://127.0.0.1:3000');
+						}
+						if (options.spa) {
+							openurl.open('file://' + path.resolve(path.join(__dirname, 'dist/public/index.html')));
+						}
+					}, delay * 1000);
 				}
 			})
 		]
