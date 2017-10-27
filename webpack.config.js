@@ -119,14 +119,7 @@ var config = function (server, env, options) {
 				if (!running && env === 'development') {
 					running = true;
 					console.log('start server ...');
-					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay 5 --ignore ../src', (error, stdout, stderr) => {
-						if (error) {
-							console.error(`exec error: ${error}`);
-							return;
-						}
-						console.log(`stdout: ${stdout}`);
-						console.log(`stderr: ${stderr}`);
-					});
+					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay 5 --ignore ../src').stdout.pipe(process.stdout);
 				}
 			})
 		]

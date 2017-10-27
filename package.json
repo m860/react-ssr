@@ -49,7 +49,7 @@
     "jest": "^19.0.2",
     "livereload": "^0.6.2",
     "node-sass": "^3.4.2",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.12.1",
     "postcss-loader": "^0.8.2",
     "react-mixin": "^2.0.2",
     "sass-loader": "^3.2.0",

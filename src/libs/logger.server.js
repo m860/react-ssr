@@ -19,7 +19,7 @@ log4js.configure({
 	},
 	categories: {
 		default: {
-			appenders: ['server'],
+			appenders: ['console'],
 			level: 'all'
 		},
 		client: {
