@@ -18,10 +18,10 @@ export default class Index extends BasePage {
 			<Layout>
 				<Navigator/>
 				<ul>
-					{RoutePaths.map((path, index)=> {
+					{RoutePaths.map((routeOption, index)=> {
 						return (
-							<li key={`path-${index}`}>
-								<Link to={path}>{path}</Link>
+							<li key={`route-${index}`}>
+								<Link to={routeOption.path}>{routeOption.title}</Link>
 							</li>
 						);
 					})}
