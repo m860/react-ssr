@@ -59,37 +59,39 @@ const getHtml = ()=> {
 server.use((req, res, next)=> {
 	const url = req.url;
 	for (let i = 0; i < routes.length; i++) {
-		const matched = matchPath(url, {
-			path: routes[i].props.path,
-			exact: routes[i].props.exact ? true : false,
-			strict: false
-		});
-		logger.info(`will match path=${url}:path=${routes[i].props.path},exact=${routes[i].props.exact ? true : false},strict=false result=${JSON.stringify(matched)}`);
-		if (matched) {
-			logger.info(`[${url}] is matched`);
-			const handler = routes[i].props.initDataHandler;
-			if (handler) {
-				logger.info(`start fetchData ...`)
-				const fetchResult = handler();
-				if (fetchResult instanceof Promise) {
-					logger.info(`fetch result is Promise`);
-					fetchResult.then(data=> {
-						req.dataContext = data;
+		if (routes[i].props.path) {
+			const matched = matchPath(url, {
+				path: routes[i].props.path,
+				exact: routes[i].props.exact ? true : false,
+				strict: false
+			});
+			logger.info(`will match path=${url}:path=${routes[i].props.path},exact=${routes[i].props.exact ? true : false},strict=false result=${JSON.stringify(matched)}`);
+			if (matched) {
+				logger.info(`[${url}] is matched`);
+				const handler = routes[i].props.initDataHandler;
+				if (handler) {
+					logger.info(`start fetchData ...`)
+					const fetchResult = handler();
+					if (fetchResult instanceof Promise) {
+						logger.info(`fetch result is Promise`);
+						fetchResult.then(data=> {
+							req.dataContext = data;
+							next();
+						}).catch(err=> {
+							logger.error(err);
+						});
+					}
+					else {
+						logger.info(`fetch result is not Promise`);
+						if (fetchResult) {
+							req.dataContext = fetchResult;
+						}
 						next();
-					}).catch(err=> {
-						logger.error(err);
-					});
+					}
 				}
 				else {
-					logger.info(`fetch result is not Promise`);
-					if (fetchResult) {
-						req.dataContext = fetchResult;
-					}
 					next();
 				}
-			}
-			else {
-				next();
 			}
 		}
 	}

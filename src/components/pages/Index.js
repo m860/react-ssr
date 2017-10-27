@@ -21,7 +21,7 @@ export default class Index extends BasePage {
 					{RoutePaths.map((routeOption, index)=> {
 						return (
 							<li key={`route-${index}`}>
-								<Link to={routeOption.path}>{routeOption.title}</Link>
+								<Link to={routeOption.path||Date.now().toString()}>{routeOption.title}</Link>
 							</li>
 						);
 					})}
