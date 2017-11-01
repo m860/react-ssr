@@ -21,7 +21,7 @@ export default class SignInCard extends Base {
 					Have you forgotten your <a>UserName</a> or <a>Password</a>?
 				</div>
 				<div>
-					<button type="button">SignIn</button>
+					<button type="button">Sign In</button>
 				</div>
 				<div className="tips">
 					Do you wish to register for <a>a new account</a>?

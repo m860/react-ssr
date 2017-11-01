@@ -5,6 +5,7 @@ import Async from 'react-component-async-module'
 export const routes = [
 	<Route exact path="/" component={require('./pages/Index').default} title="首页"/>,
 	<Route exact path="/signin" component={require('./pages/SignIn').default} title="Sign In"/>,
+	<Route exact path="/signup" component={require('./pages/SignUp').default} title="Sign Up"/>,
 	<Route exact path="/test/loading" component={require('./pages/TestLoading').default} title="Loading"/>,
 	<Route exact path="/test/clientlogs" component={require('./pages/TestClientLog').default} title="日志"/>,
 	<Route exact path="/test/toast" component={require('./pages/TestToast').default} title="通知消息"/>,
