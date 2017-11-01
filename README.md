@@ -115,6 +115,11 @@ class Example extends PureComponent{
 - [ ] FileUploader
 - [ ] authentication
 - [ ] Breadcrumbs
+- [ ] Tip
+- [ ] Avatar
+- [x] SoftKeyboard
+- [ ] TextInput - clear,validation
+- [ ] Video - [video-react](https://github.com/video-react/video-react)
 - [ ] 通用的增删改查+功能权限,根据业务类型进行区分.主要解决单表业务问题
 - [x] 服务端redux,异步数据造成server render失效
 - [x] client error 记录
