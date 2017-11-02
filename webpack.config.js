@@ -121,7 +121,7 @@ var config = function (server, env, options) {
 					running = true;
 					console.log('start server ...');
 					var delay = 10;
-					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay ' + delay + ' --ignore ../src').stdout.pipe(process.stdout);
+					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay ' + delay).stdout.pipe(process.stdout);
 					setTimeout(function () {
 						if (server) {
 							openurl.open('http://127.0.0.1:3000');
