@@ -10,6 +10,7 @@ export const routes = [
 	<Route exact path="/test/clientlogs" component={require('./pages/TestClientLog').default} title="日志"/>,
 	<Route exact path="/test/toast" component={require('./pages/TestToast').default} title="通知消息"/>,
 	<Route exact path="/test/transition" component={require('./pages/TestTransition').default} title="动画测试"/>,
+	<Route exact path="/test/forms" component={require('./pages/TestForm').default} title="Test Form"/>,
 	<Route exact path="/test/softkeyboard" component={require('./pages/TestSoftKeyboard').default}
 		   title="Test Soft Keyboard"/>,
 	<Route exact path="/test/fetchdata" component={require('./pages/TestFetchData').default}

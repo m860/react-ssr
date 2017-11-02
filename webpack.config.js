@@ -120,7 +120,7 @@ var config = function (server, env, options) {
 				if (!running && env === 'development') {
 					running = true;
 					console.log('start server ...');
-					var delay = 5;
+					var delay = 10;
 					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay ' + delay + ' --ignore ../src').stdout.pipe(process.stdout);
 					setTimeout(function () {
 						if (server) {
