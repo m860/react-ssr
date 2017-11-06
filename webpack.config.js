@@ -11,6 +11,7 @@ var LiveReloadPlugin = require('webpack-livereload-plugin')
 var EventCallbackWebpackPlugin = require('event-callback-webpack-plugin').default
 var exec = require('child_process').exec;
 var openurl = require('openurl')
+var WebpackAutoInject = require('webpack-auto-inject-version')
 
 var running = false;
 
@@ -130,6 +131,33 @@ var config = function (server, env, options) {
 							openurl.open('file://' + path.resolve(path.join(__dirname, 'dist/public/index.html')));
 						}
 					}, delay * 1000);
+				}
+			}),
+			new WebpackAutoInject({
+				NAME: 'Server render for react',
+				SHORT: 'ServerRender',
+				SILENT: false,
+				PACKAGE_JSON_PATH: './package.json',
+				components: {
+					AutoIncreaseVersion: true,
+					InjectAsComment: true,
+					InjectByTag: true
+				},
+				componentsOptions: {
+					AutoIncreaseVersion: {
+						runInWatchMode: false // it will increase version with every single build!
+					},
+					InjectAsComment: {
+						tag: 'Version: {version} - {date}',
+						dateFormat: 'h:MM:ss TT'
+					},
+					InjectByTag: {
+						fileRegex: /\.+/,
+						dateFormat: 'h:MM:ss TT'
+					}
+				},
+				LOGS_TEXT: {
+					AIS_START: 'AIV started'
 				}
 			})
 		]

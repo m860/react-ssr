@@ -61,6 +61,7 @@
     "url-loader": "^0.5.7",
     "walk": "^2.3.9",
     "webpack": "^2.7.0",
+    "webpack-auto-inject-version": "^1.0.0",
     "webpack-dev-server": "^2.4.1",
     "webpack-livereload-plugin": "^1.0.0"
   },
