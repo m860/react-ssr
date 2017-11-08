@@ -1,22 +1,17 @@
 import React from 'react'
 import Base from '../../Base'
 import PropTypes from 'prop-types'
+import TextInput from '../forms/TextInput'
 
 export default class SignInCard extends Base {
 	render() {
 		return (
-			<div className="passport-card">
+			<form className="form-card form-sign-in">
 				<div className="title">Sign In</div>
-				<div className="form">
-					<div>
-						<label>UserName</label>
-						<input/>
-					</div>
-					<div>
-						<label>Password</label>
-						<input/>
-					</div>
-				</div>
+				<TextInput
+					label="UserName"/>
+				<TextInput
+					label="Password" type="password"/>
 				<div className="tips">
 					Have you forgotten your <a>UserName</a> or <a>Password</a>?
 				</div>
@@ -26,7 +21,7 @@ export default class SignInCard extends Base {
 				<div className="tips">
 					Do you wish to register for <a>a new account</a>?
 				</div>
-			</div>
+			</form>
 		);
 	}
 }
