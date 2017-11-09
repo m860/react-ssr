@@ -13,6 +13,7 @@ var exec = require('child_process').exec;
 var openurl = require('openurl')
 var WebpackAutoInject = require('webpack-auto-inject-version')
 var colors = require('colors/safe')
+var nodemon = require('nodemon')
 
 var running = false;
 
@@ -122,8 +123,21 @@ var config = function (server, env, options) {
 				if (!running && env === 'development') {
 					running = true;
 					console.log('start server ...');
+					process.chdir('dist');
 					var delay = 2;
-					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay ' + delay + '--ignore *.css --ignore *.html --ignore ./public --ignore ./logs --ignore *-update.js --ignore *-update.json').stdout.pipe(process.stdout);
+					nodemon({
+						script: 'server.js',
+						ext: 'js json',
+						delay: delay
+					});
+					// nodemon.on('start', function () {
+					// 	console.log('App has started');
+					// }).on('quit', function () {
+					// 	console.log('App has quit');
+					// 	process.exit();
+					// }).on('restart', function (files) {
+					// 	console.log('App restarted due to: ', files);
+					// });
 					var url;
 					if (server) {
 						url = 'http://127.0.0.1:3000';
