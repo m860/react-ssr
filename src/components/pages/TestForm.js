@@ -7,6 +7,7 @@ import LoadingView from '../public/LoadingView'
 import {connect} from 'react-redux'
 import {showLoading, hideLoading} from '../../ar/loading.ar'
 import TextInput from '../public/forms/TextInput'
+import Select from '../public/forms/Select'
 
 export default class TestForm extends BasePage {
 	constructor(props) {
@@ -14,6 +15,7 @@ export default class TestForm extends BasePage {
 		this.state = {
 			name: '',
 			password: '',
+			age: 0,
 			errors: []
 		};
 	}
@@ -45,33 +47,50 @@ export default class TestForm extends BasePage {
 						<form className="form-card">
 							<TextInput
 								validate={value=>{
-								if(!/^.{6,8}$/.test(value)){
-									this.pushError('name')
-									return 'Please input 6~8 characters for name!'
-								}
-								this.popError('name');
-							}}
+									if(!/^.{6,8}$/.test(value)){
+										this.pushError('name')
+										return 'Please input 6~8 characters for name!'
+									}
+									this.popError('name');
+								}}
 								onChange={event=>{
-								this.updateState({
-									name:{$set:event.target.value}
-								})
-							}}
+									this.updateState({
+										name:{$set:event.target.value}
+									})
+								}}
 								label="Name"/>
 							<TextInput
 								validate={value=>{
-								if(!/^.{6,20}$/.test(value)){
-									this.pushError('password')
-									return 'Please input 6~20 characters for password!'
-								}
-								this.popError('password')
-							}}
+									if(!/^.{6,20}$/.test(value)){
+										this.pushError('password')
+										return 'Please input 6~20 characters for password!'
+									}
+									this.popError('password')
+								}}
 								onChange={event=>{
-								this.updateState({
-									password:{$set:event.target.value}
-								})
-							}}
+									this.updateState({
+										password:{$set:event.target.value}
+									})
+								}}
 								type="password"
 								label="Password"/>
+							<Select
+								options={[{
+									key:-1,
+									value:'-- Please Select Age --'
+								},{
+										key:1,
+										value:1
+									},{
+										key:2,
+										value:2
+									}]}
+								onChange={event=>{
+									this.updateState({
+										age:{$set:parseFloat(event.target.value)}
+									})
+								}}
+								label="Age"/>
 							<div className="buttons">
 								<button
 									type="button"
@@ -88,10 +107,10 @@ export default class TestForm extends BasePage {
 							</div>
 							<div className="forms">
 								<TextInput
-									label="UserName"/>
+									label="Text"/>
 								<TextInput
-									type="password"
 									label="Password"/>
+
 							</div>
 						</form>
 					</div>

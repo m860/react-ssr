@@ -118,7 +118,10 @@ class Example extends PureComponent{
 - [ ] Tip
 - [ ] Avatar
 - [x] SoftKeyboard
-- [ ] TextInput - clear,validation
+- [ ] TextInput,TextArea,Select,RadioButtons,CheckBoxes
+    - [x] validation
+    - [ ] clear
+    - [ ] Select,RadioButtons,CheckBoxes 支持options
 - [ ] Video - [video-react](https://github.com/video-react/video-react)
 - [ ] 响应式查询和表单维护,主要解决单表或者是业务单一的增删改查
     - 所有api都是post
@@ -128,6 +131,7 @@ class Example extends PureComponent{
     - form表单支持以下样式`form-vertical` `form-horizontal` `form-flow`
 - [x] 服务端redux,异步数据造成server render失效
 - [x] client error 记录
+- [ ] 优化nodemon,经常挂掉无法自动重启
 
 ## CSS Media Query
 

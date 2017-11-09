@@ -3,27 +3,37 @@ import PropTypes from 'prop-types'
 import Base from '../../Base'
 import classnames from 'classnames'
 import FormCell from './FormCell'
+import guid from 'guid'
 
-export default class Select extends Base {
+export default class RadioButtons extends Base {
 	static propTypes = {
 		options: PropTypes.arrayOf(PropTypes.shape({
-			key: PropTypes.oneOfType([PropTypes.number,PropTypes.string]),
-			value: PropTypes.oneOfType([PropTypes.number,PropTypes.string])
-		})).isRequired
+			key: PropTypes.string,
+			value: PropTypes.string
+		})).isRequired,
+		onChange: PropTypes.func
 	};
+
+	constructor(props) {
+		super(props);
+		this.name = guid.raw();
+	}
 
 	render() {
 		let props = Object.assign({}, this.props);
 		delete props.options;
 		return (
 			<FormCell {...props}>
-				<select>
+				<div className="radio-buttons">
 					{this.props.options.map((option, index)=> {
 						return (
-							<option value={option.key} key={index}>{option.value}</option>
+							<div key={index}>
+								<label>{option.value}</label>
+								<input type="radio" name={this.name} value={option.key}/>
+							</div>
 						);
 					})}
-				</select>
+				</div>
 			</FormCell>
 		);
 	}
