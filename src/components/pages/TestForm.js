@@ -40,45 +40,65 @@ export default class TestForm extends BasePage {
 	render() {
 		return (
 			<LayoutWithNavigator>
-				<div style={{margin:'0 auto',padding:20}}>
-					<form className="form-card">
-						<TextInput
-							validate={value=>{
+				<div style={{overflow:"auto"}}>
+					<div>
+						<form className="form-card">
+							<TextInput
+								validate={value=>{
 								if(!/^.{6,8}$/.test(value)){
 									this.pushError('name')
 									return 'Please input 6~8 characters for name!'
 								}
 								this.popError('name');
 							}}
-							onChange={event=>{
+								onChange={event=>{
 								this.updateState({
 									name:{$set:event.target.value}
 								})
 							}}
-							label="Name"/>
-						<TextInput
-							validate={value=>{
+								label="Name"/>
+							<TextInput
+								validate={value=>{
 								if(!/^.{6,20}$/.test(value)){
 									this.pushError('password')
 									return 'Please input 6~20 characters for password!'
 								}
 								this.popError('password')
 							}}
-							onChange={event=>{
+								onChange={event=>{
 								this.updateState({
 									password:{$set:event.target.value}
 								})
 							}}
-							type="password"
-							label="Password"/>
-						<div className="buttons">
-							<button
-								type="button"
-								disabled={this.state.errors.length>0}>Submit
-							</button>
-						</div>
-					</form>
-					{JSON.stringify(this.state)}
+								type="password"
+								label="Password"/>
+							<div className="buttons">
+								<button
+									type="button"
+									disabled={this.state.errors.length>0}>Submit
+								</button>
+							</div>
+						</form>
+						{JSON.stringify(this.state)}
+					</div>
+					<div>
+						<form className="form-vertical">
+							<TextInput
+								label="UserName"/>
+							<TextInput
+								type="password"
+								label="Password"/>
+						</form>
+					</div>
+					<div>
+						<form className="form-horizontal">
+							<TextInput
+								label="UserName"/>
+							<TextInput
+								type="password"
+								label="Password"/>
+						</form>
+					</div>
 				</div>
 			</LayoutWithNavigator>
 		);

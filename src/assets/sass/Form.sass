@@ -14,7 +14,6 @@ input[type=text], input[type=password]
   &:focus
     border-bottom-color: #466EB1
 
-
 .form-cell
   display: flex
   flex-direction: column
@@ -37,7 +36,7 @@ input[type=text], input[type=password]
 form.form-card
   min-width: 400px
   max-width: 600px
-  box-shadow: 0 0 20px rgba(0,0,0,0.5)
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
   padding: 30px
   box-sizing: content-box
   border-radius: 10px
@@ -49,7 +48,8 @@ form.form-card
     button
       padding: 15px 20px
       border-radius: 10px
-form.form-sign-in,form.form-sign-up
+
+form.form-sign-in, form.form-sign-up
   .title
     color: #676767
     font-size: 30px
@@ -87,3 +87,14 @@ form.form-sign-in,form.form-sign-up
       color: #4181B8
       font-weight: bold
       cursor: pointer
+
+form.form-vertical
+  display: flex
+  flex-direction: column
+
+form.form-horizontal
+  display: flex
+  flex-direction: row
+
+form.form-flow
+
