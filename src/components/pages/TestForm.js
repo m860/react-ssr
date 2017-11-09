@@ -83,20 +83,91 @@ export default class TestForm extends BasePage {
 					</div>
 					<div>
 						<form className="form-vertical">
-							<TextInput
-								label="UserName"/>
-							<TextInput
-								type="password"
-								label="Password"/>
+							<div className="buttons">
+								<button type="button">button</button>
+							</div>
+							<div className="forms">
+								<TextInput
+									label="UserName"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+							</div>
 						</form>
 					</div>
 					<div>
 						<form className="form-horizontal">
-							<TextInput
-								label="UserName"/>
-							<TextInput
-								type="password"
-								label="Password"/>
+							<div className="buttons">
+								<button type="button">button</button>
+							</div>
+							<div className="forms">
+								<TextInput
+									label="UserName"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+							</div>
+						</form>
+					</div>
+					<div>
+						<form className="form-filter">
+							<div className="forms">
+								<TextInput
+									label="UserName"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+							</div>
+							<div className="buttons">
+								<button type="button">button</button>
+							</div>
+						</form>
+					</div>
+					<div>
+						<form className="form-flow">
+							<div className="buttons">
+								<button type="button">button</button>
+							</div>
+							<div className="forms">
+								<TextInput
+									label="UserName"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+								<TextInput
+									type="password"
+									label="Password"/>
+							</div>
 						</form>
 					</div>
 				</div>

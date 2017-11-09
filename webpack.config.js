@@ -121,16 +121,16 @@ var config = function (server, env, options) {
 				if (!running && env === 'development') {
 					running = true;
 					console.log('start server ...');
-					var delay = 10;
+					var delay = 2;
 					exec('cd dist && ../node_modules/nodemon/bin/nodemon.js server.js --delay ' + delay+'--ignore *.css --ignore *.html --ignore ./public --ignore ./logs --ignore *-update.js --ignore *-update.json').stdout.pipe(process.stdout);
-					setTimeout(function () {
-						if (server) {
-							openurl.open('http://127.0.0.1:3000');
-						}
-						if (options.spa) {
-							openurl.open('file://' + path.resolve(path.join(__dirname, 'dist/public/index.html')));
-						}
-					}, delay * 1000);
+					// setTimeout(function () {
+					// 	if (server) {
+					// 		openurl.open('http://127.0.0.1:3000');
+					// 	}
+					// 	if (options.spa) {
+					// 		openurl.open('file://' + path.resolve(path.join(__dirname, 'dist/public/index.html')));
+					// 	}
+					// }, delay * 1000);
 				}
 			}),
 			new WebpackAutoInject({

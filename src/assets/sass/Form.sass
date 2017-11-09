@@ -88,13 +88,41 @@ form.form-sign-in, form.form-sign-up
       font-weight: bold
       cursor: pointer
 
-form.form-vertical
+form.form-vertical, form.form-horizontal, form.form-flow, form.form-filter
   display: flex
   flex-direction: column
+  .buttons
+    display: flex
+    flex: 0 0 auto
+    flex-direction: row
+    height: 44px
+    padding: 10px
+    justify-content: flex-end
+    button[type=button]
+      padding: 0 20px
+      border-radius: 4px
+
+form.form-vertical
+  .forms
+    display: flex
+    flex-direction: column
 
 form.form-horizontal
-  display: flex
-  flex-direction: row
+  .forms
+    display: flex
+    flex-direction: row
 
 form.form-flow
+  .forms
+    display: block
+    .form-cell
+      display: inline-block
+
+form.form-filter
+  display: flex
+  flex-direction: row
+  .forms
+    display: flex
+    flex-direction: row
+
 

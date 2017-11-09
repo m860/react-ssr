@@ -120,7 +120,12 @@ class Example extends PureComponent{
 - [x] SoftKeyboard
 - [ ] TextInput - clear,validation
 - [ ] Video - [video-react](https://github.com/video-react/video-react)
-- [ ] 通用的增删改查+功能权限,根据业务类型进行区分.主要解决单表业务问题
+- [ ] 响应式查询和表单维护,主要解决单表或者是业务单一的增删改查
+    - 所有api都是post
+    - 提交的formData是没有嵌套的简单Object
+    - 列表返回的数据也是没有嵌套的简单Object
+    - form表单目前只支持text,password
+    - form表单支持以下样式`form-vertical` `form-horizontal` `form-flow`
 - [x] 服务端redux,异步数据造成server render失效
 - [x] client error 记录
 
