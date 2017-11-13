@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import FormCell from './FormCell'
 import guid from 'guid'
 
-export default class RadioButtons extends Base {
+export default class CheckboxGroup extends Base {
 	static propTypes = {
 		options: PropTypes.arrayOf(PropTypes.shape({
 			key: PropTypes.string,
@@ -30,13 +30,13 @@ export default class RadioButtons extends Base {
 		delete props.onChange;
 		return (
 			<FormCell {...props}>
-				<div className="radio-buttons">
+				<div className="checkbox-group">
 					{this.props.options.map((option, index)=> {
 						return (
 							<div key={index}>
 								<label>{option.value}</label>
 								<input
-									type="radio"
+									type="checkbox"
 									onChange={(event)=>{
 										if(this.props.onChange){
 											this.props.onChange(event);

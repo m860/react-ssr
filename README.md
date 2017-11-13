@@ -133,6 +133,102 @@ class Example extends PureComponent{
 - [x] client error 记录
 - [ ] 优化nodemon,经常挂掉无法自动重启
 
+## Forms
+
+- [x] `主要是针对输入控件` 实现validation
+- [ ] `主要是针对输入控件` 实现clear,即在输入框的右边显示一个清除按钮,可以清空文本内容
+- [ ] Select,RadioButtons,CheckboxGroup 支持options
+- [ ] RadioButtons,CheckboxGroup 重写onChange事件
+
+#### TextInput
+
+对应HTMLElement `<input>`元素,建议作为`type=text` `type=password`进行使用,其他input类型请使用对应的form控件
+
+```javascript
+<TextInput
+    validate={value=>{
+        if(!/^.{6,8}$/.test(value)){
+            this.pushError('name')
+            return 'Please input 6~8 characters for name!'
+        }
+        this.popError('name');
+    }}
+    onChange={event=>{
+        this.updateState({
+            name:{$set:event.target.value}
+        })
+    }}
+    label="Name"/>
+```
+
+#### TextArea
+
+对应HTMLElement `<textarea>`元素
+
+#### Select
+
+对应HTMLElement `<select>`元素
+
+```jsx
+<Select
+    options={[{
+        key:-1,
+        value:'-- Please Select Age --'
+    },{
+            key:1,
+            value:1
+        },{
+            key:2,
+            value:2
+        }]}
+    onChange={event=>{
+
+        this.updateState({
+            age:{$set:parseFloat(event.target.value)}
+        })
+    }}
+    label="Age"/>
+```
+
+#### RadioButtons
+
+`<input type="radio"/>`组控件
+
+```jsx
+<RadioButtons
+    defaultValue={this.state.sex.toString()}
+    options={[{
+        key:'1',
+        value:'male'
+    },{
+        key:'2',
+        value:'female'
+    }]}
+    onChange={event=>{
+        this.updateState({sex:{$set:parseInt(event.target.value)}})
+    }}
+    label="Sex"/>
+```
+
+#### ~~CheckBox~~ Switch
+#### CheckboxGroup
+
+`<input type="checkbox"/>`组控件
+
+```jsx
+<CheckboxGroup
+    options={[{
+        key:'1',
+        value:'male'
+    },{
+        key:'2',
+        value:'female'
+    }]}
+    label="CheckboxGroup"/>
+```
+
+#### File
+
 ## CSS Media Query
 
 |key|media query|applies|

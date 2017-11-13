@@ -9,7 +9,7 @@ input[type=text], input[type=password]
   border-top: solid 1px transparent
   border-left: solid 1px transparent
   border-right: solid 1px transparent
-  border-bottom: solid 1px #494949
+  border-bottom: solid 1px silver
   padding: 10px 0
   &:focus
     border-bottom-color: #466EB1
@@ -18,15 +18,16 @@ select
   width: 100%
   appearance: none
   text-align-last: center
+  border-color: silver !important
 
-.radio-buttons
+.radio-buttons,.checkbox-group
   display: flex
   flex-direction: row
   border: solid silver 1px
   padding: 15px
   border-radius: 10px
   width: 100%
-  input[type=radio]
+  input[type=radio],input[type=checkbox]
     margin: 0 20px 0 10px
 
 

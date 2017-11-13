@@ -7,8 +7,11 @@ import LoadingView from '../public/LoadingView'
 import {connect} from 'react-redux'
 import {showLoading, hideLoading} from '../../ar/loading.ar'
 import TextInput from '../public/forms/TextInput'
+import Password from '../public/forms/Password'
 import Select from '../public/forms/Select'
 import RadioButtons from '../public/forms/RadioButtons'
+import CheckBox from '../public/forms/CheckBox'
+import CheckboxGroup from '../public/forms/CheckboxGroup'
 
 export default class TestForm extends BasePage {
 	constructor(props) {
@@ -61,7 +64,7 @@ export default class TestForm extends BasePage {
 									})
 								}}
 								label="Name"/>
-							<TextInput
+							<Password
 								validate={value=>{
 									if(!/^.{6,20}$/.test(value)){
 										this.pushError('password')
@@ -74,7 +77,6 @@ export default class TestForm extends BasePage {
 										password:{$set:event.target.value}
 									})
 								}}
-								type="password"
 								label="Password"/>
 							<Select
 								options={[{
@@ -107,6 +109,15 @@ export default class TestForm extends BasePage {
 									this.updateState({sex:{$set:parseInt(event.target.value)}})
 								}}
 								label="Sex"/>
+							<CheckboxGroup
+								options={[{
+									key:'1',
+									value:'male'
+								},{
+									key:'2',
+									value:'female'
+								}]}
+								label="CheckBoxGroup"/>
 							<div className="buttons">
 								<button
 									type="button"
