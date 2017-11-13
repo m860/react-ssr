@@ -104,24 +104,7 @@ class Example extends PureComponent{
         
 - [x] redux
 - [x] redux-persist
-- [x] `async` ApplicationSetting
-- [ ] ~~Axios~~
-- [x] Loading
-- [x] LoadingView
-- [x] Toast
-- [ ] Login
-- [ ] Register
-- [ ] ForgetPassword
-- [ ] FileUploader
 - [ ] authentication
-- [ ] Breadcrumbs
-- [ ] Tip
-- [ ] Avatar
-- [x] SoftKeyboard
-- [ ] TextInput,TextArea,Select,RadioButtons,CheckBoxes
-    - [x] validation
-    - [ ] clear
-    - [ ] Select,RadioButtons,CheckBoxes 支持options
 - [ ] Video - [video-react](https://github.com/video-react/video-react)
 - [ ] 响应式查询和表单维护,主要解决单表或者是业务单一的增删改查
     - 所有api都是post
@@ -131,14 +114,29 @@ class Example extends PureComponent{
     - form表单支持以下样式`form-vertical` `form-horizontal` `form-flow`
 - [x] 服务端redux,异步数据造成server render失效
 - [x] client error 记录
-- [ ] 优化nodemon,经常挂掉无法自动重启
+- [x] 优化nodemon,经常挂掉无法自动重启
+
+## Components
+
+- [x] `async` ApplicationSetting
+- [x] Loading
+- [x] LoadingView
+- [x] Toast
+- [ ] Breadcrumbs
+- [ ] Tip
+- [ ] Avatar
+- [x] SoftKeyboard
+- passport
+    - [x] SingIn
+    - [x] SingUp
+    - [ ] ForgotPassword
 
 ## Forms
 
 - [x] `主要是针对输入控件` 实现validation
 - [ ] `主要是针对输入控件` 实现clear,即在输入框的右边显示一个清除按钮,可以清空文本内容
-- [ ] Select,RadioButtons,CheckboxGroup 支持options
-- [ ] RadioButtons,CheckboxGroup 重写onChange事件
+- [x] Select,RadioButtons,CheckboxGroup 支持options
+- [x] RadioButtons,CheckboxGroup 重写onChange事件
 
 #### TextInput
 
