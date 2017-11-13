@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {showLoading, hideLoading} from '../../ar/loading.ar'
 import TextInput from '../public/forms/TextInput'
 import Select from '../public/forms/Select'
+import RadioButtons from '../public/forms/RadioButtons'
 
 export default class TestForm extends BasePage {
 	constructor(props) {
@@ -16,6 +17,7 @@ export default class TestForm extends BasePage {
 			name: '',
 			password: '',
 			age: 0,
+			sex: 1,
 			errors: []
 		};
 	}
@@ -86,11 +88,25 @@ export default class TestForm extends BasePage {
 										value:2
 									}]}
 								onChange={event=>{
+
 									this.updateState({
 										age:{$set:parseFloat(event.target.value)}
 									})
 								}}
 								label="Age"/>
+							<RadioButtons
+								defaultValue={this.state.sex.toString()}
+								options={[{
+									key:'1',
+									value:'male'
+								},{
+									key:'2',
+									value:'female'
+								}]}
+								onChange={event=>{
+									this.updateState({sex:{$set:parseInt(event.target.value)}})
+								}}
+								label="Sex"/>
 							<div className="buttons">
 								<button
 									type="button"

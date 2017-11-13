@@ -124,7 +124,7 @@ var config = function (server, env, options) {
 					running = true;
 					console.log('start server ...');
 					process.chdir('dist');
-					var delay = 2;
+					var delay = 5;
 					nodemon({
 						script: 'server.js',
 						ext: 'js json',

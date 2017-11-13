@@ -1,5 +1,5 @@
 import express from 'express'
-export default function (experssInstance) {
+export default function (expressInstance) {
 	const router = express.Router();
 	router.get('/', (req, res)=> {
 		res.success([{
@@ -7,5 +7,5 @@ export default function (experssInstance) {
 			age: 1
 		}]);
 	});
-	experssInstance.use('/user', router);
+	expressInstance.use('/user', router);
 }

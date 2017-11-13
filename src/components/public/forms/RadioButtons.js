@@ -11,17 +11,23 @@ export default class RadioButtons extends Base {
 			key: PropTypes.string,
 			value: PropTypes.string
 		})).isRequired,
-		onChange: PropTypes.func
+		onChange: PropTypes.func,
+		defaultValue: PropTypes.any
 	};
 
 	constructor(props) {
 		super(props);
 		this.name = guid.raw();
+		this.state = {
+			checkedValue: props.defaultValue
+		};
 	}
 
 	render() {
 		let props = Object.assign({}, this.props);
 		delete props.options;
+		delete props.defaultValue;
+		delete props.onChange;
 		return (
 			<FormCell {...props}>
 				<div className="radio-buttons">
@@ -29,7 +35,17 @@ export default class RadioButtons extends Base {
 						return (
 							<div key={index}>
 								<label>{option.value}</label>
-								<input type="radio" name={this.name} value={option.key}/>
+								<input
+									type="radio"
+									onChange={(event)=>{
+										this.props.onChange(event);
+										this.updateState({
+											checkedValue:{$set:event.target.value}
+										});
+								    }}
+									checked={option.key===this.state.checkedValue}
+									name={this.name}
+									value={option.key}/>
 							</div>
 						);
 					})}
