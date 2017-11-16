@@ -12,6 +12,7 @@ import Select from '../public/forms/Select'
 import RadioButtons from '../public/forms/RadioButtons'
 import CheckBox from '../public/forms/CheckBox'
 import CheckboxGroup from '../public/forms/CheckboxGroup'
+import File from '../public/forms/File'
 
 export default class TestForm extends BasePage {
 	constructor(props) {
@@ -118,6 +119,7 @@ export default class TestForm extends BasePage {
 									value:'female'
 								}]}
 								label="CheckBoxGroup"/>
+							<File label="File"/>
 							<div className="buttons">
 								<button
 									type="button"

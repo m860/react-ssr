@@ -131,6 +131,23 @@ class Example extends PureComponent{
     - [x] SingUp
     - [ ] ForgotPassword
 
+## Component.ApplicationSetting
+
+ApplicationSetting中的配置对应`/configuration/application-setting.json`
+
+使用ApplicationSetting中的值
+
+```javascript
+class XXX extends React.PureComponent{
+    static contextTypes={
+        setting: PropTypes.any
+    };
+    componentDidMount(){
+        console.log(this.context.setting);
+    }
+}
+```
+
 ## Forms
 
 - [x] `主要是针对输入控件` 实现validation

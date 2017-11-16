@@ -44,6 +44,7 @@ server.use(bodyParser.json());
 
 service(server);
 
+server.use('/public/file', express.static('./uploads'));
 server.use('/public', express.static('./public'));
 
 let _html;
