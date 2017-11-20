@@ -1,5 +1,6 @@
 import {api} from '../configuration/axios.instance'
 import update from 'immutability-helper'
+import equal from 'fast-deep-equal'
 
 const initialState = {
 	setting: null
@@ -7,13 +8,16 @@ const initialState = {
 
 const FETCH_APPLICATION_SETTING = Symbol();
 export function fetchApplicationSetting() {
-	return async function (dispatch) {
+	return async function (dispatch, getState) {
 		const {data} = await api.get('/configuration');
 		if (data.success) {
-			dispatch({
-				type: FETCH_APPLICATION_SETTING,
-				payload: data.data
-			});
+			const {setting}=getState();
+			if (!equal(setting, data.data)) {
+				dispatch({
+					type: FETCH_APPLICATION_SETTING,
+					payload: data.data
+				});
+			}
 		}
 		else {
 			//TODO show error message

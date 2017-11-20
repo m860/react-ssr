@@ -1,16 +1,16 @@
 import React from 'react'
 import BasePage from './BasePage'
-import LayoutWithNavigator from '../public/LayoutWithNavigator'
+import Layout from '../public/Layout'
 import SignUpCard from '../public/passport/SignUpCard'
 
 export default class SignUp extends BasePage {
 	render() {
 		return (
-			<LayoutWithNavigator>
+			<Layout>
 				<div className="flex-center ">
 					<SignUpCard></SignUpCard>
 				</div>
-			</LayoutWithNavigator>
+			</Layout>
 		);
 	}
 }

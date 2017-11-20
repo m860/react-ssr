@@ -13,7 +13,6 @@ export default class Index extends BasePage {
 	};
 
 	render() {
-		logger.info(this.context)
 		return (
 			<Layout>
 				<Navigator/>

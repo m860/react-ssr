@@ -6,7 +6,7 @@ export default class NoMatch extends BasePage {
 	render() {
 		return (
 			<LayoutWithNavigator>
-				<p>404后面用box2d做个效果</p>
+				<p>404</p>
 			</LayoutWithNavigator>
 		);
 	}

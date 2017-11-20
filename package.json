@@ -74,6 +74,7 @@
     "cors": "^2.8.4",
     "dateformat": "^3.0.2",
     "express": "^4.15.4",
+    "fast-deep-equal": "^1.0.0",
     "fbemitter": "^2.1.1",
     "font-awesome": "^4.7.0",
     "guid": "0.0.12",
