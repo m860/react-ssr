@@ -1,14 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Base from '../../Base'
-import classnames from 'classnames'
+import FormBase from './FormBase'
 import FormCell from './FormCell'
 
-export default class TextInput extends Base {
+export default class TextInput extends FormBase {
+	static propTypes = {
+		...FormBase.propTypes
+	};
+
 	render() {
 		return (
-			<FormCell {...this.props}>
-				<input type="text"/>
+			<FormCell label={this.props.label} message={this.state.message}>
+				<input {...this.inputProps} type="text"/>
 			</FormCell>
 		);
 	}

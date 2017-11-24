@@ -52,7 +52,8 @@ export default class TestForm extends BasePage {
 					<div>
 						<form className="form-card">
 							<TextInput
-								validate={value=>{
+								validate={event=>{
+									const value=event.target.value;
 									if(!/^.{6,8}$/.test(value)){
 										this.pushError('name')
 										return 'Please input 6~8 characters for name!'
