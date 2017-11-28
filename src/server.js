@@ -1,6 +1,7 @@
 /**
  * Created by jean.h.ma on 3/15/17.
  */
+import "babel-polyfill";
 import React from 'react';
 import {StaticRouter, matchPath} from 'react-router-dom';
 import express from 'express';
