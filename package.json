@@ -85,6 +85,7 @@
     "normalize-css": "^2.3.1",
     "prop-types": "^15.5.10",
     "purecss": "^0.6.2",
+    "python-bridge": "^1.0.3",
     "react": "^15.6.1",
     "react-component-async-module": "^1.1.0",
     "react-component-uploader": "^1.0.4",
