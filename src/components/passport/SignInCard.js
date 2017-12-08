@@ -1,5 +1,5 @@
 import React from 'react'
-import Base from '../../Base'
+import Base from '../Base'
 import PropTypes from 'prop-types'
 import TextInput from '../forms/TextInput'
 

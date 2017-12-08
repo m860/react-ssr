@@ -1,6 +1,6 @@
 import React from 'react'
 import BasePage from './BasePage'
-import LayoutWithNavigator from '../public/LayoutWithNavigator'
+import LayoutWithNavigator from '../common/LayoutWithNavigator'
 
 export default class NoMatch extends BasePage {
 	render() {

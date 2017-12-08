@@ -9,8 +9,8 @@ import thunk from "redux-thunk";
 import {persistStore, autoRehydrate} from "redux-persist";
 import Routes from './Routes'
 import {EventEmitter} from 'fbemitter'
-import ApplicationSetting from './public/ApplicationSetting'
-import Toast from './public/Toast'
+import ApplicationSetting from './common/ApplicationSetting'
+import Toast from './common/Toast'
 import logger from '../libs/logger'
 
 export const store = createStore(

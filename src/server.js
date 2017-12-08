@@ -16,7 +16,7 @@ import service from './service/index'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {routes, RoutePaths} from './components/Routes'
-import DataWrapper from './components/public/DataWrapper'
+import DataWrapper from './components/common/DataWrapper'
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {

@@ -1,7 +1,7 @@
 import React from 'react'
 import BasePage from './BasePage'
-import LayoutWithNavigator from '../public/LayoutWithNavigator'
-import SoftKeyboard from '../public/SoftKeyboard'
+import LayoutWithNavigator from '../common/LayoutWithNavigator'
+import SoftKeyboard from '../common/SoftKeyboard'
 
 export default class TestSoftKeyboard extends BasePage {
 

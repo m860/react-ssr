@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Base from '../../Base'
+import Base from '../Base'
 import classnames from 'classnames'
 import FormCell from './FormCell'
 import {FileButton} from 'react-component-uploader'

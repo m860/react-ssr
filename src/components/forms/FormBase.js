@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Base from '../../Base'
+import Base from '../Base'
 import classnames from 'classnames'
 
 export default class FormBase extends Base {
