@@ -1,0 +1,13 @@
+{
+  "component": "VerticalForm",
+  "props": {
+    "inputs": [
+      {
+        "component": "TextInput",
+        "props": {
+          "label": "Name"
+        }
+      }
+    ]
+  }
+}
