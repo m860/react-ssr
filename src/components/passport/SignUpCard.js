@@ -1,7 +1,7 @@
 import React from 'react'
 import Base from '../Base'
 import PropTypes from 'prop-types'
-import TextInput from '../forms/TextInput'
+import TextInput from '../inputs/TextInput'
 
 export default class SignUpCard extends Base {
 	render() {

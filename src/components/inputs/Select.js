@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Base from '../Base'
 import classnames from 'classnames'
-import FormCell from './FormCell'
+import FormCell from './InputCell'
 
 export default class Select extends Base {
 	static propTypes = {
