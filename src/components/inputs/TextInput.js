@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FormBase from './InputBase'
+import InputBase from './InputBase'
 import FormCell from './InputCell'
 
-export default class TextInput extends FormBase {
+export default class TextInput extends InputBase {
 	static propTypes = {
-		...FormBase.propTypes
+		...InputBase.propTypes
 	};
 
 	render() {

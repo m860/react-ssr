@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Base from '../Base'
 import classnames from 'classnames'
 
-export default class FormBase extends Base {
+export default class InputBase extends Base {
 	static propTypes = {
 		label: PropTypes.string.isRequired,
 		validate: PropTypes.func
