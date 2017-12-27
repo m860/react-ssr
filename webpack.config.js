@@ -155,7 +155,7 @@ var config = function (server, env, options) {
 			new WebpackAutoInject({
 				NAME: 'Server render for react',
 				SHORT: 'ServerRender',
-				SILENT: false,
+				SILENT: true,
 				PACKAGE_JSON_PATH: './package.json',
 				components: {
 					AutoIncreaseVersion: true,
