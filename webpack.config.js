@@ -186,7 +186,9 @@ var config = function (server, env, options) {
 			comments: false,
 			compress: {
 				warnings: false,
-				drop_console: true
+				drop_console: true,
+				//only remove the follow console
+				pure_funcs: ['console.log', 'console.info', 'console.dir', 'console.debug']
 			}
 		}));
 	}
