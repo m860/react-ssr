@@ -145,9 +145,9 @@ var config = function (server, env, options) {
 					else if (options.spa) {
 						url = 'file://' + path.resolve(path.join(__dirname, 'dist/public/index.html'));
 					}
-					(function () {
+					(function (u) {
 						setTimeout(function () {
-							console.log(colors.green('\n Please access ' + url + ' in browser \n'));
+							console.log(colors.green('\n Please access ' + u + ' in browser \n'));
 						}, delay * 1000);
 					})(url);
 				}
