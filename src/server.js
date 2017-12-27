@@ -1,7 +1,6 @@
 /**
  * Created by jean.h.ma on 3/15/17.
  */
-import "babel-polyfill";
 import React from 'react';
 import {StaticRouter, matchPath} from 'react-router-dom';
 import express from 'express';
@@ -10,7 +9,7 @@ import fs from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import 'babel-polyfill'
 import yargs from 'yargs'
-import logger from  './libs/logger'
+import logger from './libs/logger'
 import App from './components/App'
 import service from './service/index'
 import bodyParser from 'body-parser'
@@ -49,7 +48,7 @@ server.use('/public/file', express.static('./uploads'));
 server.use('/public', express.static('./public'));
 
 let _html;
-const getHtml = ()=> {
+const getHtml = () => {
 	if (_html) {
 		return _html;
 	}
@@ -58,7 +57,7 @@ const getHtml = ()=> {
 };
 
 //fetch data
-server.use((req, res, next)=> {
+server.use((req, res, next) => {
 	const url = req.url;
 	for (let i = 0; i < routes.length; i++) {
 		if (routes[i].props.path) {
@@ -76,10 +75,10 @@ server.use((req, res, next)=> {
 					const fetchResult = handler();
 					if (fetchResult instanceof Promise) {
 						logger.info(`fetch result is Promise`);
-						fetchResult.then(data=> {
+						fetchResult.then(data => {
 							req.dataContext = data;
 							next();
-						}).catch(err=> {
+						}).catch(err => {
 							logger.error(err);
 						});
 					}
@@ -100,7 +99,7 @@ server.use((req, res, next)=> {
 	next();
 })
 
-server.get('/*', (req, res)=> {
+server.get('/*', (req, res) => {
 	logger.info(`[${req.url}] [dataContext] : ${JSON.stringify(req.dataContext)}`);
 	const context = {}
 	const markup = renderToStaticMarkup(
@@ -122,7 +121,7 @@ server.get('/*', (req, res)=> {
 });
 
 
-server.listen(port, ()=> {
+server.listen(port, () => {
 	logger.info(`address http://127.0.0.1:${port}`);
 });
 
