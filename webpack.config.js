@@ -180,12 +180,12 @@ var config = function (server, env, options) {
 	};
 	if (isProduction) {
 		configuration.plugins.push(new UglifyJSPlugin({
-			comments: false,
-			compress: {
-				warnings: false,
-				drop_console: true,
-				//only remove the follow console
-				pure_funcs: ['console.log', 'console.info', 'console.dir', 'console.debug']
+			uglifyOptions: {
+				compress: {
+					drop_console: true,
+					//only remove the follow console
+					pure_funcs: ['console.log', 'console.info', 'console.dir', 'console.debug']
+				}
 			}
 		}));
 	}
