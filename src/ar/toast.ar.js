@@ -10,7 +10,8 @@ const initialState = {
 const SHOW_TOAST = Symbol();
 const HIDE_TOAST = Symbol();
 
-export function showToast(toast: ToastType|String): ActionType {
+//@flow
+export function showToast(toast: ToastType | String): ActionType {
 	const id = guid.raw();
 	let payload = {id};
 	if (toast.constructor.name === "String") {
@@ -31,7 +32,7 @@ export function showToast(toast: ToastType|String): ActionType {
 			type: SHOW_TOAST,
 			payload: payload
 		});
-		setTimeout(()=> {
+		setTimeout(() => {
 			logger.info(`hide toast id=${id}`)
 			dispatch({
 				type: HIDE_TOAST,
@@ -49,7 +50,7 @@ export default function (state = initialState, action = {}) {
 				messages: {$push: [action.payload]}
 			});
 		case HIDE_TOAST:
-			const index = state.messages.map(f=>f.id).indexOf(action.payload);
+			const index = state.messages.map(f => f.id).indexOf(action.payload);
 			if (index >= 0) {
 				return update(state, {
 					messages: {$splice: [[index, 1]]}

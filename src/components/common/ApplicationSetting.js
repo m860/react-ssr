@@ -4,12 +4,17 @@ import {fetchApplicationSetting} from '../../ar/application.ar'
 import PropTypes from 'prop-types'
 import logger from '../../libs/logger'
 
-@connect(({application})=> {
+@connect(({application}) => {
 	return {
 		setting: application.setting
 	}
 })
 export default class ApplicationSetting extends Component {
+	static propTypes = {
+		setting: PropTypes.any,
+		children: PropTypes.any,
+		dispatch: PropTypes.func
+	};
 	static childContextTypes = {
 		setting: PropTypes.any
 	};

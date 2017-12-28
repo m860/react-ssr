@@ -1,12 +1,13 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "eslint:recommended",
+    "plugin:flowtype/recommended",
     "plugin:react/recommended"
   ],
   "globals": {
     "__DEV__": true,
-    "__SERVER__": true
+    "__SERVER__": true,
+    "__SPA__": true
   },
   "env": {
     "browser": true,
@@ -14,11 +15,21 @@
     "es6": true
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "rules": {
     "react/display-name": 0,
     "no-mixed-spaces-and-tabs": 0,
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "no-console": 0,
+    "flowtype/union-intersection-spacing": 0,
+    "flowtype/space-after-type-colon": 0,
+    "flowtype/no-types-missing-file-annotation": 1
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {}
   }
 }
