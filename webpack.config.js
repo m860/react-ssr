@@ -54,7 +54,12 @@ var config = function (server, env, options) {
 					use: [{
 						loader: "css-loader"
 					}, {
-						loader: "postcss-loader"
+						loader: "postcss-loader",
+						options: {
+							plugins: [
+								autoprefixer()
+							]
+						}
 					}, {
 						loader: "sass-loader"
 					}]
@@ -87,69 +92,19 @@ var config = function (server, env, options) {
 				filename: "index.html",
 				template: './src/index.html',
 				inject: false
-			})
-			/*
-			 , new StatsPlugin('stats.json', {
-			 chunkModules: true,
-			 exclude: [/node_modules/]
-			 })
-			 */
-			, new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].css")
-			, new webpack.DefinePlugin({
+			}),
+			new ExtractTextPlugin(isProduction ? "[contenthash].css" : "[name].css"),
+			new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development')
 				},
 				'__SERVER__': JSON.stringify(server),
 				'__SPA__': JSON.stringify(options.spa)
-			})
-			, new webpack.LoaderOptionsPlugin({
-				options: {
-					postcss: [
-						autoprefixer({
-							browsers: ['> 5%']
-						})
-					]
-				}
 			}),
 			new CleanWebpackPlugin([server ? 'dist' : "dist/public"], {
 				root: __dirname,
 				verbose: true,
 				dry: false
-			}),
-			new webpack.HotModuleReplacementPlugin(),
-			new LiveReloadPlugin(),
-			new EventCallbackWebpackPlugin('done', () => {
-				if (!running && env === 'development') {
-					running = true;
-					console.log('start server ...');
-					process.chdir('dist');
-					var delay = 5;
-					nodemon({
-						script: 'server.js',
-						ext: 'js json',
-						delay: delay
-					});
-					// nodemon.on('start', function () {
-					// 	console.log('App has started');
-					// }).on('quit', function () {
-					// 	console.log('App has quit');
-					// 	process.exit();
-					// }).on('restart', function (files) {
-					// 	console.log('App restarted due to: ', files);
-					// });
-					var url;
-					if (server) {
-						url = 'http://127.0.0.1:3000';
-					}
-					else if (options.spa) {
-						url = 'file://' + path.resolve(path.join(__dirname, 'dist/public/index.html'));
-					}
-					(function (u) {
-						setTimeout(function () {
-							console.log(colors.green('\n Please access ' + u + ' in browser \n'));
-						}, delay * 1000);
-					})(url);
-				}
 			}),
 			new WebpackAutoInject({
 				NAME: 'Server render for react',
@@ -190,6 +145,34 @@ var config = function (server, env, options) {
 				}
 			}
 		}));
+	}
+	if (server) {
+		configuration.plugins.push(new EventCallbackWebpackPlugin('done', () => {
+			if (env === 'development') {
+				if (!running) {
+					running = true;
+					process.chdir('dist');
+					nodemon({
+						script: 'server.js',
+						delay: 5*1000
+					});
+					nodemon.on('start', function () {
+						var url;
+						if (server) {
+							url = 'http://127.0.0.1:3000';
+						}
+						else if (options.spa) {
+							url = 'file://' + path.resolve(path.join(__dirname, 'dist/public/index.html'));
+						}
+						console.log(colors.green('\n Please access ' + url + ' in browser \n'));
+					});
+				}
+			}
+		}));
+	}
+	else {
+		configuration.plugins.push(new LiveReloadPlugin());
+		configuration.plugins.push(new webpack.HotModuleReplacementPlugin());
 	}
 	return configuration;
 };
