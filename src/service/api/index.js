@@ -1,7 +1,7 @@
 import express from 'express'
 import sendJSON from '../../libs/middleware/sendJSON'
 import configuration from '../../configuration/application-setting'
-import logger, {clientLogger} from '../../libs/logger.server'
+import logger, {clientLogger} from '../../libs/logger/logger.server'
 import userRouter from './user'
 import fileRouter from './file'
 

@@ -43,6 +43,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.30.1",
+    "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^1.7.0",
     "jest": "^19.0.2",
     "livereload": "^0.6.2",
@@ -50,6 +51,7 @@
     "nodemon": "^1.12.1",
     "postcss-loader": "^0.8.2",
     "sass-loader": "^6.0.6",
+    "script-loader": "^0.7.2",
     "style-loader": "^0.13.1",
     "uglifyjs-webpack-plugin": "^1.1.4",
     "url-loader": "^0.5.7",
@@ -67,6 +69,7 @@
     "colors": "^1.1.2",
     "cors": "^2.8.4",
     "dateformat": "^3.0.2",
+    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.15.4",
     "fast-deep-equal": "^1.0.0",
     "fbemitter": "^2.1.1",
@@ -83,6 +86,7 @@
     "react-component-async-module": "^1.1.0",
     "react-component-uploader": "^1.0.4",
     "react-dom": "^16.2.0",
+    "react-polyfill": "0.0.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-screen-keyboard": "^1.4.1",
@@ -91,5 +95,15 @@
     "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0",
     "yargs": "^8.0.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "__mocks__/fileMock.js",
+      "\\.(css|less|sass)$": "identity-obj-proxy"
+    },
+    "globals": {
+      "__SPA__": true,
+      "__SERVER__": false
+    }
   }
 }

@@ -103,7 +103,7 @@ class Example extends PureComponent{
         <img src="https://raw.githubusercontent.com/m860/react-server-example/master/screenshot/dist.png"/>
         
 - [x] redux
-- [x] redux-persist
+- [ ] redux-persist
 - [ ] authentication
 - [ ] Video - [video-react](https://github.com/video-react/video-react)
 - [ ] 响应式查询和表单维护,主要解决单表或者是业务单一的增删改查
