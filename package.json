@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "dev": "scripts/dev.sh",
     "dev:spa": "scripts/devspa.sh",
     "build": "scripts/build.sh",

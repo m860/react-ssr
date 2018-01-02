@@ -14,10 +14,9 @@ describe(`test Toast`, () => {
 			message: 'abc',
 			duration: 1000
 		}));
-		const items = app.find('toast-item');
-		expect(items.length === 1);
+		expect(app.find('.toast-item').length === 1);
 		setTimeout(() => {
-			expect(app.find('toast-item').length === 0);
+			expect(app.find('.toast-item').length === 0);
 			return Promise.resolve();
 		}, 1000);
 	})
