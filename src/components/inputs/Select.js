@@ -16,9 +16,11 @@ export default class Select extends InputBase {
 	};
 
 	render() {
+		let props = Object.assign({}, this.inputProps);
+		delete props.defaultValue;
 		return (
 			<InputCell label={this.props.label} message={this.state.message}>
-				<select {...this.inputProps}>
+				<select {...props}>
 					{this.props.options.map((option, index) => {
 						return (
 							<option value={option.value} key={index}>{option.text}</option>

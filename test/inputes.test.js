@@ -153,5 +153,11 @@ describe(`test <Select/>`, () => {
 		select.simulate('change', {target: {value: options[1].value}});
 		expect(change.mock.calls.length).toBe(1);
 		expect(span.text()).toBe('');
+	});
+	test(`set props.value`, () => {
+		ele.setProps({
+			value: options[1].value
+		});
+		expect(ele.find('select').props().value).toBe(options[1].value)
 	})
 });
