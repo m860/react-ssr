@@ -1,5 +1,7 @@
 # React Server Example
 
+[![Build Status](https://travis-ci.org/m860/react-server-practise.svg?branch=master)](https://travis-ci.org/m860/react-server-practise)
+
 react server render 例子,bundle使用webpack.
 
 # Run Example
