@@ -19,15 +19,26 @@ export default class InputBase extends Base {
 	get inputProps() {
 		let inputProps = Object.assign({}, this.props, {
 			className: classnames(this.props.className, (this.state.message && this.state.message !== '') ? 'has-error' : ''),
-			onChange: event=> {
-				this.props.onChange && this.props.onChange(event);
+			onChange: event => {
 				if (this.props.validate) {
 					const message = this.props.validate(event);
-					if (message !== this.state.message) {
-						this.updateState({
-							message: {$set: message}
-						})
+					if (message) {
+						if (message !== this.state.message) {
+							this.updateState({
+								message: {$set: message}
+							});
+						}
 					}
+					else {
+						this.updateState({
+							message: {$set: ''}
+						}, () => {
+							this.props.onChange && this.props.onChange(event);
+						});
+					}
+				}
+				else {
+					this.props.onChange && this.props.onChange(event);
 				}
 			}
 		});

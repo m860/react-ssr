@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import InputBase from './InputBase'
-import FormCell from './InputCell'
+import InputCell from './InputCell'
 
 export default class TextInput extends InputBase {
 	static propTypes = {
@@ -10,9 +10,9 @@ export default class TextInput extends InputBase {
 
 	render() {
 		return (
-			<FormCell label={this.props.label} message={this.state.message}>
+			<InputCell label={this.props.label} message={this.state.message}>
 				<input {...this.inputProps} type="text"/>
-			</FormCell>
+			</InputCell>
 		);
 	}
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Base from '../Base'
 import classnames from 'classnames'
 
-export default class FormCell extends Base {
+export default class InputCell extends Base {
 	static propTypes = {
 		label: PropTypes.string.isRequired,
 		message: PropTypes.string
@@ -29,7 +29,7 @@ export default class FormCell extends Base {
 		// delete props.children;
 		return (
 			<div className='form-cell'>
-				<div><label>{this.props.label}</label><span>{this.props.message}</span></div>
+				<div><label>{this.props.label}</label><span className="validation-message">{this.props.message}</span></div>
 				<div>
 					{this.props.children}
 				</div>
