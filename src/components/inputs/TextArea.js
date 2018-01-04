@@ -1,20 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Base from '../Base'
-import classnames from 'classnames'
-import FormCell from './InputCell'
-import FormBase from './InputBase'
+import InputCell from './InputCell'
+import InputBase from './InputBase'
 
-export default class TextArea extends Base {
+export default class TextArea extends InputBase {
 	static propTypes = {
-		...FormBase.propTypes
+		...InputBase.propTypes
 	};
 
 	render() {
 		return (
-			<FormCell label={this.props.label} message={this.state.message}>
+			<InputCell label={this.props.label} message={this.state.message}>
 				<textarea {...this.inputProps}></textarea>
-			</FormCell>
+			</InputCell>
 		);
 	}
 }

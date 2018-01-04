@@ -5,28 +5,15 @@ import classnames from 'classnames'
 
 export default class InputCell extends Base {
 	static propTypes = {
-		label: PropTypes.string.isRequired,
+		label: PropTypes.string,
 		message: PropTypes.string
 	};
 
+	static defaultProps={
+		label:'LABEL'
+	};
+
 	render() {
-		// let props = {...this.props};
-		// if (props.onChange) {
-		// 	props.onChange = (event)=> {
-		// 		this.props.onChange(event);
-		// 		if (this.props.validate) {
-		// 			this.updateState({
-		// 				message: {$set: this.props.validate(event.target.value)}
-		// 			});
-		// 		}
-		// 	}
-		// }
-		// if (this.state.message) {
-		// 	props.className = classnames(props.className, 'has-error')
-		// }
-		// delete props.validate;
-		// delete props.label;
-		// delete props.children;
 		return (
 			<div className='form-cell'>
 				<div><label>{this.props.label}</label><span className="validation-message">{this.props.message}</span></div>

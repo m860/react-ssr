@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import InputBase from './InputBase'
 import InputCell from './InputCell'
 

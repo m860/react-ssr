@@ -1,30 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Base from '../Base'
-import classnames from 'classnames'
-import FormCell from './InputCell'
+import InputCell from './InputCell'
+import InputBase from './InputBase'
 
-export default class Select extends Base {
+export default class Select extends InputBase {
 	static propTypes = {
 		options: PropTypes.arrayOf(PropTypes.shape({
-			key: PropTypes.oneOfType([PropTypes.number,PropTypes.string]),
-			value: PropTypes.oneOfType([PropTypes.number,PropTypes.string])
-		})).isRequired
+			text: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+			value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+		}))
+	};
+
+	static defaultProps = {
+		options: []
 	};
 
 	render() {
-		let props = Object.assign({}, this.props);
-		delete props.options;
 		return (
-			<FormCell {...props}>
-				<select>
-					{this.props.options.map((option, index)=> {
+			<InputCell label={this.props.label} message={this.state.message}>
+				<select {...this.inputProps}>
+					{this.props.options.map((option, index) => {
 						return (
-							<option value={option.key} key={index}>{option.value}</option>
+							<option value={option.value} key={index}>{option.text}</option>
 						);
 					})}
 				</select>
-			</FormCell>
+			</InputCell>
 		);
 	}
 }
