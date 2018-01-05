@@ -6,244 +6,108 @@ import TextInput from '../src/components/inputs/TextInput'
 import Password from '../src/components/inputs/Password'
 import TextArea from '../src/components/inputs/TextArea'
 import Select from '../src/components/inputs/Select'
+import CheckBox from '../src/components/inputs/CheckBox'
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe(`test <TextInput/>`, () => {
-	const label = 'name';
-	const changeCallback = jest.fn();
-	const validateCallback = jest.fn();
-	const changeValue = 'newvalue';
-	const errorValue = '123';
-	const errorMessage = 'Please input some letter!';
-	const ele = mount(
-		<TextInput label={label}
-				   value=""
-				   onChange={({target: {value}}) => {
-					   changeCallback();
-					   expect(value).toBe(changeValue);
-				   }}
-				   validate={({target: {value}}) => {
-					   validateCallback();
-					   if (!/^[a-z]+$/i.test(value)) {
-						   return errorMessage;
-					   }
-				   }}/>
-	)
-	test(`set the props.label`, () => {
-		expect(ele.find('label').text()).toBe(label);
-		ele.setProps({
-			label: 'abc'
-		})
-		expect(ele.find('label').text()).toBe('abc');
-	})
-	test(`set the props.value`, () => {
-		const value = 'abc';
-		ele.setProps({
-			value: value
-		});
-		expect(ele.find('input').props().value).toBe(value);
-	});
-	test(`onChange and validate event can be trigger`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		const input = ele.find('input');
-		input.simulate('change', {target: {value: changeValue}});
-		expect(validateCallback.mock.calls.length).toBe(1);
-		expect(changeCallback.mock.calls.length).toBe(1);
-	});
-	test(`show/hide validation message`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		const input = ele.find('input');
-		input.simulate('change', {target: {value: errorValue}});
-		expect(validateCallback.mock.calls.length).toBe(1);
-		expect(changeCallback.mock.calls.length).toBe(0);
-		const span = ele.find('.validation-message');
-		expect(span.text()).toBe(errorMessage);
-		input.simulate('change', {target: {value: changeValue}});
-		expect(validateCallback.mock.calls.length).toBe(2);
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(span.text()).toBe('');
-	});
-});
+function inputTest(Component, callback = () => null) {
+	const componentName = Component.name;
 
-describe(`test <Password/>`, () => {
-	const label = 'name';
-	const changeCallback = jest.fn();
-	const validateCallback = jest.fn();
-	const changeValue = 'newvalue';
-	const errorValue = '123';
-	const errorMessage = 'Please input some letter!';
-	const ele = mount(
-		<Password label={label}
-				  value=""
-				  onChange={({target: {value}}) => {
-					  changeCallback();
-					  expect(value).toBe(changeValue);
-				  }}
-				  validate={({target: {value}}) => {
-					  validateCallback();
-					  if (!/^[a-z]+$/i.test(value)) {
-						  return errorMessage;
-					  }
-				  }}/>
-	)
-	test(`set the props.label`, () => {
-		expect(ele.find('label').text()).toBe(label);
-	})
-	test(`set the props.value`, () => {
-		ele.setProps({
-			value: changeValue
-		});
-		const input = ele.find('input');
-		expect(input.props().value).toBe(changeValue);
-	});
-	test(`onChange and validate event can be trigger`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		const textarea = ele.find('input');
-		textarea.simulate('change', {target: {value: changeValue}});
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(validateCallback.mock.calls.length).toBe(1);
-	});
-	test(`show/hide validation message`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		const textarea = ele.find('input');
-		textarea.simulate('change', {target: {value: errorValue}});
-		expect(validateCallback.mock.calls.length).toBe(1);
-		expect(changeCallback.mock.calls.length).toBe(0);
-		const span = ele.find('.validation-message');
-		expect(span.text()).toBe(errorMessage);
-		textarea.simulate('change', {target: {value: changeValue}});
-		expect(validateCallback.mock.calls.length).toBe(2);
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(span.text()).toBe('');
-	})
-});
+	function getInput(ele) {
+		switch (componentName) {
+			case "TextInput":
+				return ele.find(`input[type='text']`);
+			case "Password":
+				return ele.find(`input[type='password']`);
+			case "TextArea":
+				return ele.find(`textarea`);
+			case "Select":
+				return ele.find(`select`);
+			case "CheckBox":
+				return ele.find(`input[type='checkbox']`);
+			default:
+				return null;
+		}
+	}
 
-describe(`test <TextArea/>`, () => {
-	const label = 'name';
-	const changeCallback = jest.fn();
-	const validateCallback = jest.fn();
-	const changeValue = 'newvalue';
-	const errorValue = '123';
-	const errorMessage = 'Please input some letter!';
-	const ele = mount(
-		<TextArea label={label}
-				  value=""
-				  onChange={({target: {value}}) => {
-					  changeCallback();
-					  expect(value).toBe(changeValue);
-				  }}
-				  validate={({target: {value}}) => {
-					  validateCallback();
-					  if (!/^[a-z]+$/i.test(value)) {
-						  return errorMessage;
-					  }
-				  }}/>
-	)
-	test(`set the props.label`, () => {
-		expect(ele.find('label').text()).toBe(label);
-	})
-	test(`set the props.value`, () => {
-		ele.setProps({
-			value: changeValue
-		});
-		const input = ele.find('textarea');
-		expect(input.props().value).toBe(changeValue);
-	});
-	test(`onChange and validate event can be trigger`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		const textarea = ele.find('textarea');
-		textarea.simulate('change', {target: {value: changeValue}});
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(validateCallback.mock.calls.length).toBe(1);
-	});
-	test(`show/hide validation message`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		const textarea = ele.find('textarea');
-		textarea.simulate('change', {target: {value: errorValue}});
-		expect(validateCallback.mock.calls.length).toBe(1);
-		expect(changeCallback.mock.calls.length).toBe(0);
-		const span = ele.find('.validation-message');
-		expect(span.text()).toBe(errorMessage);
-		textarea.simulate('change', {target: {value: changeValue}});
-		expect(validateCallback.mock.calls.length).toBe(2);
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(span.text()).toBe('');
-	})
-});
+	function getValue(ele) {
+		const input = getInput(ele);
+		if (input) {
+			return input.props().value;
+		}
+		return null;
+	}
 
-describe(`test <Select/>`, () => {
-	const label = 'name';
-	const message = 'please select a item'
-	const options = [{
-		text: "--Please Select--",
-		value: "-1"
-	}, {
-		text: "def",
-		value: "1"
-	}];
-	const changeCallback = jest.fn();
-	const validateCallback = jest.fn();
-	const ele = mount(<Select label={label}
-							  options={options}
-							  onChange={changeCallback}
-							  validate={({target: {value}}) => {
-								  validateCallback();
-								  value = parseFloat(value);
-								  if (value < 0) {
-									  return message
-								  }
-							  }}/>);
-	const select = ele.find('select');
-	test(`set the props.label`, () => {
+	test(`${componentName} : set the props.label`, () => {
+		const label = 'name'
+		const ele = mount(<Component label={label}/>);
 		expect(ele.find('label').text()).toBe(label);
+	});
+	test(`${componentName} : set the props.value`, () => {
+		const defaultValue = 'abc';
+		const ele = mount(<Component label="name" value={defaultValue}/>);
+		expect(getValue(ele)).toBe(defaultValue);
+		const testValue = "1";
 		ele.setProps({
-			label: 'abc'
+			value: testValue
 		});
-		expect(ele.find('label').text()).toBe('abc');
+		expect(getValue(ele)).toBe(testValue);
+	});
+	test(`${componentName} : change event can be trigger`, () => {
+		const change = jest.fn();
+		const ele = mount(<Component label='name' onChange={change}/>);
+		getInput(ele).simulate('change');
+		expect(change.mock.calls.length).toBe(1);
 	})
-	test(`select contains two option elements, all the values are correct`, () => {
-		expect(ele.find('option').length).toBe(2);
-		const optionTags = ele.find('option');
-		optionTags.forEach((option, index) => {
-			expect(option.props().value).toBe(options[index].value);
-			expect(option.text()).toBe(options[index].text);
-		})
+
+	test(`${componentName} : validate event can be trigger before change`, () => {
+		const validate = jest.fn();
+		const ele = mount(<Component label='name' validate={validate}/>);
+		getInput(ele).simulate('change');
+		expect(validate.mock.calls.length).toBe(1);
+		getInput(ele).simulate('change');
+		expect(validate.mock.calls.length).toBe(2);
+	})
+
+	test(`${componentName} : show/hide validation message`, () => {
+		const rightValue = '123';
+		const errorValue = 'abc';
+		const errorMessage = 'input is invalid';
+		const ele = mount(<Component label='name' validate={({target: {value}}) => {
+			if (!/^[0-9]+$/i.test(value)) {
+				return errorMessage;
+			}
+		}}/>);
+		getInput(ele).simulate('change', {target: {value: errorValue}});
+		expect(ele.find('.validation-message').text()).toBe(errorMessage);
+		getInput(ele).simulate('change', {target: {value: rightValue}});
+		expect(ele.find('.validation-message').text()).toBe('');
 	});
-	test(`onChange and validate events can be trigger`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		select.simulate('change', {target: {value: options[1].value}});
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(validateCallback.mock.calls.length).toBe(1);
+
+	callback();
+}
+
+describe(`test all inputs`, () => {
+	inputTest(TextInput);
+	inputTest(Password);
+	inputTest(TextArea);
+	inputTest(Select, () => {
+		test(`Select : contains two option elements, all the values are correct`, () => {
+			const options = [{
+				text: '1',
+				value: '1'
+			}, {
+				text: '2',
+				value: '2'
+			}];
+			const ele = mount(<Select label='name' options={options}/>);
+			expect(ele.find('option').length).toBe(2);
+			const optionTags = ele.find('option');
+			optionTags.forEach((option, index) => {
+				expect(option.props().value).toBe(options[index].value);
+				expect(option.text()).toBe(options[index].text);
+			})
+		});
 	});
-	test(`show/hide validation message`, () => {
-		changeCallback.mockReset();
-		validateCallback.mockReset();
-		select.simulate('change', {target: {value: options[0].value}});
-		expect(validateCallback.mock.calls.length).toBe(1);
-		expect(changeCallback.mock.calls.length).toBe(0);
-		const span = ele.find('.validation-message');
-		expect(span.text()).toBe(message);
-		select.simulate('change', {target: {value: options[1].value}});
-		expect(validateCallback.mock.calls.length).toBe(2);
-		expect(changeCallback.mock.calls.length).toBe(1);
-		expect(span.text()).toBe('');
-	});
-	// test(`set the props.value`, () => {
-	// 	// ele.setProps({
-	// 	// 	value: options[1].value
-	// 	// });
-	// 	// expect(ele.find('select').props().value).toBe(options[1].value);
-	// 	changeCallback.mockReset();
-	// 	select.simulate('change', {target: {value: options[0].value}});
-	// 	expect(changeCallback.mock.calls.length).toBe(0);
-	// 	expect(ele.find('select').props().value).toBe(options[0].value);
-	// })
+	inputTest(CheckBox);
 });

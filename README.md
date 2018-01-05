@@ -1,7 +1,6 @@
 # React Server Example
 
 [![Build Status](https://travis-ci.org/m860/react-server-practise.svg?branch=master)](https://travis-ci.org/m860/react-server-practise)
-
 [![Coverage Status](https://coveralls.io/repos/github/m860/react-server-practise/badge.svg?branch=master)](https://coveralls.io/github/m860/react-server-practise?branch=master)
 
 react server render 例子,bundle使用webpack.

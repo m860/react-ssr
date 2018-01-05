@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "dev": "scripts/dev.sh",
     "dev:spa": "scripts/devspa.sh",
     "build": "scripts/build.sh",
@@ -107,7 +107,6 @@
       "__SPA__": true,
       "__SERVER__": false
     },
-    "collectCoverage": true,
     "verbose": true
   }
 }
