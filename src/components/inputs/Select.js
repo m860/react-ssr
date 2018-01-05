@@ -18,6 +18,7 @@ export default class Select extends InputBase {
 	render() {
 		let props = Object.assign({}, this.inputProps);
 		delete props.defaultValue;
+		delete props.options;
 		return (
 			<InputCell label={this.props.label} message={this.state.message}>
 				<select {...props}>
