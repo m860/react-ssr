@@ -3,6 +3,7 @@ import React from "react";
 import Enzyme, {mount, shallow} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import TextInput from '../src/components/inputs/TextInput'
+import Password from '../src/components/inputs/Password'
 import TextArea from '../src/components/inputs/TextArea'
 import Select from '../src/components/inputs/Select'
 
@@ -65,6 +66,61 @@ describe(`test <TextInput/>`, () => {
 		expect(changeCallback.mock.calls.length).toBe(1);
 		expect(span.text()).toBe('');
 	});
+});
+
+describe(`test <Password/>`, () => {
+	const label = 'name';
+	const changeCallback = jest.fn();
+	const validateCallback = jest.fn();
+	const changeValue = 'newvalue';
+	const errorValue = '123';
+	const errorMessage = 'Please input some letter!';
+	const ele = mount(
+		<Password label={label}
+				  value=""
+				  onChange={({target: {value}}) => {
+					  changeCallback();
+					  expect(value).toBe(changeValue);
+				  }}
+				  validate={({target: {value}}) => {
+					  validateCallback();
+					  if (!/^[a-z]+$/i.test(value)) {
+						  return errorMessage;
+					  }
+				  }}/>
+	)
+	test(`set the props.label`, () => {
+		expect(ele.find('label').text()).toBe(label);
+	})
+	test(`set the props.value`, () => {
+		ele.setProps({
+			value: changeValue
+		});
+		const input = ele.find('input');
+		expect(input.props().value).toBe(changeValue);
+	});
+	test(`onChange and validate event can be trigger`, () => {
+		changeCallback.mockReset();
+		validateCallback.mockReset();
+		const textarea = ele.find('input');
+		textarea.simulate('change', {target: {value: changeValue}});
+		expect(changeCallback.mock.calls.length).toBe(1);
+		expect(validateCallback.mock.calls.length).toBe(1);
+	});
+	test(`show/hide validation message`, () => {
+		changeCallback.mockReset();
+		validateCallback.mockReset();
+		const textarea = ele.find('input');
+		textarea.simulate('change', {target: {value: errorValue}});
+		expect(validateCallback.mock.calls.length).toBe(1);
+		expect(changeCallback.mock.calls.length).toBe(0);
+		const span = ele.find('.validation-message');
+		expect(span.text()).toBe(errorMessage);
+		textarea.simulate('change', {target: {value: changeValue}});
+		expect(validateCallback.mock.calls.length).toBe(2);
+		expect(changeCallback.mock.calls.length).toBe(1);
+		expect(span.text()).toBe('');
+	})
 });
 
 describe(`test <TextArea/>`, () => {

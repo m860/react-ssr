@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FormBase from './InputBase'
-import FormCell from './InputCell'
+import InputBase from './InputBase'
+import InputCell from './InputCell'
 
-export default class Password extends FormBase {
+export default class Password extends InputBase {
 	static propTypes = {
-		...FormBase.propTypes
+		...InputBase.propTypes
 	};
 
 	render() {
 		return (
-			<FormCell label={this.props.label} message={this.state.message}>
+			<InputCell label={this.props.label} message={this.state.message}>
 				<input {...this.inputProps} type="password"/>
-			</FormCell>
+			</InputCell>
 		);
 	}
 }
