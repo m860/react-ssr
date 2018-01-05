@@ -11,7 +11,7 @@ import Password from '../inputs/Password'
 import Select from '../inputs/Select'
 import RadioButtons from '../inputs/RadioButtons'
 import CheckBox from '../inputs/CheckBox'
-import CheckboxGroup from '../inputs/CheckboxGroup'
+import CheckboxGroup from '../inputs/CheckBoxGroup'
 import File from '../inputs/File'
 
 export default class TestForm extends BasePage {

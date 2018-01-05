@@ -4,5 +4,5 @@ export default {
 	TextArea: require('./TextArea').default,
 	Select: require('./Select').default,
 	RadioButtons: require('./RadioButtons').default,
-	CheckBoxGroup: require('./CheckboxGroup').default,
+	CheckBoxGroup: require('./CheckBoxGroup').default,
 }
