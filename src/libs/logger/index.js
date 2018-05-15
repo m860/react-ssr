@@ -1,5 +1,2 @@
-import serverLogger from './logger.server'
-import clientLogger from './logger.client'
-
-export default __SERVER__ ? serverLogger : clientLogger
+export default __SERVER__ ? require("./logger.server").default : require("./logger.client").default
 
