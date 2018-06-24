@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/m860/react-server-example#readme",
   "devDependencies": {
+    "babel-runtime": "^6.26.0",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.1.2",
@@ -61,18 +62,17 @@
     "walk": "^2.3.9",
     "webpack": "^3.10.0",
     "webpack-auto-inject-version": "^1.0.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-livereload-plugin": "^1.0.0"
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.4",
     "colors": "^1.1.2",
     "cors": "^2.8.4",
     "dateformat": "^3.0.2",
-    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.15.4",
     "fast-deep-equal": "^1.0.0",
     "fbemitter": "^2.1.1",
