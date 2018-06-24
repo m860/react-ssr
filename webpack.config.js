@@ -19,6 +19,9 @@ fs.readdirSync(path.join(__dirname, 'node_modules'))
     .filter(x => ['.bin'].indexOf(x) === -1)
     .forEach(mod => nodeModules[mod] = 'commonjs ' + mod);
 
+var EXTENSION_BROWSER = "browser";
+var EXTENSION_SERVER = "server";
+
 var config = function (server, env, options) {
     var isProduction = env !== 'development';
     var configuration = {
@@ -36,7 +39,7 @@ var config = function (server, env, options) {
             alias: {
                 'initDataHandlers': 'export default void 0'
             },
-            extensions: server ? [".server.js", ".js", ".server.json", ".json"] : [".client.js", ".js", ".client.json", ".json"]
+            extensions: server ? ["." + EXTENSION_SERVER + ".js", ".js", "." + EXTENSION_SERVER + ".json", ".json"] : ["." + EXTENSION_BROWSER + ".js", ".js", "." + EXTENSION_BROWSER + ".json", ".json"]
         },
         module: {
             rules: [{
@@ -87,7 +90,9 @@ var config = function (server, env, options) {
             }]
         },
         plugins: [
-            new webpack.IgnorePlugin(server ? /\.(client\.js|client\.json)$/ : /\.(server\.js|server\.json)$/),
+            new webpack.IgnorePlugin(server ?
+                new RegExp("\.(" + EXTENSION_BROWSER + "\.js|" + EXTENSION_BROWSER + "\.json)$") :
+                new RegExp("\.(" + EXTENSION_SERVER + "\.js|" + EXTENSION_SERVER + "\.json)$")),
             new HtmlWebpackPlugin({
                 filename: "index.html",
                 template: './src/index.html',
