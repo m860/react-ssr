@@ -119,6 +119,7 @@ class Example extends PureComponent{
 - [x] client error 记录
 - [x] 优化nodemon,经常挂掉无法自动重启
 - [ ] 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`空引用的问题
+- [ ] 路由配置重构,实现服务端和客户端统一配置,分离服务端初始化数据
 
 ## 平台说明
 
