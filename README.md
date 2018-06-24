@@ -119,6 +119,14 @@ class Example extends PureComponent{
 - [x] client error 记录
 - [x] 优化nodemon,经常挂掉无法自动重启
 
+## 平台说明
+
+- `.browser.js`使用于浏览器
+- `.server.js`使用于node服务端
+- `.js`使用于浏览器和node服务端
+
+PS:目前没有处理空引用的问题,如果要分平台创建必须为每个平台创建对应的文件,如果某一个平台没有对应的实现需要进行mock实现
+
 ## Components
 
 - [x] `async` ApplicationSetting
