@@ -118,6 +118,7 @@ class Example extends PureComponent{
 - [x] 服务端redux,异步数据造成server render失效
 - [x] client error 记录
 - [x] 优化nodemon,经常挂掉无法自动重启
+- [ ] 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`空引用的问题
 
 ## 平台说明
 
