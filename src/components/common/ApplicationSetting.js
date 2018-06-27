@@ -37,6 +37,6 @@ export default class ApplicationSetting extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(fetchApplicationSetting());
+		//this.props.dispatch(fetchApplicationSetting());
 	}
 }

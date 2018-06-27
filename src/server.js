@@ -11,6 +11,7 @@ import yargs from 'yargs'
 import logger from "./libs/logger"
 import App from './components/App'
 import middlewares from "./libs/middleware"
+import favicon from 'serve-favicon'
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {
@@ -26,6 +27,8 @@ const args = yargs
 const port = args['port'];
 
 const server = express();
+
+server.use(favicon(require("./assets/favicon.ico")))
 
 server.use('/public', express.static('./public'));
 
