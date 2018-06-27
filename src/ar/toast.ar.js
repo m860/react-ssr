@@ -3,6 +3,7 @@ import guid from 'guid'
 import logger from '../libs/logger'
 import {ToastType} from "../types/ToastType";
 import {ActionType} from "../types/ActionType";
+import {NoAction} from "../configuration/consts";
 
 const initialState = {
     messages: []
@@ -13,6 +14,9 @@ const HIDE_TOAST = Symbol();
 
 //@flow
 export function showToast(toast: ToastType | String): ActionType {
+    if (!toast) {
+        return NoAction;
+    }
     const id = guid.raw();
     let payload = {id};
     if (toast.constructor.name === "String") {
