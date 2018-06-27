@@ -13,7 +13,12 @@ export default async function (req, res, next) {
             strict: false
         });
     });
-    logger.info(`${req.url} is${route ? "" : " not"} matched`);
+    if (route) {
+        logger.info(`${req.url} is matched`);
+    }
+    else {
+        logger.warn(`${req.url} is not matched`);
+    }
     if (route) {
         req.$route = Object.assign({}, route);
         const fetchInitialState = req.$route.component.fetchInitialState;

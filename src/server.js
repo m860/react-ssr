@@ -11,7 +11,6 @@ import yargs from 'yargs'
 import logger from "./libs/logger"
 import App from './components/App'
 import middlewares from "./libs/middleware"
-import Routes from "./components/Routes"
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {
@@ -52,7 +51,9 @@ server.get('/*', (req, res) => {
             location={req.url}
             context={context}>
             <App>
-                <Routes/>
+                <Switch>
+                    <Route {...req.$route}></Route>
+                </Switch>
             </App>
         </StaticRouter>
     );
