@@ -1,0 +1,1 @@
+- `browser.js`和`server.js`中App的渲染必须是同一个(也就是说App没有children),否则在客户端跳转页面失效

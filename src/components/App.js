@@ -1,18 +1,16 @@
 import "normalize-css/normalize.css";
 import "font-awesome/css/font-awesome.css";
 import '../assets/sass/App.sass'
-import React from 'react'
+import React, {Component} from 'react'
 import {Provider} from "react-redux";
 import ApplicationSetting from './common/ApplicationSetting'
 import Toast from './common/Toast'
 import logger from '../libs/logger'
 import store from "../libs/store"
 import PropTypes from "prop-types"
+import Routes from "./Routes"
 
-export default class App extends React.Component {
-    static propTypes = {
-        children: PropTypes.any
-    };
+export default class App extends Component {
 
     constructor(props) {
         super(props);
@@ -32,7 +30,7 @@ export default class App extends React.Component {
             <Provider store={store}>
 				<span>
 					<ApplicationSetting>
-                        {this.props.children}
+                        <Routes/>
 					</ApplicationSetting>
 					<Toast/>
 				</span>

@@ -3,13 +3,10 @@
  */
 import 'babel-polyfill'
 import React from 'react';
-import {StaticRouter, Switch, Route} from 'react-router-dom';
 import express from 'express';
-import fs from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import yargs from 'yargs'
 import logger from "./libs/logger"
-import App from './components/App'
 import middlewares from "./libs/middleware"
 import favicon from 'serve-favicon'
 
@@ -36,38 +33,6 @@ server.use('/public', express.static('./public'));
 middlewares.forEach(fn => {
     server.use(fn);
 });
-
-let _html;
-const getHtml = () => {
-    if (_html) {
-        return _html;
-    }
-    _html = fs.readFileSync('./public/index.html', 'utf8');
-    return _html;
-};
-
-
-server.get('/*', (req, res) => {
-    const context = {};
-    const markup = renderToStaticMarkup(
-        <StaticRouter
-            location={req.url}
-            context={context}>
-            <App>
-                <Switch>
-                    <Route {...req.$route}></Route>
-                </Switch>
-            </App>
-        </StaticRouter>
-    );
-    if (markup === "") {
-        logger.error(`[${req.url}] server render empty`);
-    }
-    const html = getHtml().replace('#HTML#', markup);
-    logger.info(`[${req.url}] [markup] : #${markup}#`);
-    res.send(html);
-});
-
 
 server.listen(port, () => {
     logger.log(`address http://127.0.0.1:${port}`);

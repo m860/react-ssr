@@ -5,6 +5,21 @@ export default [
         component: require('../components/pages/Index').default,
         exact: true,
     }, {
+        title: "Page A",
+        path: "/pagea",
+        component: require('../components/pages/PageA').default,
+        exact: true
+    }, {
+        title: "Page B",
+        path: "/pageb",
+        component: require('../components/pages/PageB').default,
+        exact: true
+    }, {
+        title: "服务端渲染数据",
+        path: "/demo/initialstate",
+        component: require('../components/pages/InitialStateDemo').default,
+        exact: true
+    }/*, {
         title: "Sign In",
         path: "/signin",
         component: require('../components/pages/SignIn').default,
@@ -52,5 +67,5 @@ export default [
     }, {
         title: "404",
         component: require('../components/pages/NoMatch').default,
-    }
+    }*/
 ]

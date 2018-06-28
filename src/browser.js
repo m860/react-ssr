@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {render} from 'react-dom';
 import App from './components/App'
 import routes from "./configuration/routes.config";
+import StateWrapper from "./components/common/StateWrapper"
 
 // window.addEventListener('error', (event) => {
 //     event.preventDefault();
@@ -20,15 +21,9 @@ import routes from "./configuration/routes.config";
 
 render(
     <BrowserRouter>
-        <App>
-            <Switch>
-                {routes.map((item, index) => {
-                    return (
-                        <Route {...item} key={index}></Route>
-                    );
-                })}
-            </Switch>
-        </App>
+        <StateWrapper>
+            <App/>
+        </StateWrapper>
     </BrowserRouter>
     , document.getElementById('view')
 );

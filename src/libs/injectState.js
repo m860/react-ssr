@@ -4,7 +4,10 @@ export default function (component, state) {
     class StateWrapper extends component {
         constructor(props) {
             super(props);
-            this.state = state;
+            if (state) {
+                //TODO 实现state数据的合并而不是全覆盖
+                this.state = state;
+            }
         }
     }
 
