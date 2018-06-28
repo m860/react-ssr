@@ -23,12 +23,16 @@ export default class InitialStateDemo extends Component {
         );
     }
 
-    async componentDidMount() {
+    async fetchData() {
         const state = await InitialStateDemo.fetchInitialState();
         if (state.message !== this.state.message) {
             this.setState({
                 message: state.message
             });
         }
+    }
+
+    async componentDidMount() {
+        await this.fetchData();
     }
 }
