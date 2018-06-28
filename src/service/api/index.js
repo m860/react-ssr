@@ -1,13 +1,10 @@
 import express from 'express'
-import sendJSON from '../../libs/middleware/sendJSON'
 import configuration from '../../configuration/application-setting'
 import logger, {clientLogger} from '../../libs/logger'
 import userRouter from './user'
 import fileRouter from './file'
 
 const api = express();
-
-api.use(sendJSON);
 
 api.get('/configuration', (req, res) => {
     res.success(configuration);

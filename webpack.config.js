@@ -82,7 +82,7 @@ var config = function (server, env, options) {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "url-loader?limit=10000&mimetype=application/font-woff&name=" + (isProduction ? "[hash]" : "[name]") + ".[ext]"
             }, {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(jpe?g|png|gif|svg|ico)$/i,
                 loaders: [
                     'file-loader?hash=sha512&digest=hex&name=' + (isProduction ? "[hash]" : "[name]") + '.[ext]',
                     'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'

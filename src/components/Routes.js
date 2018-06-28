@@ -1,44 +1,32 @@
-import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
-import Async from 'react-component-async-module'
+import React, {Component} from "react"
+import {Switch, Route} from "react-router-dom"
+import routes from "../configuration/routes.config"
+import PropTypes from "prop-types"
+import injectState from "../libs/injectState";
 
-export const routes = [
-	<Route exact path="/" component={require('./pages/Index').default} title="首页"/>,
-	<Route exact path="/signin" component={require('./pages/SignIn').default} title="Sign In"/>,
-	<Route exact path="/signup" component={require('./pages/SignUp').default} title="Sign Up"/>,
-	<Route exact path="/form/:type" component={require('./pages/Form').default} title="Magic Form"/>,
-	<Route exact path="/test/loading" component={require('./pages/TestLoading').default} title="Loading"/>,
-	<Route exact path="/test/clientlogs" component={require('./pages/TestClientLog').default} title="日志"/>,
-	<Route exact path="/test/toast" component={require('./pages/TestToast').default} title="通知消息"/>,
-	<Route exact path="/test/transition" component={require('./pages/TestTransition').default} title="动画测试"/>,
-	<Route exact path="/test/forms" component={require('./pages/TestForm').default} title="Test Form"/>,
-	<Route exact path="/test/softkeyboard" component={require('./pages/TestSoftKeyboard').default}
-		   title="Test Soft Keyboard"/>,
-	<Route exact path="/test/fetchdata" component={require('./pages/TestFetchData').default}
-		   title="加载remote data"
-		   initDataHandler={__SERVER__ ? require('../initDataHandlers/users').default : !1}/>,
-	<Route component={require('./pages/NoMatch').default} title="404"/>
-];
-
+/**
+ * Routes必须继承Component,如果使用PureComponent导致客户端路由失效
+ */
 export default class Routes extends Component {
-	render() {
-		return (
-			<Switch>
-				{routes.map((item, index) => {
-					return React.cloneElement(item, {
-						key: `route-${index}`
-					});
-				})}
-			</Switch>
-		);
-	}
-}
+    static contextTypes = {
+        initialState: PropTypes.any
+    };
 
-export const RoutePaths = (() => {
-	return routes.map(item => {
-		return {
-			path: item.props.path,
-			title: item.props.title
-		};
-	})
-})();
+    render() {
+        return (
+            <Switch>
+                {routes.map((item, index) => {
+                    const routeProps = {
+                        key: index,
+                        ...(item.path ? {path: item.path} : {}),
+                        component: injectState(item.component, this.context.initialState),
+                        exact: item.exact || false
+                    };
+                    return (
+                        <Route {...routeProps}></Route>
+                    );
+                })}
+            </Switch>
+        );
+    }
+}

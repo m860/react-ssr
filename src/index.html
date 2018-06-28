@@ -12,7 +12,7 @@
     <% } %>
 </head>
 <body>
-<span id="view">#HTML#</span>
+<span id="view">#MARKUP#</span>
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %>
