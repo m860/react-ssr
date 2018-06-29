@@ -1,5 +1,6 @@
 /**
- * Created by jean.h.ma on 3/15/17.
+ * @overview node的启动文件
+ * @author jean.h.ma(m860)
  */
 import 'babel-polyfill'
 import React from 'react';

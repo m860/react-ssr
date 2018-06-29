@@ -1,3 +1,7 @@
+/**
+ * @overview 处理react server-side render,主要处理初始化数据的问题
+ * @author jean.h.ma(m860)
+ */
 import {matchPath, StaticRouter} from "react-router-dom";
 import logger from "../logger"
 import routes from "../../configuration/routes.config"
@@ -12,8 +16,8 @@ export default async function (req, res, next) {
         const route = routes.find(f => {
             return matchPath(req.url, {
                 path: f.path,
-                exact: true,
-                strict: false
+                exact: f.exact || false,
+                strict: f.exact || false
             });
         });
         if (route) {

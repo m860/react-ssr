@@ -34,6 +34,51 @@ $ npm run build:spa #single page application
 ### __SERVER__
 ### __SPA__
 
+## 如何实现服务端页面渲染前数据的初始化?
+
+在实现这个功能的时候使用了一个小技巧,`<Route/>`对应的component需要注入初始化数据(state),
+如果component在服务端进行渲染我们就需要提供初始化的state,其具体逻辑是在component.fetchInitialState这个静态函数里实现的,
+因此我们定义的所有页面(其实也是组件)都需要实现其`fetchInitialState`这个方法.
+如果component在客户端渲染,这个state永远都为null,完整例子可以参考[InitialStateDamo.js](./src/components/pages/InitialStateDemo.js)
+
+```javascript
+//同步的初始化数据
+class DemoSync extends React.Component{
+    static fetchInitialState(){
+        return {
+            message:"hello world!"
+        }
+    }
+    constructor(props){
+        super(props);
+        this.state={
+            message:""
+        }
+    }
+    componentDidMount(){
+        const state=DemoSync.fetchInitialState();
+        this.setState(state);
+    }
+}
+//异步的初始化数据
+class DemoAsync extends React.Component{
+    static fetchInitialState(){
+        return new Promise.resolve({
+             message:"hello world!"
+        })
+    }
+    constructor(props){
+        super(props);
+        this.state={
+            message:""
+        }
+    }
+    async componentDidMount(){
+        const state=await DemoAsync.fetchInitialState();
+        this.setState(state);
+    }
+}
+```
 
 ## 服务端render初始化页面数据
 

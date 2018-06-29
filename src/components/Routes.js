@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {Switch, Route} from "react-router-dom"
 import routes from "../configuration/routes.config"
 import PropTypes from "prop-types"
-import injectState from "../libs/injectState";
+import injectState from "../libs/decorators/injectState";
 
 /**
  * Routes必须继承Component,如果使用PureComponent导致客户端路由失效

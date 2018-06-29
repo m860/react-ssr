@@ -6,3 +6,4 @@
 - [ ] 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`空引用的问题
 - [ ] code split
 - [ ] node使用webpack打包的时候不打包资源文件,如:.png .css .svg等
+- [ ] 单元测试时无法区分.browser和.server后缀,导致找不到module
