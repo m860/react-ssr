@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/m860/react-server-example#readme",
   "devDependencies": {
-    "babel-runtime": "^6.26.0",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.1.2",
@@ -34,11 +33,13 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "clean-webpack-plugin": "^0.1.8",
     "colors": "^1.1.2",
     "coveralls": "^3.0.0",
     "css-loader": "^0.23.1",
     "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^3.8.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-flowtype": "^2.40.1",
@@ -62,7 +63,6 @@
     "walk": "^2.3.9",
     "webpack": "^3.10.0",
     "webpack-auto-inject-version": "^1.0.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-livereload-plugin": "^1.0.0"
   },
@@ -98,16 +98,5 @@
     "redux-thunk": "^2.2.0",
     "serve-favicon": "^2.5.0",
     "yargs": "^8.0.2"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "__mocks__/fileMock.js",
-      "\\.(css|less|sass)$": "identity-obj-proxy"
-    },
-    "globals": {
-      "__SPA__": true,
-      "__SERVER__": false
-    },
-    "verbose": true
   }
 }
