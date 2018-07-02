@@ -36,9 +36,6 @@ var config = function (server, env, options) {
         externals: (server ? nodeModules : {}),
         devtool: isProduction ? 'source-map' : "",
         resolve: {
-            alias: {
-                'initDataHandlers': 'export default void 0'
-            },
             extensions: server ? ["." + EXTENSION_SERVER + ".js", ".js", "." + EXTENSION_SERVER + ".json", ".json"] : ["." + EXTENSION_BROWSER + ".js", ".js", "." + EXTENSION_BROWSER + ".json", ".json"]
         },
         module: {
