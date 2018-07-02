@@ -1,17 +1,17 @@
-# React Server Example
+# React SSR
 
-[![Build Status](https://travis-ci.org/m860/react-server-practise.svg?branch=master)](https://travis-ci.org/m860/react-server-practise)
-[![Coverage Status](https://coveralls.io/repos/github/m860/react-server-practise/badge.svg?branch=master)](https://coveralls.io/github/m860/react-server-practise?branch=master)
+[![Build Status](https://travis-ci.org/m860/react-ssr.svg?branch=master)](https://travis-ci.org/m860/react-ssr)
+[![Coverage Status](https://coveralls.io/repos/github/m860/react-ssr/badge.svg?branch=master)](https://coveralls.io/github/m860/react-ssr?branch=master)
 
-react server render 例子,bundle使用webpack.
+react server-slide render 例子,bundle使用webpack.
 
 # Run Example
 
 ## 克隆项目并安装相关依赖
 
 ```shell
-$ git clone https://github.com/m860/react-server-example.git
-$ cd react-server-example
+$ git clone https://github.com/m860/react-ssr.git
+$ cd react-ssr
 $ npm install
 ```
 
@@ -19,20 +19,13 @@ $ npm install
 
 ```shell
 $ npm run dev
-$ npm run dev:spa #single page application
 ```
 
 ## build
 
 ```shell
 $ npm run build
-$ npm run build:spa #single page application
 ```
-
-## Globals
-
-### __SERVER__
-### __SPA__
 
 ## 如何实现服务端页面渲染前数据的初始化?
 
@@ -77,47 +70,6 @@ class DemoAsync extends React.Component{
         const state=await DemoAsync.fetchInitialState();
         this.setState(state);
     }
-}
-```
-
-## 服务端render初始化页面数据
-
-当在服务端render时,初始化的数据通过`this.context.data`进行传递.`Routes`配置时需要配置`initDataHandler`,内部需要实现数据的初始化,方法可以返回一个javascript对象或者是Promise对象.
-
-```javascript
-//route 配置
-//PS:__SERVER__ 表示只有server才引用打包
-<Route exact path="/test/fetchdata" component={require('./pages/TestFetchData').default}
-		   initDataHandler={__SERVER__?require('../initDataHandlers/users').default:0}/>
-
-//example
-class Example extends PureComponent{
-	static contextTypes = {
-        data: PropTypes.any
-    };
-	constructor(props,context){
-		super(props);
-		this.state={
-			//如果context.data存在即服务端render,则使用初始化的数据,否则不使用
-			users:context.data?context.data:[]
-		};
-	}
-	fetchUsers(){
-		//do something
-		//客户端获取数据
-	}
-	render(){
-		return (
-			<ul>
-                {this.state.users.map((user, index)=> {
-                    return <li key={index}>{user.name}:{user.age}</li>
-                })}
-            </ul>
-		);
-	}
-	componentDidMount(){
-		this.fetchUsers();
-	}
 }
 ```
 
