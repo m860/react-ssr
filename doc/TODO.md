@@ -2,7 +2,7 @@
 - [x] 服务端渲染和客户端渲染初始化数据的协同
 - [x] 完善`服务端渲染和客户端渲染初始化数据的协同`的文档和DEMO
 - [ ] 提高webpack编译速度
-- [ ] `uuid`替换`guid`
+- [x] `uuid`替换`guid`
 - [ ] 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`空引用的问题
 - [ ] code split
 - [ ] node使用webpack打包的时候不打包资源文件,如:.png .css .svg等

@@ -1,9 +1,9 @@
 import update from 'immutability-helper'
-import guid from 'guid'
 import logger from '../libs/logger'
 import {ToastType} from "../types/ToastType";
 import {ActionType} from "../types/ActionType";
 import {NoAction} from "../configuration/consts";
+import uuid from "uuid/v1";
 
 const initialState = {
     messages: []
@@ -17,7 +17,7 @@ export function showToast(toast: ToastType | String): ActionType {
     if (!toast) {
         return NoAction;
     }
-    const id = guid.raw();
+    const id = uuid();
     let payload = {id};
     if (toast.constructor.name === "String") {
         payload = Object.assign({
