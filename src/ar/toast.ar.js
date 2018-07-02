@@ -9,8 +9,8 @@ const initialState = {
     messages: []
 };
 
-const SHOW_TOAST = Symbol();
-const HIDE_TOAST = Symbol();
+const ACTION_TOAST_SHOW = Symbol("ACTION_TOAST_SHOW");
+const ACTION_TOAST_HIDE = Symbol("ACTION_TOAST_HIDE");
 
 //@flow
 export function showToast(toast: ToastType | String): ActionType {
@@ -34,13 +34,13 @@ export function showToast(toast: ToastType | String): ActionType {
     }
     return function (dispatch) {
         dispatch({
-            type: SHOW_TOAST,
+            type: ACTION_TOAST_SHOW,
             payload: payload
         });
         setTimeout(() => {
             logger.info(`hide toast id=${id}`)
             dispatch({
-                type: HIDE_TOAST,
+                type: ACTION_TOAST_HIDE,
                 payload: id
             });
         }, payload.duration);
@@ -50,11 +50,11 @@ export function showToast(toast: ToastType | String): ActionType {
 
 export default function (state = initialState, action = {}) {
     switch (action.type) {
-        case SHOW_TOAST:
+        case ACTION_TOAST_SHOW:
             return update(state, {
                 messages: {$push: [action.payload]}
             });
-        case HIDE_TOAST:
+        case ACTION_TOAST_HIDE:
             const index = state.messages.map(f => f.id).indexOf(action.payload);
             if (index >= 0) {
                 return update(state, {

@@ -6,7 +6,7 @@ const initialState = {
     setting: null
 };
 
-const FETCH_APPLICATION_SETTING = Symbol();
+const ACTION_APPLICATION_FETCH = Symbol("ACTION_APPLICATION_FETCH");
 
 export function fetchApplicationSetting() {
     return async function (dispatch, getState) {
@@ -15,7 +15,7 @@ export function fetchApplicationSetting() {
             const {setting} = getState();
             if (!equal(setting, data.data)) {
                 dispatch({
-                    type: FETCH_APPLICATION_SETTING,
+                    type: ACTION_APPLICATION_FETCH,
                     payload: data.data
                 });
             }
@@ -28,7 +28,7 @@ export function fetchApplicationSetting() {
 
 export default function (state = initialState, action = {}) {
     switch (action.type) {
-        case FETCH_APPLICATION_SETTING:
+        case ACTION_APPLICATION_FETCH:
             if (JSON.stringify(action.payload) !== JSON.stringify(state.setting)) {
                 return update(state, {
                     setting: {$set: action.payload}
