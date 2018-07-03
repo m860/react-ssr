@@ -24,5 +24,14 @@ export default [
         path: "/demo/initialstatesync",
         component: require("../components/pages/InitialStateSyncDemo").default,
         exact: true
+    }, {
+        title: "Code Split",
+        path: "/demo/codesplit",
+        component: require("../components/pages/CodeSplit").default,
+        exact: true
+    }, {
+        title: "404",
+        component: require("../components/pages/Http404").default,
+        exact: true
     }
 ]

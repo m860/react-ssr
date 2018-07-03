@@ -31,6 +31,9 @@ export default async function (req, res, next) {
                 initialState = await fetchInitialState();
                 logger.info(`initial state : ${JSON.stringify(initialState)}`);
             }
+            else {
+                logger.warn(`path=${route.path}没有配置fetchInitialState`)
+            }
             const context = {};
             const markup = renderToStaticMarkup(
                 <StaticRouter

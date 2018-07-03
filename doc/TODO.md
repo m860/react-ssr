@@ -7,7 +7,7 @@
 - [x] _feature_ `uuid`替换`guid`
 - [ ] _feature_ 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`
       空引用的问题
-- [ ] _feature_ code split
+- [x] _feature_ 异步页面的实现
 - [ ] _optimize_ node使用webpack打包的时候不打包资源文件,如:.png .css .svg等
       如果直接使用webpack ignore的话会导致编译出问题,目前想到的一个方法是打包完成
       之后执行一个脚本把不需要的文件删除

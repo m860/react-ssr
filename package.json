@@ -67,6 +67,7 @@
     "webpack-livereload-plugin": "^1.0.0"
   },
   "dependencies": {
+    "@m860/react-async-component": "git+https://github.com/m860/react-async-component.git",
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.4",

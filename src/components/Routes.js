@@ -16,12 +16,25 @@ export default class Routes extends Component {
         return (
             <Switch>
                 {routes.map((item, index) => {
-                    const routeProps = {
+                    let routeProps = {
                         key: index,
-                        ...(item.path ? {path: item.path} : {}),
-                        component: injectState(item.component, this.context.initialState),
                         exact: item.exact || false
                     };
+                    if (item.path) {
+                        routeProps.path = item.path;
+                    }
+                    if (item.component) {
+                        routeProps.component = injectState(item.component, this.context.initialState);
+                    }
+                    else if (item.render) {
+                        routeProps.render = item.render;
+                    }
+                    else if (item.children) {
+                        routeProps.children = item.children;
+                    }
+                    else {
+                        throw new Error("路由配置必须配置以下属性之一:component,render,children");
+                    }
                     return (
                         <Route {...routeProps}></Route>
                     );

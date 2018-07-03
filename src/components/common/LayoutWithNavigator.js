@@ -21,7 +21,7 @@ export default class LayoutWithNavigator extends Base {
                             {routes.map((item, index) => {
                                 return (
                                     <li key={index}>
-                                        <Link to={item.path || Date.now()}>{item.title}</Link>
+                                        <Link to={item.path || "/404"}>{item.title}</Link>
                                     </li>
                                 );
                             })}

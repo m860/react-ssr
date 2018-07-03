@@ -10,6 +10,7 @@ import yargs from 'yargs'
 import logger from "./libs/logger"
 import middlewares from "./libs/middleware"
 import favicon from 'serve-favicon'
+import {validateRouteConfig} from "./libs/validation";
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {
@@ -34,6 +35,9 @@ server.use('/public', express.static('./public'));
 middlewares.forEach(middleware => {
     server.use(middleware);
 });
+
+//检查客户端和服务端的路由配置是否一致
+validateRouteConfig();
 
 server.listen(port, () => {
     logger.log(`address http://127.0.0.1:${port}`);

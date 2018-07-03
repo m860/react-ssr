@@ -78,39 +78,39 @@ class DemoAsync extends React.Component{
 
 ## 如何配置路由?
 
-> 路由的配置文件在`src/configuration/routes.config.js`,属性除了`title`目前是特有的外,
-  其他属性都来自`react-router`中的`route`的配置属性
+客户端和服务端的路由配置是分开配置的,分别在`routes.config.browser.js`和`routes.config.server.js`中,
+分开配置的主要原因是因为客户端的页面需要处理code split而服务端不需要处理.
+
+> 路由配置的属性除了`title`是自定义外,其他的属性配置都来源于`react-router/Route`中
+
+> 服务端在启动的时候会对服务端和客户端的路由配置做一致性验证
+
+### 如何实现code split
+
+异步组件使用`@m860/react-async-component`实现,这是一个HOC组件.代码片段如下:
 
 ```javascript
-export default [
-    {
-        title: "首页",
-        path: "/",
-        component: require('../components/pages/Index').default,
-        exact: true,
-    }, {
-        title: "Page A",
-        path: "/pagea",
-        component: require('../components/pages/PageA').default,
-        exact: true
-    }, {
-        title: "Page B",
-        path: "/pageb",
-        component: require('../components/pages/PageB').default,
-        exact: true
-    }, {
-        title: "服务端异步数据",
-        path: "/demo/initialstateasync",
-        component: require('../components/pages/InitialStateAsyncDemo').default,
-        exact: true
-    }, {
-        title: "服务端同步数据",
-        path: "/demo/initialstatesync",
-        component: require("../components/pages/InitialStateSyncDemo").default,
-        exact: true
-    }
-]
+{
+    title: "Code Split",
+    path: "/demo/codesplit",
+    render: props => {
+        return (
+            <AsyncComponent components={[
+                System.import("../components/pages/CodeSplit")
+            ]}>
+                {(CodeSplit) => {
+                    return (
+                        <CodeSplit {...props}/>
+                    );
+                }}
+            </AsyncComponent>
+        );
+    },
+    exact: true
+}
 ```
+
+> PS:服务端不能使用异步组件
 
 ## TODO
 - [x] AsyncComponent - 异步组件
