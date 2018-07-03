@@ -31,8 +31,8 @@ server.use(favicon(require("./assets/favicon.ico")))
 server.use('/public', express.static('./public'));
 
 //attach middleware
-middlewares.forEach(fn => {
-    server.use(fn);
+middlewares.forEach(middleware => {
+    server.use(middleware);
 });
 
 server.listen(port, () => {

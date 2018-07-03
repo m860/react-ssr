@@ -76,6 +76,42 @@ class DemoAsync extends React.Component{
 需要注意一点,从服务端返回的html是包含了数据的完整html,一旦请求返回客户端会根据SPA的模式再次初始化数据再进行渲染,
 所以在`componentDidMount`中需要做对应的数据初始化.
 
+## 如何配置路由?
+
+> 路由的配置文件在`src/configuration/routes.config.js`,属性除了`title`目前是特有的外,
+  其他属性都来自`react-router`中的`route`的配置属性
+
+```javascript
+export default [
+    {
+        title: "首页",
+        path: "/",
+        component: require('../components/pages/Index').default,
+        exact: true,
+    }, {
+        title: "Page A",
+        path: "/pagea",
+        component: require('../components/pages/PageA').default,
+        exact: true
+    }, {
+        title: "Page B",
+        path: "/pageb",
+        component: require('../components/pages/PageB').default,
+        exact: true
+    }, {
+        title: "服务端异步数据",
+        path: "/demo/initialstateasync",
+        component: require('../components/pages/InitialStateAsyncDemo').default,
+        exact: true
+    }, {
+        title: "服务端同步数据",
+        path: "/demo/initialstatesync",
+        component: require("../components/pages/InitialStateSyncDemo").default,
+        exact: true
+    }
+]
+```
+
 ## TODO
 - [x] AsyncComponent - 异步组件
     - [x] 服务端异步组件问题 - 在编译时解决,如果是服务端编译则不进行代码分割,如果是客户端编译则使用代码分割
