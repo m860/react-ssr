@@ -73,6 +73,9 @@ class DemoAsync extends React.Component{
 }
 ```
 
+需要注意一点,从服务端返回的html是包含了数据的完整html,一旦请求返回客户端会根据SPA的模式再次初始化数据再进行渲染,
+所以在`componentDidMount`中需要做对应的数据初始化.
+
 ## TODO
 - [x] AsyncComponent - 异步组件
     - [x] 服务端异步组件问题 - 在编译时解决,如果是服务端编译则不进行代码分割,如果是客户端编译则使用代码分割

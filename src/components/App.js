@@ -1,7 +1,7 @@
 import "normalize-css/normalize.css";
 import "font-awesome/css/font-awesome.css";
 import '../assets/sass/App.sass'
-import React, {Component} from 'react'
+import React, {Component,PureComponent} from 'react'
 import {Provider} from "react-redux";
 import ApplicationSetting from './common/ApplicationSetting'
 import Toast from './common/Toast'

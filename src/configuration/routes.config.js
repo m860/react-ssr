@@ -15,9 +15,14 @@ export default [
         component: require('../components/pages/PageB').default,
         exact: true
     }, {
-        title: "服务端渲染数据",
-        path: "/demo/initialstate",
-        component: require('../components/pages/InitialStateDemo').default,
+        title: "服务端异步数据",
+        path: "/demo/initialstateasync",
+        component: require('../components/pages/InitialStateAsyncDemo').default,
+        exact: true
+    }, {
+        title: "服务端同步数据",
+        path: "/demo/initialstatesync",
+        component: require("../components/pages/InitialStateSyncDemo").default,
         exact: true
     }/*, {
         title: "Sign In",

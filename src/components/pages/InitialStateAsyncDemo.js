@@ -1,10 +1,10 @@
 import React, {Component} from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
 
-export default class InitialStateDemo extends Component {
+export default class InitialStateAsyncDemo extends Component {
     static fetchInitialState = () => {
         return Promise.resolve({
-            message: "我是服务端渲染出来的数据"
+            message: "我是服务端异步数据"
         })
     };
 
@@ -23,16 +23,13 @@ export default class InitialStateDemo extends Component {
         );
     }
 
-    async fetchData() {
-        const state = await InitialStateDemo.fetchInitialState();
-        if (state.message !== this.state.message) {
-            this.setState({
-                message: state.message
-            });
-        }
+    async initialDataAsync() {
+        const state = await InitialStateAsyncDemo.fetchInitialState();
+        this.setState(state);
     }
 
     async componentDidMount() {
-        await this.fetchData();
+        await this.initialDataAsync();
     }
+
 }
