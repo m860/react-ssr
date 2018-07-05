@@ -6,9 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "dev": "scripts/dev.sh",
-    "dev:spa": "scripts/devspa.sh",
     "build": "scripts/build.sh",
-    "build:spa": "scripts/buildspa.sh",
     "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {

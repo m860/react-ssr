@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-webpack --watch
+./node_modules/webpack/bin/webpack.js --watch

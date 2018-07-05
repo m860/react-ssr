@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-webpack --env.NODE_ENV=production
+./node_modules/webpack/bin/webpack.js --env.NODE_ENV=production
 cp package.json dist/
