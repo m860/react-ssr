@@ -63,7 +63,6 @@
     "walk": "^2.3.9",
     "webpack": "^3.10.0",
     "webpack-auto-inject-version": "^1.0.0",
-    "webpack-dev-server": "^2.4.1",
     "webpack-livereload-plugin": "^1.0.0"
   },
   "dependencies": {
