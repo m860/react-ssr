@@ -2,8 +2,9 @@
 - [x] 服务端渲染和客户端渲染初始化数据的协同
 - [x] 完善`服务端渲染和客户端渲染初始化数据的协同`的文档和DEMO
 - [x] _documentation_ 路由配置的说明文档
-- [ ] _feature_ upgrade webpack to v4
+- [x] _feature_ upgrade webpack to v4,webpack 使用本地版本
     - [ ] _optimize_ 提高webpack编译速度
+    - [ ] _feature_ style autoprefix 样式自动添加前缀
 - [x] _feature_ `uuid`替换`guid`
 - [ ] _feature_ 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`
       空引用的问题

@@ -5,7 +5,7 @@ export default class PageA extends PureComponent {
     render() {
         return (
             <LayoutWithNavigator>
-                Page A
+                Page A 1
             </LayoutWithNavigator>
         );
     }

@@ -7,8 +7,10 @@ class Html {
     }
 
     getHtml() {
-        if (this.html) {
-            return this.html;
+        if (process.env.NODE_ENV === "production") {
+            if (this.html) {
+                return this.html;
+            }
         }
         const htmlPath = `${process.cwd()}/public/index.html`;
         logger.info(`index.html的所在路径为:${htmlPath}`);

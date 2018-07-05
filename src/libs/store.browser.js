@@ -8,7 +8,7 @@ const store = createStore(
     reducers,
     {
         application: {
-            setting: require('../configuration/application-setting')
+            setting: require('../configuration/application-setting').default
         }
     },
     compose(

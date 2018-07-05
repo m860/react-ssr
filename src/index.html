@@ -7,15 +7,11 @@
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
-    <% if (process.env.NODE_ENV==='development') { %>
-    <script src="http://localhost:35729/livereload.js"></script>
-    <% } %>
 </head>
 <body>
 <span id="view">#MARKUP#</span>
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %>
-<!--[AIV]{version}[/AIV]-->
 </body>
 </html>
