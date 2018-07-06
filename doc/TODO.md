@@ -4,7 +4,7 @@
 - [x] _documentation_ 路由配置的说明文档
 - [x] _feature_ upgrade webpack to v4,webpack 使用本地版本
     - [ ] _optimize_ 提高webpack编译速度,使用DllPlugin
-    - [ ] _feature_ style autoprefix 样式自动添加前缀
+    - [x] _feature_ style autoprefix 样式自动添加前缀
     - [ ] _feature_ HMR
     - [ ] _feature_ split chunks
 - [x] _feature_ `uuid`替换`guid`
