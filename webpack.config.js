@@ -5,7 +5,6 @@ var autoprefixer = require('autoprefixer')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var LiveReloadPlugin = require('webpack-livereload-plugin')
 var colors = require('colors/safe')
 var nodemon = require('nodemon')
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
