@@ -6,6 +6,7 @@
     - [ ] _optimize_ 提高webpack编译速度,使用DllPlugin
     - [ ] _feature_ style autoprefix 样式自动添加前缀
     - [ ] _feature_ HMR
+    - [ ] _feature_ split chunks
 - [x] _feature_ `uuid`替换`guid`
 - [ ] _feature_ 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`
       空引用的问题
