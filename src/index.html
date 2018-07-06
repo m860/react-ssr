@@ -10,6 +10,9 @@
 </head>
 <body>
 <span id="view">#MARKUP#</span>
+<% for (var dll in htmlWebpackPlugin.options.dlls) { %>
+<script src="<%= htmlWebpackPlugin.options.dlls[dll] %>"></script>
+<% } %>
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %>

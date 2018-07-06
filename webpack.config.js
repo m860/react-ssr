@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 var fs = require('fs')
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var colors = require('colors/safe')
@@ -10,6 +9,8 @@ var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 var EventHooksPlugin = require('event-hooks-webpack-plugin');
 var packageInfo = require("./package")
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var dllManifest = require("./build/manifest")
 
 var running = false;
 
@@ -23,16 +24,28 @@ var EXTENSION_SERVER = "server";
 
 var config = function (server, env, options) {
     var isProduction = env !== 'development';
+    var copyWebpackConfig = [];
+    if (server) {
+        copyWebpackConfig.push({
+            from: "./package.json"
+        });
+    }
+    else {
+        copyWebpackConfig.push({
+            from: "./build/" + dllManifest.name + ".js"
+        })
+    }
+    var output = {
+        path: path.join(__dirname, 'dist', server ? '' : 'public'),
+        filename: server ? 'server.js' : "bundle.[hash].js",
+        chunkFilename: '[id].[chunkhash].js',
+        publicPath: server ? '' : (options.spa ? '' : '/public/')
+    };
     var configuration = {
         mode: isProduction ? "production" : "development",
         entry: path.join(__dirname, 'src', server ? 'server.js' : "browser.js"),
         target: server ? 'node' : "web",
-        output: {
-            path: path.join(__dirname, 'dist', server ? '' : 'public'),
-            filename: server ? 'server.js' : "bundle.[hash].js",
-            chunkFilename: '[id].[chunkhash].js',
-            publicPath: server ? '' : (options.spa ? '' : '/public/')
-        },
+        output: output,
         externals: (server ? nodeModules : {}),
         resolve: {
             extensions: server ?
@@ -45,7 +58,10 @@ var config = function (server, env, options) {
                 use: [{
                     loader: 'babel-loader'
                 }, {
-                    loader: 'eslint-loader'
+                    loader: 'eslint-loader',
+                    options: {
+                        quiet: isProduction ? true : false
+                    }
                 }],
                 exclude: /node_modules/
             }, {
@@ -92,6 +108,7 @@ var config = function (server, env, options) {
             }]
         },
         plugins: [
+            new CopyWebpackPlugin(copyWebpackConfig),
             new MiniCssExtractPlugin({
                 filename: '[name].[hash].css',
                 chunkFilename: '[id].[hash].css',
@@ -103,7 +120,10 @@ var config = function (server, env, options) {
                 filename: "index.html",
                 template: path.join(__dirname, "src/index.html"),
                 inject: false,
-                chunksSortMode: "none"
+                chunksSortMode: "none",
+                dlls: [
+                    output.publicPath + dllManifest.name + ".js"
+                ]
             }),
             new webpack.DefinePlugin({
                 'process.env': {
@@ -112,8 +132,6 @@ var config = function (server, env, options) {
                 "process.package": {
                     version: JSON.stringify(packageInfo.version)
                 }
-                // '__SERVER__': JSON.stringify(server),
-                // '__SPA__': JSON.stringify(options.spa)
             }),
             new CleanWebpackPlugin([server ? 'dist' : "dist/public"], {
                 root: __dirname,
@@ -132,15 +150,15 @@ var config = function (server, env, options) {
             //如果mode=production,minimize默认为true
             // minimize: isProduction ? true : false
             minimizer: [
-                new UglifyJSPlugin({
-                    uglifyOptions: {
-                        compress: {
-                            drop_console: true,
-                            //only remove the follow console
-                            pure_funcs: ['console.log', 'console.info', 'console.dir', 'console.debug']
-                        }
-                    }
-                }),
+                // new UglifyJSPlugin({
+                //     uglifyOptions: {
+                //         compress: {
+                //             drop_console: true,
+                //             //only remove the follow console
+                //             pure_funcs: ['console.log', 'console.info', 'console.dir', 'console.debug']
+                //         }
+                //     }
+                // }),
                 new OptimizeCSSAssetsPlugin({})
             ],
             mergeDuplicateChunks: true
@@ -196,6 +214,11 @@ var config = function (server, env, options) {
         if (!isProduction) {
             configuration.plugins.push(new webpack.HotModuleReplacementPlugin());
         }
+        configuration.plugins.push(
+            new webpack.DllReferencePlugin({
+                manifest: path.join(__dirname, "build/manifest.json"),
+            })
+        );
     }
     return configuration;
 };
@@ -218,5 +241,8 @@ module.exports = function (env) {
     console.log('* environment : ' + NODE_ENV);
     console.log('* spa : ' + env.spa);
     console.log('**********************');
-    return [config(true, NODE_ENV, env), config(false, NODE_ENV, env)];
+    return [
+        config(true, NODE_ENV, env),
+        config(false, NODE_ENV, env)
+    ];
 };

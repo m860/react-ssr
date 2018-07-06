@@ -3,7 +3,7 @@
 - [x] 完善`服务端渲染和客户端渲染初始化数据的协同`的文档和DEMO
 - [x] _documentation_ 路由配置的说明文档
 - [x] _feature_ upgrade webpack to v4,webpack 使用本地版本
-    - [ ] _optimize_ 提高webpack编译速度,使用DllPlugin
+    - [x] _optimize_ 提高webpack编译速度,使用DllPlugin
     - [x] _feature_ style autoprefix 样式自动添加前缀
     - [ ] _feature_ HMR
     - [ ] _feature_ split chunks
@@ -21,3 +21,4 @@
 - [ ] _example_ 完成一个有路由参数的demo
 - [ ] _optimize_ 如果服务端已经把页面初始化好了,在客户端就不需要再次初始化过程了,这样可以提高性能.
       这个过程只有页面在服务端渲染的时候需要控制,客户端代理了路由之后不需要做这样的控制.
+- [ ] _bug_ 404服务端渲染有问题

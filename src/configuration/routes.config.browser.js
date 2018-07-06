@@ -33,7 +33,7 @@ export default [
         render: props => {
             return (
                 <AsyncComponent components={[
-                    System.import("../components/pages/CodeSplit")
+                    import("../components/pages/CodeSplit")
                 ]}>
                     {(CodeSplit) => {
                         return (
