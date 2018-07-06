@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 var fs = require('fs')
-var autoprefixer = require('autoprefixer')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -53,13 +52,21 @@ var config = function (server, env, options) {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    "css-loader"
+                    {
+                        loader: 'css-loader',
+                        options: {importLoaders: 1}
+                    },
+                    "postcss-loader"
                 ]
             }, {
                 test: /\.sass$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {importLoaders: 1}
+                    },
+                    "postcss-loader",
                     'sass-loader'
                 ],
             }, {
