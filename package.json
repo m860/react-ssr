@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m860/react-server-example.git"
+    "url": "git+https://github.com/m860/react-ssr.git"
   },
   "author": "m860",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/m860/react-server-example/issues"
+    "url": "https://github.com/m860/react-ssr/issues"
   },
-  "homepage": "https://github.com/m860/react-server-example#readme",
+  "homepage": "https://github.com/m860/react-ssr#readme",
   "devDependencies": {
     "autoprefixer": "^8.6.4",
     "babel-core": "^6.26.0",
@@ -47,7 +47,6 @@
     "eslint-plugin-react": "^4.3.0",
     "event-hooks-webpack-plugin": "^2.0.0",
     "file-loader": "^1.1.11",
-
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^4.3.1",
@@ -65,7 +64,7 @@
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
-    "@m860/react-async-component": "git+https://github.com/m860/react-async-component.git",
+    "@m860/react-async-component": "^0.1.0",
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.4",
