@@ -7,16 +7,30 @@ import "font-awesome/css/font-awesome.css";
 import './assets/sass/App.sass'
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {render} from 'react-dom';
 import App from './components/App'
 import StateWrapper from "./components/common/StateWrapper"
 
-render(
-    <BrowserRouter>
-        <StateWrapper>
-            <App/>
-        </StateWrapper>
-    </BrowserRouter>
-    , document.getElementById('view')
-);
+const root = document.getElementById('view');
 
+if (process.env.NODE_ENV === "production") {
+    const ReactDOM = require("react-dom");
+    ReactDOM.render(
+        <BrowserRouter>
+            <StateWrapper>
+                <App/>
+            </StateWrapper>
+        </BrowserRouter>,
+        root
+    );
+}
+else {
+    const ReactDOM = require("react-dom");
+    ReactDOM.render(
+        <BrowserRouter>
+            <StateWrapper>
+                <App/>
+            </StateWrapper>
+        </BrowserRouter>,
+        root
+    );
+}

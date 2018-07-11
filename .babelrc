@@ -9,5 +9,12 @@
     "transform-decorators-legacy",
     "transform-class-properties",
     "syntax-dynamic-import"
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
 }

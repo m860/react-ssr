@@ -29,7 +29,8 @@ var config = {
     mode: process.env.NODE_ENV === ENV_PRODUCTION ? ENV_PRODUCTION : ENV_DEVELOPMENT,
     entry: process.env.NODE_ENV === ENV_DEVELOPMENT ?
         [
-            "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+            // "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+            // "react-hot-loader/patch",
             path.join(__dirname, 'src', "browser.js")
         ] :
         path.join(__dirname, 'src', "browser.js"),
@@ -43,14 +44,14 @@ var config = {
         rules: [{
             test: /\.js$/,
             use: [{
-                loader: 'babel-loader'
-            }, {
-                loader: 'eslint-loader',
-                options: {
-                    // quiet: process.env.NODE_ENV === ENV_PRODUCTION ? true : false
-                    quiet: true
-                }
-            }],
+                    loader: 'babel-loader'
+                }, {
+                    loader: 'eslint-loader',
+                    options: {
+                        // quiet: process.env.NODE_ENV === ENV_PRODUCTION ? true : false
+                        quiet: true
+                    }
+                }],
             exclude: /node_modules/
         }, {
             test: /\.css$/,

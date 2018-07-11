@@ -11,9 +11,6 @@ export default function (app) {
     app.use(webpackDevMiddleware(compiler, {
         publicPath: browserWebpackOption.output.publicPath
     }));
-    app.use(webpackHotMiddleware(compiler, {
-        path: '/__webpack_hmr',
-        heartbeat: 10 * 1000
-    }));
+    app.use(webpackHotMiddleware(compiler));
 }
 

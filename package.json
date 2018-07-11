@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "start": "scripts/dev.sh",
     "test": "jest --coverage",
     "dev": "scripts/dev.sh",
     "build": "scripts/build.sh",
@@ -56,6 +57,7 @@
     "nodemon": "^1.12.1",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "postcss-loader": "^2.1.5",
+    "react-hot-loader": "^4.3.3",
     "sass-loader": "^7.0.3",
     "script-loader": "^0.7.2",
     "url-loader": "^1.0.1",

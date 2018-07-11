@@ -11,7 +11,6 @@ import logger from "./libs/logger"
 import middlewares from "./libs/middleware"
 import favicon from 'serve-favicon'
 import {validateRouteConfig} from "./libs/validation";
-import hmr from "./libs/hmr.server"
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {
@@ -32,9 +31,9 @@ server.use(favicon(require("./assets/favicon.ico")))
 
 server.use('/public', express.static('./public'));
 
-if (process.env.NODE_ENV === "development") {
-    hmr(server);
-}
+// if (process.env.NODE_ENV === "development") {
+//     require("./libs/hmr.server").default(server);
+// }
 
 //attach middleware
 middlewares.forEach(middleware => {
