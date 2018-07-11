@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-var CleanWebpackPlugin = require('clean-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -28,7 +27,12 @@ console.log('**********************');
 
 var config = {
     mode: process.env.NODE_ENV === ENV_PRODUCTION ? ENV_PRODUCTION : ENV_DEVELOPMENT,
-    entry: path.join(__dirname, 'src', "browser.js"),
+    entry: process.env.NODE_ENV === ENV_DEVELOPMENT ?
+        [
+            "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+            path.join(__dirname, 'src', "browser.js")
+        ] :
+        path.join(__dirname, 'src', "browser.js"),
     target: "web",
     output: output,
     externals: {},

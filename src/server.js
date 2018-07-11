@@ -32,6 +32,10 @@ server.use(favicon(require("./assets/favicon.ico")))
 
 server.use('/public', express.static('./public'));
 
+if (process.env.NODE_ENV === "development") {
+    hmr(server);
+}
+
 //attach middleware
 middlewares.forEach(middleware => {
     server.use(middleware);
@@ -40,9 +44,6 @@ middlewares.forEach(middleware => {
 //检查客户端和服务端的路由配置是否一致
 validateRouteConfig();
 
-// if (process.env.NODE_ENV === "development") {
-//     hmr(server);
-// }
 
 server.listen(port, () => {
     logger.info(`runtime environment = ${process.env.NODE_ENV}`);

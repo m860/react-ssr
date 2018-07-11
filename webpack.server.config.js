@@ -1,8 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 var fs = require('fs')
-// var CleanWebpackPlugin = require('clean-webpack-plugin')
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
 var colors = require('colors/safe')
 var nodemon = require('nodemon')
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -10,7 +8,7 @@ var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 var EventHooksPlugin = require('event-hooks-webpack-plugin');
 var packageInfo = require("./package")
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-// var dllManifest = require("./build/manifest")
+var cp = require("child_process");
 
 var running = false;
 
@@ -117,11 +115,6 @@ var config = {
                 version: JSON.stringify(packageInfo.version)
             }
         }),
-        // new CleanWebpackPlugin(['dist'], {
-        //     root: __dirname,
-        //     verbose: true,
-        //     dry: false
-        // }),
     ]
 };
 
@@ -142,12 +135,12 @@ if (process.env.NODE_ENV === ENV_PRODUCTION) {
 }
 else {
     config.devtool = "cheap-module-eval-source-map";
-    // config.plugins.push(
-    //     new MiniCssExtractPlugin({
-    //         filename: "[name].css",
-    //         chunkFilename: "[id].css"
-    //     })
-    // );
+    config.plugins.push(
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
+    );
     config.plugins.push(
         new EventHooksPlugin({
             'done': () => {
@@ -155,15 +148,17 @@ else {
                     if (!running) {
                         running = true;
                         process.chdir('dist');
-                        nodemon({
-                            script: 'server.js',
-                            delay: 5 * 1000,
-                            ignore: ["public/*", "logs/*"]
-                        });
-                        nodemon.on('start', function () {
-                            var url = 'http://127.0.0.1:3000';
-                            console.log(colors.green('\n Please access ' + url + ' in browser \n'));
-                        });
+                        var result = cp.exec("node server.js");
+                        result.stdout.pipe(process.stdout);
+                        // nodemon({
+                        //     script: 'server.js',
+                        //     delay: 5 * 1000,
+                        //     ignore: ["public/*", "logs/*"]
+                        // });
+                        // nodemon.on('start', function () {
+                        //     var url = 'http://127.0.0.1:3000';
+                        //     console.log(colors.green('\n Please access ' + url + ' in browser \n'));
+                        // });
                     }
                 }
             }
