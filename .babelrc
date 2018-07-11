@@ -9,5 +9,27 @@
     "transform-decorators-legacy",
     "transform-class-properties",
     "syntax-dynamic-import"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "extensions": [
+              ".js",
+              ".json",
+              ".browser.js",
+              ".browser.json"
+            ],
+            "stripExtensions": [
+              ".server.js",
+              ".server.json"
+            ],
+            "suffix": true
+          }
+        ]
+      ]
+    }
+  }
 }
