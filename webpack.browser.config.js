@@ -100,10 +100,6 @@ var config = {
         new CopyWebpackPlugin([
             {from: "./build/" + dllManifest.name + ".js"}
         ]),
-        new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
-            chunkFilename: '[id].[hash].css',
-        }),
         new webpack.IgnorePlugin(new RegExp("\.(" + EXTENSION_SERVER + "\.js|" + EXTENSION_SERVER + "\.json)$")),
         new HtmlWebpackPlugin({
             filename: "index.html",
@@ -122,7 +118,6 @@ var config = {
                 version: JSON.stringify(packageInfo.version)
             }
         }),
-
         new webpack.DllReferencePlugin({
             manifest: path.join(__dirname, "build/manifest.json"),
         })
@@ -133,6 +128,12 @@ if (process.env.NODE_ENV === ENV_PRODUCTION) {
     config.plugins.push(
         new webpack.BannerPlugin({
             banner: "react-ssr version : " + packageInfo.version + " , file : [file]"
+        })
+    );
+    config.plugins.push(
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css'
         })
     );
     config.optimization = {
