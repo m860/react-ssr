@@ -25,12 +25,19 @@ if (process.env.NODE_ENV === "production") {
 }
 else {
     const ReactDOM = require("react-dom");
+    const {hot} = require("react-hot-loader");
+    const Root = () => {
+        return (
+            <BrowserRouter>
+                <StateWrapper>
+                    <App/>
+                </StateWrapper>
+            </BrowserRouter>
+        );
+    }
+    const HotApp = hot(module)(Root);
     ReactDOM.render(
-        <BrowserRouter>
-            <StateWrapper>
-                <App/>
-            </StateWrapper>
-        </BrowserRouter>,
+        <HotApp/>,
         root
     );
 }

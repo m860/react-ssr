@@ -10,7 +10,6 @@ export default function (app) {
     logger.info('attach HMR ...');
     app.use(webpackDevMiddleware(compiler, {
         publicPath: browserWebpackOption.output.publicPath,
-        serverSideRender: true
     }));
     app.use(webpackHotMiddleware(compiler));
 }
