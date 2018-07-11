@@ -15,8 +15,8 @@ var ENV_DEVELOPMENT = "development";
 
 var output = {
     path: path.join(__dirname, 'dist', 'public'),
-    filename: "bundle.[hash].js",
-    chunkFilename: '[id].[chunkhash].js',
+    filename: process.env.NODE_ENV === ENV_PRODUCTION ? "bundle.[hash].js" : "bundle.js",
+    chunkFilename: process.env.NODE_ENV === ENV_PRODUCTION ? '[id].[chunkhash].js' : "[id].js",
     publicPath: '/public/'
 };
 
@@ -44,14 +44,14 @@ var config = {
         rules: [{
             test: /\.js$/,
             use: [{
-                    loader: 'babel-loader'
-                }, {
-                    loader: 'eslint-loader',
-                    options: {
-                        // quiet: process.env.NODE_ENV === ENV_PRODUCTION ? true : false
-                        quiet: true
-                    }
-                }],
+                loader: 'babel-loader'
+            }, {
+                loader: 'eslint-loader',
+                options: {
+                    // quiet: process.env.NODE_ENV === ENV_PRODUCTION ? true : false
+                    quiet: true
+                }
+            }],
             exclude: /node_modules/
         }, {
             test: /\.css$/,
