@@ -11,6 +11,7 @@ import logger from "./libs/logger"
 import middlewares from "./libs/middleware"
 import favicon from 'serve-favicon'
 import {validateRouteConfig} from "./libs/validation";
+import hmr from "./libs/hmr.server"
 
 // 不处理未捕获异常,由PM2来处理和记录
 // process.on('uncaughtException', (err)=> {
@@ -39,8 +40,13 @@ middlewares.forEach(middleware => {
 //检查客户端和服务端的路由配置是否一致
 validateRouteConfig();
 
+// if (process.env.NODE_ENV === "development") {
+//     hmr(server);
+// }
+
 server.listen(port, () => {
-    logger.log(`address http://127.0.0.1:${port}`);
+    logger.info(`runtime environment = ${process.env.NODE_ENV}`);
+    logger.info(`address http://127.0.0.1:${port}`);
 });
 
 

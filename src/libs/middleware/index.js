@@ -1,3 +1,3 @@
 export default [
-    require("./SSR").default
+    require("./ssr").default
 ]
