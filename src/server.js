@@ -31,10 +31,6 @@ server.use(favicon(require("./assets/favicon.ico")))
 
 server.use('/public', express.static('./public'));
 
-// if (process.env.NODE_ENV === "development") {
-//     require("./libs/hmr.server").default(server);
-// }
-
 //attach middleware
 middlewares.forEach(middleware => {
     server.use(middleware);
