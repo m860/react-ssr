@@ -11,7 +11,7 @@
         - [x] HMR不能在SSR模式下很好的运行,HMR只有在webpack-dev-server的模式下工作,所以在开发阶段使用SPA,发布的时候使用SSR
         - [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)
         - [react-hot-loader](https://github.com/gaearon/react-hot-loader)
-    - [ ] _feature_ split chunks
+    - ~~_feature_ split chunks~~ 不处理使用`AsyncComponent`来进行代码拆分
 - [x] _feature_ `uuid`替换`guid`
 - [ ] _feature_ 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`
       空引用的问题
