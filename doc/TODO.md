@@ -5,7 +5,12 @@
 - [x] _feature_ upgrade webpack to v4,webpack 使用本地版本
     - [x] _optimize_ 提高webpack编译速度,使用DllPlugin
     - [x] _feature_ style autoprefix 样式自动添加前缀
-    - [ ] _feature_ HMR
+    - [x] _feature_ HMR
+        - [x] css HMR
+        - [x] webpack配置文件拆分
+        - [x] HMR不能在SSR模式下很好的运行,HMR只有在webpack-dev-server的模式下工作,所以在开发阶段使用SPA,发布的时候使用SSR
+        - [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)
+        - [react-hot-loader](https://github.com/gaearon/react-hot-loader)
     - [ ] _feature_ split chunks
 - [x] _feature_ `uuid`替换`guid`
 - [ ] _feature_ 实现一个resolve plugin(处理多平台引用问题)处理`.server.js`,`.browser.js`

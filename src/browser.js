@@ -7,16 +7,18 @@ import "font-awesome/css/font-awesome.css";
 import './assets/sass/App.sass'
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {render} from 'react-dom';
-import App from './components/App'
 import StateWrapper from "./components/common/StateWrapper"
+import {hydrate} from 'react-dom'
+import App from "./components/App"
 
-render(
+const root = document.getElementById('view');
+
+hydrate(
     <BrowserRouter>
         <StateWrapper>
             <App/>
         </StateWrapper>
-    </BrowserRouter>
-    , document.getElementById('view')
+    </BrowserRouter>,
+    root
 );
 

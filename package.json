@@ -4,10 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
+    "start": "webpack-dev-server --config=webpack/webpack.spa.config.js",
+    "start:ssr": "scripts/start-ssr.sh",
+    "build:dll": "scripts/builddll.sh",
+    "build": "scripts/build.sh",
     "test": "jest --coverage",
     "dev": "scripts/dev.sh",
-    "build": "scripts/build.sh",
-    "build:dll": "scripts/builddll.sh",
     "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -38,6 +40,7 @@
     "colors": "^1.1.2",
     "copy-webpack-plugin": "^4.5.2",
     "coveralls": "^3.0.0",
+    "css-hot-loader": "^1.4.0",
     "css-loader": "^0.28.11",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -56,12 +59,14 @@
     "nodemon": "^1.12.1",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "postcss-loader": "^2.1.5",
+    "react-hot-loader": "^4.3.3",
     "sass-loader": "^7.0.3",
     "script-loader": "^0.7.2",
     "url-loader": "^1.0.1",
     "walk": "^2.3.9",
     "webpack": "^4.15.0",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
     "@m860/react-async-component": "^0.1.0",

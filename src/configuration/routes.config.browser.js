@@ -49,7 +49,7 @@ export default [
         render: props => {
             return (
                 <AsyncComponent components={[
-                    System.import("../components/pages/Http404")
+                    import("../components/pages/Http404")
                 ]}>
                     {(Http404) => {
                         return (

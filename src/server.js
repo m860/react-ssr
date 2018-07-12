@@ -39,8 +39,10 @@ middlewares.forEach(middleware => {
 //检查客户端和服务端的路由配置是否一致
 validateRouteConfig();
 
+
 server.listen(port, () => {
-    logger.log(`address http://127.0.0.1:${port}`);
+    logger.info(`runtime environment = ${process.env.NODE_ENV}`);
+    logger.info(`address http://127.0.0.1:${port}`);
 });
 
 
