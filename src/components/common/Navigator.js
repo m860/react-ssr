@@ -17,7 +17,7 @@ export default class Navigator extends Base {
 					<i className="fa fa-bug fa-2x"></i>
 				</div>
 				<div className="title">
-					<span>React Server Render</span>
+					<span>React Server-Side Render</span>
 				</div>
 			</nav>
 		);

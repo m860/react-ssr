@@ -4,14 +4,13 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "scripts/dev.sh",
+    "start": "webpack-dev-server --config=webpack/webpack.spa.config.js",
     "start:ssr": "scripts/start-ssr.sh",
+    "build:dll": "scripts/builddll.sh",
+    "build": "scripts/build.sh",
     "test": "jest --coverage",
     "dev": "scripts/dev.sh",
-    "build": "scripts/build.sh",
-    "build:dll": "scripts/builddll.sh",
-    "coverage": "cat ./coverage/lcov.info | coveralls",
-    "dev:browser": "webpack-dev-server --config=webpack.browser.config.js --host 0.0.0.0 --port=3001 --content-base=src/ --hot"
+    "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",

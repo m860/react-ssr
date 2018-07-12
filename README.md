@@ -13,8 +13,10 @@ $ git clone https://github.com/m860/react-ssr.git
 $ cd react-ssr
 $ npm install
 $ npm run build:dll
-$ npm run dev
+$ npm start
 ```
+
+> 一般在开发阶段都使用`npm start`,App以`SPA`的方式运行,路由是`HashRouter`
 
 ## 编译工程
 
@@ -22,6 +24,13 @@ $ npm run dev
 $ npm run build:dll # 如果没有build dll 需要先运行此步骤
 $ npm run build
 ```
+
+## npm command
+
+- `npm start`:开发阶段,App以`SPA`的方式运行,路由使用`HashRouter`,`HMR`可用
+- `npm run start:ssr`:开发阶段,App以`SSR`的方式运行,路由使用`BrowserRouter`,`HMR`不可用
+- `npm run build:dll`:打包公共库
+- `npm run build`:打包生产环境,App使用`SSR`的方式运行,路由使用`BrowserRouter`
 
 ## 如何实现服务端页面渲染前数据的初始化?
 

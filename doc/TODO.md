@@ -6,8 +6,9 @@
     - [x] _optimize_ 提高webpack编译速度,使用DllPlugin
     - [x] _feature_ style autoprefix 样式自动添加前缀
     - [ ] _feature_ HMR
-        - [ ] webpack配置文件拆分
-        - [ ] HMR不能再SSR模式下很好的运行,HMR只有在webpack-dev-server的模式下工作,所以需要拆分成开发和运行模式
+        - [ ] css HMR
+        - [x] webpack配置文件拆分
+        - [x] HMR不能在SSR模式下很好的运行,HMR只有在webpack-dev-server的模式下工作,所以在开发阶段使用SPA,发布的时候使用SSR
         - [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)
         - [react-hot-loader](https://github.com/gaearon/react-hot-loader)
     - [ ] _feature_ split chunks
