@@ -14,6 +14,28 @@ exports.ENV_PRODUCTION = ENV_PRODUCTION;
 exports.ENV_DEVELOPMENT = ENV_DEVELOPMENT;
 
 exports.getConfig = function () {
+    var cssLoader = process.env.NODE_ENV === ENV_PRODUCTION ? [
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader"
+    ] : [
+        "css-hot-loader",
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader"
+    ];
+    var sassLoader = process.env.NODE_ENV === ENV_PRODUCTION ? [
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader",
+        'sass-loader'
+    ] : [
+        "css-hot-loader",
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader",
+        'sass-loader'
+    ]
     var config = {
         mode: process.env.NODE_ENV === ENV_PRODUCTION ? ENV_PRODUCTION : ENV_DEVELOPMENT,
         module: {
@@ -31,25 +53,10 @@ exports.getConfig = function () {
                 exclude: /node_modules/
             }, {
                 test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {importLoaders: 1}
-                    },
-                    "postcss-loader"
-                ]
+                use: cssLoader
             }, {
                 test: /\.sass$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {importLoaders: 1}
-                    },
-                    "postcss-loader",
-                    'sass-loader'
-                ],
+                use: sassLoader,
             }, {
                 test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 // loader: "file-loader?name=" + (isProduction ? "[hash]" : "[name]") + ".[ext]"
