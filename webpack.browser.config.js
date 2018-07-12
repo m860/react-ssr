@@ -29,7 +29,8 @@ var config = {
     mode: process.env.NODE_ENV === ENV_PRODUCTION ? ENV_PRODUCTION : ENV_DEVELOPMENT,
     entry: process.env.NODE_ENV === ENV_DEVELOPMENT ?
         [
-            "webpack-hot-middleware/client",
+            // "webpack-hot-middleware/client",
+            "webpack/hot/dev-server",
             "./src/browser.js"
         ] :
         path.join(__dirname, 'src', "browser.js"),

@@ -35,10 +35,10 @@ if (process.env.NODE_ENV === "development") {
     require("./libs/hmr.server").default(server);
 }
 
-//attach middleware
-middlewares.forEach(middleware => {
-    server.use(middleware);
-});
+// //attach middleware
+// middlewares.forEach(middleware => {
+//     server.use(middleware);
+// });
 
 //检查客户端和服务端的路由配置是否一致
 validateRouteConfig();
