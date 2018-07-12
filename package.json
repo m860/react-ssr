@@ -5,12 +5,13 @@
   "private": true,
   "scripts": {
     "start": "scripts/dev.sh",
+    "start:ssr": "scripts/start-ssr.sh",
     "test": "jest --coverage",
     "dev": "scripts/dev.sh",
     "build": "scripts/build.sh",
     "build:dll": "scripts/builddll.sh",
     "coverage": "cat ./coverage/lcov.info | coveralls",
-    "dev:browser":"webpack-dev-server --config=webpack.browser.config.js --host 0.0.0.0 --content-base=src/ --hot"
+    "dev:browser": "webpack-dev-server --config=webpack.browser.config.js --host 0.0.0.0 --port=3001 --content-base=src/ --hot"
   },
   "repository": {
     "type": "git",
@@ -67,7 +68,8 @@
     "webpack-cli": "^3.0.8",
     "webpack-dev-middleware": "^3.1.3",
     "webpack-dev-server": "^3.1.4",
-    "webpack-hot-middleware": "^2.22.2"
+    "webpack-hot-middleware": "^2.22.2",
+    "webpack-merge": "^4.1.3"
   },
   "dependencies": {
     "@m860/react-async-component": "^0.1.0",

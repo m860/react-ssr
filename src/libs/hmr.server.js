@@ -1,7 +1,7 @@
 import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
-import browserWebpackOption from '../../webpack.browser.config'
+import browserWebpackOption from '../../webpack/webpack.browser.config'
 import logger from "./logger"
 
 const compiler = webpack(browserWebpackOption);
