@@ -17,6 +17,7 @@ $ npm start
 ```
 
 > 一般在开发阶段都使用`npm start`,App以`SPA`的方式运行,路由是`HashRouter`
+> `npm start`能够正常运行不代表`npm run start:ssr`能够正常运行,可能有一些细微的差别,因此发布之前最好在`npm run start:ssr`下测试下
 
 ## 编译工程
 
