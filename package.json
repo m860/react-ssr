@@ -6,8 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --config=webpack/webpack.spa.config.js",
     "start:ssr": "scripts/start-ssr.sh",
-    "build:dll": "scripts/builddll.sh",
-    "build": "scripts/build.sh",
+    "build:dll": "scripts/build-dll.sh",
+    "build:ssr": "scripts/build-ssr.sh",
+    "build:spa": "scripts/build-spa.sh",
     "test": "jest --coverage",
     "dev": "scripts/dev.sh",
     "coverage": "cat ./coverage/lcov.info | coveralls"

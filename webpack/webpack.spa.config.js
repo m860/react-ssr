@@ -18,23 +18,13 @@ console.log('* mode : ' + (process.env.NODE_ENV === webpackBase.ENV_PRODUCTION ?
 console.log('**********************');
 
 var config = webpackBase.getConfig();
-config.entry = [
-    path.join(__dirname, "../node_modules/webpack/hot/dev-server"),
-    path.join(__dirname, '../src/spa.js')
-];
+
 config.resolve = {
     extensions: ["." + webpackBase.EXTENSION_BROWSER + ".js", ".js", "." + webpackBase.EXTENSION_BROWSER + ".json", ".json"]
 };
 config.target = "web";
 config.output = output;
 config.externals = {};
-config.devServer = {
-    host: '0.0.0.0',
-    port: 3000,
-    hot: true,
-    // publicPath: "/",
-    contentBase: path.join(__dirname, "../src")
-}
 config.plugins.push(
     new webpack.IgnorePlugin(new RegExp("\.(" + webpackBase.EXTENSION_SERVER + "\.js|" + webpackBase.EXTENSION_SERVER + "\.json)$"))
 )
@@ -61,6 +51,9 @@ config.plugins.push(
 );
 
 if (process.env.NODE_ENV === webpackBase.ENV_PRODUCTION) {
+    config.entry = [
+        path.join(__dirname, '../src/spa.js')
+    ];
     config.plugins.push(
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
@@ -69,6 +62,16 @@ if (process.env.NODE_ENV === webpackBase.ENV_PRODUCTION) {
     );
 }
 else {
+    config.devServer = {
+        host: '0.0.0.0',
+        port: 3000,
+        hot: true,
+        contentBase: path.join(__dirname, "../src")
+    };
+    config.entry = [
+        path.join(__dirname, "../node_modules/webpack/hot/dev-server"),
+        path.join(__dirname, '../src/spa.js')
+    ];
     config.plugins.push(
         new MiniCssExtractPlugin({
             filename: "[name].css",
