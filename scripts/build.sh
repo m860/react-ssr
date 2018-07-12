@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-./node_modules/.bin/webpack --env.NODE_ENV=production --progress --quiet
+rm -fr dist
+export NODE_ENV=production
+./node_modules/.bin/webpack --progress --quiet
