@@ -24,6 +24,9 @@
       等待插件bug修复了再看此问题,如果无法修复需要自己实现一个resolve module的插件
 - [ ] _feature_ `fetchInitialState` 路由参数的实现
 - [ ] _example_ 完成一个有路由参数的demo
+- [ ] _example_ 嵌套路由
+    - [ ] _component_ 面包屑
+- [ ] _component_ SlideMenu
 - [ ] _optimize_ 如果服务端已经把页面初始化好了,在客户端就不需要再次初始化过程了,这样可以提高性能.
       这个过程只有页面在服务端渲染的时候需要控制,客户端代理了路由之后不需要做这样的控制.
 - [ ] _bug_ 404服务端渲染有问题
