@@ -33,6 +33,6 @@
 - [ ] _tool_ 静态文件生成工具
 - [ ] 添加flow静态类型检查
     - [ ] 支持自定义类型
-- [ ] 添加`rollup`
+- ~~添加`prepack`~~
 - [ ] `Base`基类支持`PureComponent`和`Component`两种形式,默认是'Component'
     - [ ] 'Base'基类扩展'updateState',支持`async/await`
