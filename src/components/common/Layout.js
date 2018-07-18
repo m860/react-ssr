@@ -14,7 +14,7 @@ import Loading from './Loading'
 		visible: loading.counter > 0
 	}
 })
-export default class Layout extends Base {
+export default class Layout extends Base(true) {
 	static propTypes = {
 		...Base.propTypes
 	};

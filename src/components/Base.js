@@ -1,34 +1,37 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, Component} from 'react';
 import update from 'immutability-helper'
 import PropTypes from 'prop-types'
 
-export default class Base extends PureComponent {
-	static propTypes = {
-		className: PropTypes.string,
-		style: PropTypes.object
-	};
+function updateState(state: any, callback: ?Function): void | Promise {
+    if (this.state) {
+        const newState = update(this.state, state);
+        if (callback) {
+            this.setState(newState, callback);
+        }
+        else {
+            return new Promise((resolve) => {
+                this.setState(newState, function () {
+                    resolve();
+                })
+            })
+        }
+    }
+}
 
-	constructor(props) {
-		super(props);
-		this._mounted = false;
-	}
+class PureBase extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.updateState = updateState.bind(this);
+    }
+}
 
-	componentDidMount() {
-		this._mounted = true;
-	}
+class Base extends Component {
+    constructor(props) {
+        super(props);
+        this.updateState = updateState.bind(this);
+    }
+}
 
-	componentWillUnmount() {
-		this._mounted = false;
-	}
-
-	setState2(state: Object, callback: ?Function): void {
-		if (this._mounted) {
-			this.setState(state, callback);
-		}
-	}
-
-	updateState(state: Object, callback: ?Function): void {
-		const newState = update(this.state, state);
-		this.setState2(newState, callback);
-	}
+export default function (pure = false) {
+    return pure ? PureBase : Base;
 }

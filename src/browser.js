@@ -7,7 +7,7 @@ import "font-awesome/css/font-awesome.css";
 import './assets/sass/App.sass'
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import StateWrapper from "./components/common/StateWrapper"
+import StateProvider from "./components/common/StateProvider"
 import {hydrate} from 'react-dom'
 import App from "./components/App"
 
@@ -15,9 +15,9 @@ const root = document.getElementById('view');
 
 hydrate(
     <BrowserRouter>
-        <StateWrapper>
+        <StateProvider>
             <App/>
-        </StateWrapper>
+        </StateProvider>
     </BrowserRouter>,
     root
 );

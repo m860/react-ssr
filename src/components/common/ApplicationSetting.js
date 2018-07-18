@@ -2,13 +2,14 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import logger from '../../libs/logger'
+import Base from "../Base"
 
 @connect(({application}) => {
     return {
         setting: application.setting
     }
 })
-export default class ApplicationSetting extends Component {
+export default class ApplicationSetting extends Base() {
     static propTypes = {
         setting: PropTypes.any,
         children: PropTypes.any,

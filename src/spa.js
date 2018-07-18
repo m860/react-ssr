@@ -8,7 +8,7 @@ import './assets/sass/App.sass'
 import {AppContainer} from 'react-hot-loader'
 import React from 'react';
 import {HashRouter} from 'react-router-dom';
-import StateWrapper from "./components/common/StateWrapper"
+import StateProvider from "./components/common/StateProvider"
 import {render} from 'react-dom'
 import App from "./components/App"
 
@@ -17,9 +17,9 @@ const root = document.getElementById('view');
 const hotRender = Component => {
     render(
         <HashRouter>
-            <StateWrapper>
+            <StateProvider>
                 <Component/>
-            </StateWrapper>
+            </StateProvider>
         </HashRouter>,
         root
     )

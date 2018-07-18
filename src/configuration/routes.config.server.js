@@ -15,6 +15,16 @@ export default [
         component: require("../components/pages/InitialStateSyncDemo").default,
         exact: true
     }, {
+        title: "Toast Example",
+        path: "/demo/toast",
+        component: require("../components/pages/Toast").default,
+        exact: true
+    }, {
+        title: "Loading Example",
+        path: "/demo/loading",
+        component: require("../components/pages/Loading").default,
+        exact: true
+    }, {
         title: "异步组件实现CodeSplit",
         path: "/demo/codesplit",
         component: require("../components/pages/CodeSplit").default,

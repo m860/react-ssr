@@ -8,7 +8,7 @@ import routes from "../../configuration/routes.config"
 import React from "react"
 import {renderToStaticMarkup} from 'react-dom/server'
 import App from "../../components/App"
-import StateWrapper from "../../components/common/StateWrapper"
+import StateProvider from "../../components/common/StateProvider"
 import html from "../html"
 
 export default async function (req, res, next) {
@@ -39,9 +39,9 @@ export default async function (req, res, next) {
                 <StaticRouter
                     location={req.url}
                     context={context}>
-                    <StateWrapper state={initialState}>
+                    <StateProvider state={initialState}>
                         <App/>
-                    </StateWrapper>
+                    </StateProvider>
                 </StaticRouter>
             );
             const content = html.getHtml().replace('#MARKUP#', markup);

@@ -15,7 +15,7 @@ import ToastItem from './ToastItem'
 		messages: toast.messages
 	}
 })
-export default class Toast extends Base {
+export default class Toast extends Base(true) {
 	static propTypes = {
 		...Base.propTypes
 	};

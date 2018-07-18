@@ -1,11 +1,9 @@
 import React from "react";
 import Base from '../Base'
 import PropTypes from "prop-types";
-import {connect} from 'react-redux'
-import ActivityIndicator from './ActivityIndicator'
 import Loading from './Loading'
 
-export default class LoadingView extends Base {
+export default class LoadingView extends Base(true) {
 	static propTypes = {
 		visible: PropTypes.bool
 	};

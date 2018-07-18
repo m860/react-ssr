@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Base from "../Base"
 
-export default class StateWrapper extends Component {
+export default class StateProvider extends Base() {
     static propTypes = {
         state: PropTypes.any,
         children: PropTypes.any

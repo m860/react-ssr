@@ -6,7 +6,7 @@ import Navigator from './Navigator'
 import routes from "../../configuration/routes.config"
 import {Link} from "react-router-dom"
 
-export default class LayoutWithNavigator extends Base {
+export default class LayoutWithNavigator extends Base(true) {
     static propTypes = {
         children: PropTypes.any
     };

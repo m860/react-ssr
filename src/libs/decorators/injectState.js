@@ -2,12 +2,13 @@
  * 为组件注入state
  * @param {Function} component - 组件
  * @param {?Object} state - state
- * @return {StateWrapper}
+ * @return {StateProvider}
  */
 export default function (component, state) {
-    const staticPropertyKeys = Object.keys(component);
+    const base = component.WrappedComponent || component;
+    const staticPropertyKeys = Object.keys(base);
 
-    class StateWrapper extends component {
+    class StateWrapper extends base {
         constructor(props) {
             super(props);
             if (this.state) {
@@ -26,8 +27,14 @@ export default function (component, state) {
     }
 
     staticPropertyKeys.forEach(key => {
-        StateWrapper[key] = component[key];
+        StateWrapper[key] = base[key];
     });
 
-    return StateWrapper;
+    if (component.WrappedComponent) {
+        component.WrappedComponent = StateWrapper;
+        return component;
+    }
+    else {
+        return StateWrapper;
+    }
 }

@@ -3,7 +3,7 @@ import Base from '../Base'
 import PropTypes from "prop-types";
 import ActivityIndicator from './ActivityIndicator'
 
-export default class Loading extends Base {
+export default class Loading extends Base(true) {
 	static propTypes = {
 		visible: PropTypes.bool
 	};

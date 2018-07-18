@@ -1,5 +1,5 @@
 import Base from '../Base'
 
-export default class BasePage extends Base {
-
+export default function (pure = false) {
+    return Base(pure);
 }
