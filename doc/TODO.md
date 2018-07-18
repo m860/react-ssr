@@ -36,3 +36,4 @@
 - ~~添加`prepack`~~
 - [ ] `Base`基类支持`PureComponent`和`Component`两种形式,默认是'Component'
     - [ ] 'Base'基类扩展'updateState',支持`async/await`
+- [ ] 集成'Karma'
