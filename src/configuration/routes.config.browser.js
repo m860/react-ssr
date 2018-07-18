@@ -8,16 +8,6 @@ export default [
         component: require('../components/pages/Index').default,
         exact: true,
     }, {
-        title: "Page A",
-        path: "/pagea",
-        component: require('../components/pages/PageA').default,
-        exact: true
-    }, {
-        title: "Page B",
-        path: "/pageb",
-        component: require('../components/pages/PageB').default,
-        exact: true
-    }, {
         title: "服务端异步数据",
         path: "/demo/initialstateasync",
         component: require('../components/pages/InitialStateAsyncDemo').default,
@@ -28,7 +18,7 @@ export default [
         component: require("../components/pages/InitialStateSyncDemo").default,
         exact: true
     }, {
-        title: "Code Split",
+        title: "异步组件实现CodeSplit",
         path: "/demo/codesplit",
         render: props => {
             return (

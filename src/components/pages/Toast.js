@@ -6,8 +6,10 @@ import ActivityIndicator from '../common/ActivityIndicator'
 import LoadingView from '../common/LoadingView'
 import {connect} from 'react-redux'
 import {showLoading, hideLoading} from '../../ar/loading.ar'
+import {showToast} from '../../ar/toast.ar'
 
-export default class TestClientLog extends BasePage {
+@connect()
+export default class Toast extends BasePage {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -20,9 +22,27 @@ export default class TestClientLog extends BasePage {
 			<LayoutWithNavigator>
 				<button
 					onClick={()=>{
-						throw new Error('I am a client error');
+						this.props.dispatch(showToast('info'))
 					}}
-					type="button">throw a error (客户端的错误日志会被记录到服务端)
+					type="button">show info
+				</button>
+				<button
+					onClick={()=>{
+						this.props.dispatch(showToast({
+							type:'warn',
+							message:'warn'
+						}))
+					}}
+					type="button">show warn
+				</button>
+				<button
+					onClick={()=>{
+						this.props.dispatch(showToast({
+							type:"error",
+							message:"error"
+						}))
+					}}
+					type="button">show error
 				</button>
 			</LayoutWithNavigator>
 		);

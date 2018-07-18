@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 import {showLoading, hideLoading} from '../../ar/loading.ar'
 
 @connect()
-export default class TestLoading extends BasePage {
+export default class Loading extends BasePage {
 	constructor(props) {
 		super(props);
 		this.state = {
