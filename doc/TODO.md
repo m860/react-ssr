@@ -22,7 +22,7 @@
 - [ ] _feature_ 单元测试时无法区分.browser和.server后缀,导致找不到module.
       解决方法:使用babel resolve module实现不同扩展名的加载,但是目前这个插件有问题,
       等待插件bug修复了再看此问题,如果无法修复需要自己实现一个resolve module的插件
-- [ ] _feature_ `fetchInitialState` 路由参数的实现
+- [x] _feature_ `fetchInitialState` 路由参数的实现
       为了保证`fetchInitialState`能在服务端和客户端都能够正常运行,因此对方法的参数做了结构化,其数据结构如下:
       ```type
       type fetchInitialStateParam={
@@ -32,7 +32,8 @@
           customData:?object
       };
       ```
-- [ ] 客户端第一次render的时候state没有数据,导致页面会有没有数据,实际服务端返回的html是包含数据的
+- [x] 客户端第一次render的时候state没有数据,导致页面会没有数据,实际服务端返回的html是包含数据的
+      在constructor中定义state的时候,使用getSSRState进行初始化.如果有服务端的状态优先使用服务端状态,否则为`{}`
 - [ ] _example_ 完成一个有路由参数的demo
 - [ ] _example_ 嵌套路由
     - [ ] _component_ 面包屑

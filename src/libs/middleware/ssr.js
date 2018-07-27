@@ -51,8 +51,10 @@ export default async function (req, res, next) {
                     </StateProvider>
                 </StaticRouter>
             );
-            console.log('context', context);
-            const content = html.getHtml().replace('#MARKUP#', markup);
+            //TODO 需要把 initialState 输出到页面
+            const content = html.getHtml()
+                .replace("#INITIAL_STATE#", JSON.stringify(initialState))
+                .replace('#MARKUP#', markup);
             res.send(content);
         }
         else {

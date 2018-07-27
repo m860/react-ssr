@@ -57,7 +57,7 @@ else {
                         // cp.exec("node server.js").stdout.pipe(process.stdout);
                         nodemon({
                             script: 'server.js',
-                            delay: 5 * 1000,
+                            delay: 2 * 1000,
                             ignore: ["public/*", "logs/*"]
                         });
                         // nodemon.on('start', function () {

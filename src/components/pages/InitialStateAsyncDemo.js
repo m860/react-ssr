@@ -11,9 +11,7 @@ export default class InitialStateAsyncDemo extends BasePage() {
 
     constructor(props) {
         super(props);
-        this.state = {
-            message: ""
-        };
+        this.state = this.getSSRState();
     }
 
     render() {

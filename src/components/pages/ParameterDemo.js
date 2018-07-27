@@ -12,10 +12,7 @@ export default class ParameterDemo extends BasePage() {
 
     constructor(props) {
         super(props);
-        this.state = {
-            query: null,
-            params: null
-        };
+        this.state = this.getSSRState();
     }
 
     render() {

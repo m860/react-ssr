@@ -10,6 +10,9 @@
 </head>
 <body>
 <span id="view">#MARKUP#</span>
+<script id="initial-state">
+    __INITIAL_STATE__ = '#INITIAL_STATE#';
+</script>
 <% for (var dll in htmlWebpackPlugin.options.dlls) { %>
 <script src="<%= htmlWebpackPlugin.options.dlls[dll] %>"></script>
 <% } %>

@@ -16,5 +16,24 @@ export default function (pure = false) {
             }
             return null;
         }
+
+        /**
+         * 获取SSR 的state
+         * @return {*}
+         */
+        getSSRState() {
+
+            if (typeof __INITIAL_STATE__ !== "undefined") {
+                try {
+                    const state = JSON.parse(__INITIAL_STATE__);
+                    delete window.__INITIAL_STATE__;
+                    return state;
+                }
+                catch (ex) {
+                    delete window.__INITIAL_STATE__;
+                }
+            }
+            return {};
+        }
     }
 }
