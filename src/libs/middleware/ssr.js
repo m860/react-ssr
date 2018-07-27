@@ -13,22 +13,29 @@ import html from "../html"
 
 export default async function (req, res, next) {
     if (req.method === "GET") {
+        let matchResult = null;
         const route = routes.find(f => {
-            return matchPath(req.url, {
+            matchResult = matchPath(req.path, {
                 path: f.path,
                 exact: f.exact || false,
                 strict: f.exact || false
             });
+            return matchResult ? true : false
         });
         if (route) {
-            logger.info(`${req.url} is matched`);
+            logger.info(`${req.path} is matched : ${JSON.stringify(matchResult)}`);
             let initialState = null;
             const fetchInitialState = route.component.fetchInitialState;
             if (fetchInitialState) {
                 if (typeof(fetchInitialState) !== "function") {
                     throw new Error('route handler must be a Function');
                 }
-                initialState = await fetchInitialState();
+                const args = {
+                    query: req.query,
+                    params: matchResult ? matchResult.params : null
+                };
+                logger.info(`fetchInitialState parameter : ${JSON.stringify(args)}`);
+                initialState = await fetchInitialState(args);
                 logger.info(`initial state : ${JSON.stringify(initialState)}`);
             }
             else {
@@ -44,6 +51,7 @@ export default async function (req, res, next) {
                     </StateProvider>
                 </StaticRouter>
             );
+            console.log('context', context);
             const content = html.getHtml().replace('#MARKUP#', markup);
             res.send(content);
         }

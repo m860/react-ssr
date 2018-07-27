@@ -11,6 +11,13 @@ export default class LayoutWithNavigator extends Base(true) {
         children: PropTypes.any
     };
 
+    formatPath(path) {
+        if (path) {
+            return path.replace(":id", Math.floor(Math.random() * 10));
+        }
+        return "/404";
+    }
+
     render() {
         return (
             <Layout>
@@ -21,7 +28,8 @@ export default class LayoutWithNavigator extends Base(true) {
                             {routes.map((item, index) => {
                                 return (
                                     <li key={index}>
-                                        <Link to={item.path || "/404"}>{item.title}</Link>
+                                        <Link
+                                            to={this.formatPath(item.path)}>{item.title}</Link>
                                     </li>
                                 );
                             })}

@@ -26,7 +26,7 @@ export default class InitialStateSyncDemo extends BasePage() {
 
     initialData() {
         setTimeout(() => {
-            const state = InitialStateSyncDemo.fetchInitialState();
+            const state = this.callFetchInitialState(InitialStateSyncDemo);
             this.setState(state);
         }, 1);
     }

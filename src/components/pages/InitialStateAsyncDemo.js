@@ -25,7 +25,7 @@ export default class InitialStateAsyncDemo extends BasePage() {
     }
 
     async initialDataAsync() {
-        const state = await InitialStateAsyncDemo.fetchInitialState();
+        const state = await this.callFetchInitialState(InitialStateAsyncDemo);
         this.setState(state);
     }
 

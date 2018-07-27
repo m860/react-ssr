@@ -28,6 +28,16 @@ export default [
         component: require("../components/pages/Loading").default,
         exact: true
     }, {
+        title: "Query Example",
+        path: "/demo/query",
+        component: require("../components/pages/ParameterDemo").default,
+        exact: true
+    }, {
+        title: "Params Example",
+        path: "/demo/query/:id",
+        component: require("../components/pages/ParameterDemo").default,
+        exact: true
+    }, {
         title: "异步组件实现CodeSplit",
         path: "/demo/codesplit",
         render: props => {

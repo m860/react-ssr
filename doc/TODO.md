@@ -23,6 +23,16 @@
       解决方法:使用babel resolve module实现不同扩展名的加载,但是目前这个插件有问题,
       等待插件bug修复了再看此问题,如果无法修复需要自己实现一个resolve module的插件
 - [ ] _feature_ `fetchInitialState` 路由参数的实现
+      为了保证`fetchInitialState`能在服务端和客户端都能够正常运行,因此对方法的参数做了结构化,其数据结构如下:
+      ```type
+      type fetchInitialStateParam={
+          query:?object,
+          params:?object,
+          //自定义参数,一般只有在客户端的才需要使用,服务端不会用到,使用之前需要判断空操作
+          customData:?object
+      };
+      ```
+- [ ] 客户端第一次render的时候state没有数据,导致页面会有没有数据,实际服务端返回的html是包含数据的
 - [ ] _example_ 完成一个有路由参数的demo
 - [ ] _example_ 嵌套路由
     - [ ] _component_ 面包屑
