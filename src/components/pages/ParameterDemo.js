@@ -19,12 +19,4 @@ export default class ParameterDemo extends BasePage() {
             </LayoutWithNavigator>
         );
     }
-
-    componentDidMount() {
-        setTimeout(() => {
-            const state = this.callFetchInitialState(ParameterDemo);
-            this.setState(state);
-        }, 1)
-
-    }
 }

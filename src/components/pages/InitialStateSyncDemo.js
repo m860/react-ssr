@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
 import BasePage from "./BasePage"
 
@@ -15,16 +15,5 @@ export default class InitialStateSyncDemo extends BasePage() {
                 {this.state.message}
             </LayoutWithNavigator>
         );
-    }
-
-    initialData() {
-        setTimeout(() => {
-            const state = this.callFetchInitialState(InitialStateSyncDemo);
-            this.setState(state);
-        }, 1);
-    }
-
-    componentDidMount() {
-        this.initialData();
     }
 }

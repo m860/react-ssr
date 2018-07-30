@@ -6,41 +6,32 @@ export default function (pure = false) {
     return class BasePage extends parent {
         constructor(...args) {
             super(...args);
-            this.createState();
+            this._createState();
         }
 
-        callFetchInitialState(component) {
+        /**
+         * 获取页面的state
+         * @return {*}
+         * @private
+         */
+        _fetchInitialState() {
             const {search} = this.props.location;
             const query = queryParse(search);
-            if (component && component.fetchInitialState) {
+            if (this.constructor.fetchInitialState) {
                 const args = {
                     query: query,
                     params: this.props.match.params
                 }
-                return component.fetchInitialState(args);
+                return this.constructor.fetchInitialState(args);
             }
             return null;
         }
 
         /**
-         * 获取SSR 的state
-         * @return {*}
+         * 创建页面的state
+         * @private
          */
-        getSSRState() {
-            if (typeof __INITIAL_STATE__ !== "undefined") {
-                try {
-                    const state = JSON.parse(__INITIAL_STATE__);
-                    delete window.__INITIAL_STATE__;
-                    return state;
-                }
-                catch (ex) {
-                    delete window.__INITIAL_STATE__;
-                }
-            }
-            return {};
-        }
-
-        createState() {
+        _createState() {
             let state = {};
             if (typeof __INITIAL_STATE__ !== "undefined") {
                 try {
@@ -54,6 +45,15 @@ export default function (pure = false) {
                 state = this.props.staticContext.initialState;
             }
             this.state = state;
+        }
+
+        componentDidMount() {
+            if (this.constructor.fetchInitialState) {
+                (async () => {
+                    const state = await this._fetchInitialState();
+                    this.setState(state);
+                })();
+            }
         }
     }
 }
