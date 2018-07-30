@@ -48,3 +48,4 @@
 - [x] `Base`基类支持`PureComponent`和`Component`两种形式,默认是'Component'
     - [x] 'Base'基类扩展'updateState',支持`async/await`
 - [ ] 集成'Karma'
+- 测试api使用[tvmaze](http://www.tvmaze.com/api)
