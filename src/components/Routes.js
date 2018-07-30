@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import {Switch, Route} from "react-router-dom"
 import routes from "../configuration/routes.config"
 import PropTypes from "prop-types"
-import injectState from "../libs/decorators/injectState";
 
 /**
  * Routes必须继承Component,如果使用PureComponent导致客户端路由失效
@@ -24,7 +23,7 @@ export default class Routes extends Component {
                         routeProps.path = item.path;
                     }
                     if (item.component) {
-                        routeProps.component = injectState(item.component, this.context.initialState);
+                        routeProps.component = item.component;// injectState(item.component, this.context.initialState);
                     }
                     else if (item.render) {
                         routeProps.render = item.render;

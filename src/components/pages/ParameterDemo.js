@@ -10,11 +10,6 @@ export default class ParameterDemo extends BasePage() {
         };
     }
 
-    constructor(props) {
-        super(props);
-        this.state = this.getSSRState();
-    }
-
     render() {
         return (
             <LayoutWithNavigator>

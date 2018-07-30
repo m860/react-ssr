@@ -4,6 +4,11 @@ import {parse as queryParse} from "query-string"
 export default function (pure = false) {
     const parent = Base(pure);
     return class BasePage extends parent {
+        constructor(...args) {
+            super(...args);
+            this.createState();
+        }
+
         callFetchInitialState(component) {
             const {search} = this.props.location;
             const query = queryParse(search);
@@ -22,7 +27,6 @@ export default function (pure = false) {
          * @return {*}
          */
         getSSRState() {
-
             if (typeof __INITIAL_STATE__ !== "undefined") {
                 try {
                     const state = JSON.parse(__INITIAL_STATE__);
@@ -34,6 +38,22 @@ export default function (pure = false) {
                 }
             }
             return {};
+        }
+
+        createState() {
+            let state = {};
+            if (typeof __INITIAL_STATE__ !== "undefined") {
+                try {
+                    state = JSON.parse(__INITIAL_STATE__);
+                }
+                catch (ex) {
+                }
+                delete window.__INITIAL_STATE__;
+            }
+            if (this.props.staticContext && this.props.staticContext.initialState) {
+                state = this.props.staticContext.initialState;
+            }
+            this.state = state;
         }
     }
 }

@@ -34,28 +34,28 @@ $ npm run build
 - `npm run build:ssr`:打包生产环境,App使用`SSR`的方式运行,路由使用`BrowserRouter`
 - `npm run build:spa`:打包生产环境,App使用`SPA`的方式运行,路由使用`HashRouter`
 
-## 如何实现服务端页面渲染前数据的初始化?
+## 数据渲染
 
-在实现这个功能的时候使用了injectState,`<Route/>`对应的component需要注入初始化数据(state),
-如果component在服务端进行渲染我们就需要提供初始化的state,其具体逻辑是在component.fetchInitialState这个静态函数里实现的,
-因此我们定义的所有页面(其实也是组件)都需要实现其`fetchInitialState`这个方法.
-如果component在客户端渲染,这个state永远都为null,完整例子可以参考
+```javascript
+import React from "react"
+import BasePage from "./BasePage"
 
-- [InitialStateAsyncDemo.js](./src/components/pages/InitialStateAsyncDemo.js)
-- [InitialStateSyncDemo.js](./src/components/pages/InitialStateSyncDemo.js)
-- [ParameterDemo.js](./src/components/pages/ParameterDemo.js)
-
-> fetchInitialState 方法包含一个参数,其结构如下:
-
-```type
-type fetchInitialStateParams={
-    query:?object,
-    params:?object
-};
+export default class PageDemo extends BasePage(){
+    static fetchInitialState=({query,params})=>{
+        return {
+            query,
+            params
+        };
+    }
+    render(){
+        return (
+            <div>
+                {JSON.stringify(this.state)}
+            </div>
+        );
+    }
+}
 ```
-
-需要注意一点,从服务端返回的html是包含了数据的完整html,一旦请求返回客户端会根据SPA的模式再次初始化数据再进行渲染,
-所以在`componentDidMount`中需要做对应的数据初始化.
 
 ## 如何配置路由?
 

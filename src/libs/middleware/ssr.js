@@ -8,7 +8,6 @@ import routes from "../../configuration/routes.config"
 import React from "react"
 import {renderToStaticMarkup} from 'react-dom/server'
 import App from "../../components/App"
-import StateProvider from "../../components/common/StateProvider"
 import html from "../html"
 
 export default async function (req, res, next) {
@@ -41,14 +40,14 @@ export default async function (req, res, next) {
             else {
                 logger.warn(`path=${route.path}没有配置fetchInitialState`)
             }
-            const context = {};
+            const context = {
+                initialState: initialState
+            };
             const markup = renderToStaticMarkup(
                 <StaticRouter
                     location={req.url}
                     context={context}>
-                    <StateProvider state={initialState}>
-                        <App/>
-                    </StateProvider>
+                    <App/>
                 </StaticRouter>
             );
             //TODO 需要把 initialState 输出到页面
