@@ -1,4 +1,4 @@
-import serverRoutes from "../configuration/routes.config.server"
+import serverRoutes from "../configuration/routes.config"
 import browserRoutes from "../configuration/routes.config.browser"
 import logger from "./logger"
 

@@ -23,8 +23,12 @@ export default async function (req, res, next) {
         });
         if (route) {
             logger.info(`${req.path} is matched : ${JSON.stringify(matchResult)}`);
+            let component = route.component instanceof Promise ? await route.component : route.component;
+            if (component.default) {
+                component = component.default;
+            }
             let initialState = null;
-            const fetchInitialState = route.component.fetchInitialState;
+            const fetchInitialState = component.fetchInitialState;
             if (fetchInitialState) {
                 if (typeof(fetchInitialState) !== "function") {
                     throw new Error('route handler must be a Function');
@@ -50,7 +54,7 @@ export default async function (req, res, next) {
                     <App/>
                 </StaticRouter>
             );
-            //TODO 需要把 initialState 输出到页面
+            console.log('>>>',markup)
             const content = html.getHtml()
                 .replace("#INITIAL_STATE#", JSON.stringify(initialState))
                 .replace('#MARKUP#', markup);
