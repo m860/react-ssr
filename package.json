@@ -70,7 +70,6 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "@m860/react-async-component": "^0.1.0",
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.4",

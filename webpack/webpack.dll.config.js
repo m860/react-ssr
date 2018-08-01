@@ -22,7 +22,6 @@ module.exports = {
             "axios",
             "dateformat",
             "fbemitter",
-            "@m860/react-async-component",
             "uuid",
             "redux-persist",
             "redux",
