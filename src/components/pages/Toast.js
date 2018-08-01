@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {showToast} from '../../ar/toast.ar'
 
 @connect()
-export default class Toast extends BasePage() {
+export default class Toast extends BasePage {
     constructor(props) {
         super(props);
         this.state = {

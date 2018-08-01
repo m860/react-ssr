@@ -3,7 +3,7 @@ import Base from '../Base'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-export default class Breadcrumbs extends Base() {
+export default class Breadcrumbs extends Base {
 	static propTypes = {
 		...Base.propTypes
 	};

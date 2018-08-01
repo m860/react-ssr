@@ -1,9 +1,9 @@
 import React from 'react'
-import Base from '../Base'
+import Base,{PureBase} from '../Base'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-export default class Navigator extends Base(true) {
+export default class Navigator extends PureBase {
 	static propTypes = {
 		...Base.propTypes
 	};

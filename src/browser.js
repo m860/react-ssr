@@ -12,9 +12,21 @@ import App from "./components/App"
 
 const root = document.getElementById('view');
 
+let initialState = null;
+
+if (window.__INITIAL_STATE__) {
+    try {
+        initialState = JSON.parse(window.__INITIAL_STATE__);
+    }
+    catch (ex) {
+
+    }
+    delete window.__INITIAL_STATE__;
+}
+
 hydrate(
     <BrowserRouter>
-        <App/>
+        <App initialState={initialState}/>
     </BrowserRouter>,
     root
 );

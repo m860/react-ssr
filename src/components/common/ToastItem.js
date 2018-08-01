@@ -2,7 +2,7 @@
  * Created by jean.h.ma on 17/10/2017.
  */
 import React from 'react'
-import Base from '../Base'
+import Base, {PureBase} from '../Base'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
@@ -27,7 +27,7 @@ const transitionStyles = {
     }
 };
 
-export default class ToastItem extends Base(true) {
+export default class ToastItem extends PureBase {
     static propTypes = {
         ...Base.propTypes,
         type: PropTypes.oneOf(['info', 'warn', 'error']),

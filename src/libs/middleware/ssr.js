@@ -66,17 +66,18 @@ export default async function (req, res, next) {
                 logger.warn(`path=${route.path}没有配置fetchInitialState`)
             }
             const context = {
-                initialState: initialState
             };
             const markup = renderToStaticMarkup(
                 <StaticRouter
                     location={req.url}
                     context={context}>
-                    <App routes={routes}/>
+                    <App routes={routes}
+                         initialState={{path: req.path, state: initialState}}/>
                 </StaticRouter>
             );
+            logger.info(`${req.path}  : ${markup}`)
             const content = html.getHtml()
-                .replace("#INITIAL_STATE#", JSON.stringify(initialState))
+                .replace("#INITIAL_STATE#", JSON.stringify({path: req.path, state: initialState}))
                 .replace('#MARKUP#', markup);
             res.send(content);
         }
