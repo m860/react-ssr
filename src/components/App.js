@@ -5,8 +5,13 @@ import Toast from './common/Toast'
 import logger from '../libs/logger'
 import store from "../libs/store"
 import Routes from "./Routes"
+import PropTypes from "prop-types"
 
 export default class App extends Component {
+
+    static propTypes = {
+        routes: PropTypes.array
+    };
 
     constructor(props) {
         super(props);
@@ -26,7 +31,7 @@ export default class App extends Component {
             <Provider store={store}>
 				<span>
 					<ApplicationSetting>
-                        <Routes/>
+                        <Routes routes={this.props.routes}/>
 					</ApplicationSetting>
 					<Toast/>
 				</span>

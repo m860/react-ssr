@@ -4,11 +4,32 @@
  */
 import {matchPath, StaticRouter} from "react-router-dom";
 import logger from "../logger"
-import routes from "../../configuration/routes.config"
 import React from "react"
 import {renderToStaticMarkup} from 'react-dom/server'
 import App from "../../components/App"
 import html from "../html"
+import routeConfig from "../../configuration/routes.config"
+import {forEachAsync} from "../helper";
+
+let routes = [];
+forEachAsync(routeConfig, async (item) => {
+    let routeProps = {
+        exact: item.exact || false
+    };
+    if (item.path) {
+        routeProps.path = item.path;
+    }
+    if (item.component instanceof Promise) {
+        routeProps.component = await item.component;
+    }
+    else {
+        routeProps.component = item.component;
+    }
+    if (routeProps.component.default) {
+        routeProps.component = routeProps.component.default
+    }
+    routes.push(routeProps);
+})
 
 export default async function (req, res, next) {
     if (req.method === "GET") {
@@ -51,10 +72,9 @@ export default async function (req, res, next) {
                 <StaticRouter
                     location={req.url}
                     context={context}>
-                    <App/>
+                    <App routes={routes}/>
                 </StaticRouter>
             );
-            console.log('>>>',markup)
             const content = html.getHtml()
                 .replace("#INITIAL_STATE#", JSON.stringify(initialState))
                 .replace('#MARKUP#', markup);
