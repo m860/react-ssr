@@ -41,16 +41,21 @@ import React from "react"
 import BasePage from "./BasePage"
 
 export default class PageDemo extends BasePage(){
-    static fetchInitialState=({query,params})=>{
+    static getInitialProps=()=>{
         return {
-            query,
-            params
+            message:"hello SSR"
+        };
+    }
+    constructor(props){
+        super(props);
+        this.state={
+            message:props.message
         };
     }
     render(){
         return (
             <div>
-                {JSON.stringify(this.state)}
+                {this.state.message}
             </div>
         );
     }
@@ -59,39 +64,32 @@ export default class PageDemo extends BasePage(){
 
 ## 如何配置路由?
 
-客户端和服务端的路由配置是分开配置的,分别在`routes.config.browser.js`和`routes.config.server.js`中,
-分开配置的主要原因是因为客户端的页面需要处理code split而服务端不需要处理.
-
-> 路由配置的属性除了`title`是自定义外,其他的属性配置都来源于`react-router/Route`中
-
-> 服务端在启动的时候会对服务端和客户端的路由配置做一致性验证
-
-### 如何实现code split
-
-异步组件使用`@m860/react-async-component`实现,这是一个HOC组件.代码片段如下:
+路由的配置在文件`routes.config.js`中,如下面代码所示
 
 ```javascript
-{
-    title: "Code Split",
-    path: "/demo/codesplit",
-    render: props => {
-        return (
-            <AsyncComponent components={[
-                import("../components/pages/CodeSplit")
-            ]}>
-                {(CodeSplit) => {
-                    return (
-                        <CodeSplit {...props}/>
-                    );
-                }}
-            </AsyncComponent>
-        );
-    },
-    exact: true
-}
+export default [
+    {
+        title: "首页",
+        path: "/",
+        component: require('../components/pages/Index'),
+        exact: true,
+    }, {
+        title: "服务端异步数据",
+        path: "/demo/initialstateasync",
+        component: require('../components/pages/InitialStateAsyncDemo'),
+        exact: true
+    }, {
+        title: "异步组件实现CodeSplit",
+        path: "/demo/codesplit",
+        component: import("../components/pages/CodeSplit"),
+        exact: true
+    }, {
+        title: "404",
+        component: require("../components/pages/Http404"),
+        exact: true
+    }
+]
 ```
-
-> PS:服务端不能使用异步组件
 
 ## TODO
 
