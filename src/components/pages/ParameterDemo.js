@@ -3,16 +3,19 @@ import LayoutWithNavigator from "../common/LayoutWithNavigator"
 import BasePage from "./BasePage"
 
 export default class ParameterDemo extends BasePage {
-    static fetchInitialState = ({query, params}) => {
+    static getInitialProps = ({query, params}) => {
         return {
             query: query,
             params: params
         };
     }
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state=props.initialState?props.initialState:{}
+        this.state = {
+            query: props.query,
+            params: props.params
+        }
     }
 
     render() {
@@ -27,8 +30,11 @@ export default class ParameterDemo extends BasePage {
 
     componentDidMount() {
         setTimeout(async () => {
-            const state = await this.fetchInitialState();
-            this.setState(state);
+            const data = await this.getInitialProps();
+            this.setState({
+                query: data.query,
+                params: data.params
+            });
         }, 1)
     }
 }

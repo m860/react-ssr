@@ -7,15 +7,15 @@ import {parse as queryParse} from "query-string"
  * @return {*}
  * @private
  */
-function fetchInitialState() {
+function getInitialProps() {
     const {search} = this.props.location;
     const query = queryParse(search);
-    if (this.constructor.fetchInitialState) {
+    if (this.constructor.getInitialProps) {
         const args = {
             query: query,
             params: this.props.match.params
         }
-        return this.constructor.fetchInitialState(args);
+        return this.constructor.getInitialProps(args);
     }
     return null;
 }
@@ -23,13 +23,13 @@ function fetchInitialState() {
 export default class BasePage extends Base {
     constructor(...args) {
         super(...args);
-        this.fetchInitialState = fetchInitialState.bind(this);
+        this.getInitialProps = getInitialProps.bind(this);
     }
 }
 
 export class PureBasePage extends PureBase {
     constructor(...args) {
         super(...args);
-        this.fetchInitialState = fetchInitialState.bind(this);
+        this.getInitialProps = getInitialProps.bind(this);
     }
 }

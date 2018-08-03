@@ -4,18 +4,20 @@ import BasePage from "./BasePage"
 import PropTypes from "prop-types"
 
 export default class InitialStateAsyncDemo extends BasePage {
-    static fetchInitialState = () => {
+    static getInitialProps = () => {
         return Promise.resolve({
             message: "我是服务端异步数据"
         })
     };
     static propTypes = {
-        initialState: PropTypes.any
+        message: PropTypes.any
     };
 
     constructor(props) {
         super(props);
-        this.state = props.initialState ? props.initialState : {};
+        this.state = {
+            message: props.message
+        }
     }
 
     render() {
@@ -28,8 +30,10 @@ export default class InitialStateAsyncDemo extends BasePage {
 
     componentDidMount() {
         setTimeout(async () => {
-            const state = await this.fetchInitialState();
-            this.setState(state);
+            const data = await this.getInitialProps();
+            this.setState({
+                message: data.message
+            });
         }, 1)
     }
 }

@@ -3,7 +3,7 @@ import LayoutWithNavigator from "../common/LayoutWithNavigator"
 import BasePage from "./BasePage"
 
 export default class InitialStateSyncDemo extends BasePage {
-    static fetchInitialState = () => {
+    static getInitialProps = () => {
         return {
             message: "我是服务端同步数据"
         }
@@ -11,7 +11,9 @@ export default class InitialStateSyncDemo extends BasePage {
 
     constructor(props) {
         super(props);
-        this.state = props.initialState ? props.initialState : {}
+        this.state = {
+            message: props.message
+        }
     }
 
     render() {
@@ -24,8 +26,10 @@ export default class InitialStateSyncDemo extends BasePage {
 
     componentDidMount() {
         setTimeout(async () => {
-            const state = await this.fetchInitialState();
-            this.setState(state);
+            const data = await this.getInitialProps();
+            this.setState({
+                message: data.message
+            });
         }, 1)
     }
 }

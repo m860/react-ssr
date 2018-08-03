@@ -12,9 +12,9 @@ export default class App extends Component {
 
     static propTypes = {
         routes: PropTypes.array,
-        initialState: PropTypes.shape({
+        initialProps: PropTypes.shape({
             path: PropTypes.string,
-            state: PropTypes.any
+            props: PropTypes.any
         })
     };
 
@@ -51,15 +51,14 @@ export default class App extends Component {
                                 return (
                                     <Route key={index.toString()}
                                            render={props => {
-                                               if (this.props.initialState) {
-                                                   const matched = matchPath(this.props.initialState.path, {
+                                               if (this.props.initialProps) {
+                                                   const matched = matchPath(this.props.initialProps.path, {
                                                        path: item.path,
                                                        exact: item.exact
                                                    });
                                                    if (matched) {
                                                        return (
-                                                           <item.component {...props}
-                                                                           initialState={this.props.initialState.state}></item.component>
+                                                           <item.component {...props} {...(this.props.initialProps.props ? this.props.initialProps.props : {})}></item.component>
                                                        );
                                                    }
                                                }
