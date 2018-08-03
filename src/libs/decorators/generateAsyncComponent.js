@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 
-export default function (component) {
+export default function (component, props = {}) {
     return class AsyncComponent extends Component {
         constructor(props) {
             super(props);
@@ -13,7 +13,7 @@ export default function (component) {
             if (this.state.targetComponent) {
                 const TargetComponent = this.state.targetComponent;
                 return (
-                    <TargetComponent {...this.props}></TargetComponent>
+                    <TargetComponent {...this.props} {...props}></TargetComponent>
                 );
             }
             return null;

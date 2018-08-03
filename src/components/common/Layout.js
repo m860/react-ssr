@@ -2,7 +2,7 @@
  * Created by jean.h.ma on 17/10/2017.
  */
 import React from 'react'
-import Base from '../Base'
+import Base,{PureBase} from '../Base'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
@@ -14,7 +14,7 @@ import Loading from './Loading'
 		visible: loading.counter > 0
 	}
 })
-export default class Layout extends Base(true) {
+export default class Layout extends PureBase {
 	static propTypes = {
 		...Base.propTypes
 	};

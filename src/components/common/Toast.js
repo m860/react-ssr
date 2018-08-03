@@ -2,7 +2,7 @@
  * Created by jean.h.ma on 17/10/2017.
  */
 import React from 'react'
-import Base from '../Base'
+import Base,{PureBase} from '../Base'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
@@ -15,7 +15,7 @@ import ToastItem from './ToastItem'
 		messages: toast.messages
 	}
 })
-export default class Toast extends Base(true) {
+export default class Toast extends PureBase {
 	static propTypes = {
 		...Base.propTypes
 	};

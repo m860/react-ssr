@@ -1,13 +1,24 @@
 import React from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
 import BasePage from "./BasePage"
+import PropTypes from "prop-types"
 
-export default class InitialStateAsyncDemo extends BasePage() {
-    static fetchInitialState = () => {
+export default class InitialStateAsyncDemo extends BasePage {
+    static getInitialProps = () => {
         return Promise.resolve({
             message: "我是服务端异步数据"
         })
     };
+    static propTypes = {
+        message: PropTypes.any
+    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: props.message
+        }
+    }
 
     render() {
         return (
@@ -15,5 +26,14 @@ export default class InitialStateAsyncDemo extends BasePage() {
                 {this.state.message}
             </LayoutWithNavigator>
         );
+    }
+
+    componentDidMount() {
+        setTimeout(async () => {
+            const data = await this.getInitialProps();
+            this.setState({
+                message: data.message
+            });
+        }, 1)
     }
 }

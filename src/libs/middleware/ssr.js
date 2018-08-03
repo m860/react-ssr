@@ -14,13 +14,15 @@ import {forEachAsync} from "../helper";
 let routes = [];
 forEachAsync(routeConfig, async (item) => {
     let routeProps = {
-        exact: item.exact || false
+        exact: item.exact || false,
+        async: false
     };
     if (item.path) {
         routeProps.path = item.path;
     }
     if (item.component instanceof Promise) {
         routeProps.component = await item.component;
+        routeProps.async = true;
     }
     else {
         routeProps.component = item.component;
@@ -44,39 +46,41 @@ export default async function (req, res, next) {
         });
         if (route) {
             logger.info(`${req.path} is matched : ${JSON.stringify(matchResult)}`);
-            let component = route.component instanceof Promise ? await route.component : route.component;
-            if (component.default) {
-                component = component.default;
-            }
-            let initialState = null;
-            const fetchInitialState = component.fetchInitialState;
-            if (fetchInitialState) {
-                if (typeof(fetchInitialState) !== "function") {
+            let component = route.component;
+            let initialProps = {
+                path: req.path,
+                props: null,
+                async: route.async
+            };
+            const getInitialProps = component.getInitialProps;
+            if (getInitialProps) {
+                if (typeof(getInitialProps) !== "function") {
                     throw new Error('route handler must be a Function');
                 }
                 const args = {
                     query: req.query,
                     params: matchResult ? matchResult.params : null
                 };
-                logger.info(`fetchInitialState parameter : ${JSON.stringify(args)}`);
-                initialState = await fetchInitialState(args);
-                logger.info(`initial state : ${JSON.stringify(initialState)}`);
+                logger.info(`getInitialProps parameter : ${JSON.stringify(args)}`);
+                // props = await getInitialProps(args);
+                initialProps.props = await getInitialProps(args);
+                logger.info(`initial props : ${JSON.stringify(initialProps)}`);
             }
             else {
                 logger.warn(`path=${route.path}没有配置fetchInitialState`)
             }
-            const context = {
-                initialState: initialState
-            };
+            const context = {};
             const markup = renderToStaticMarkup(
                 <StaticRouter
                     location={req.url}
                     context={context}>
-                    <App routes={routes}/>
+                    <App routes={routes}
+                         initialProps={initialProps}/>
                 </StaticRouter>
             );
+            logger.info(`${req.path}  : ${markup}`)
             const content = html.getHtml()
-                .replace("#INITIAL_STATE#", JSON.stringify(initialState))
+                .replace("#INITIAL_PROPS#", JSON.stringify(initialProps))
                 .replace('#MARKUP#', markup);
             res.send(content);
         }
