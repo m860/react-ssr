@@ -1,9 +1,9 @@
 export default [
     {
-        title: "首页",
-        path: "/",
-        component: require('../components/pages/Index'),
-        exact: true,
+        title: "登录",
+        path: "/signin",
+        component: import("../components/pages/SignIn"),
+        exact: true
     }, {
         title: "服务端异步数据",
         path: "/demo/initialstateasync",
