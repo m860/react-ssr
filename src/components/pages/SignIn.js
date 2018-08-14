@@ -7,10 +7,12 @@ export default class SignIn extends BasePage {
             <div className="signin">
                 <div className="content">
                     <div className="logo">
-                        <img src={require("../../assets/img/logo.png")}/>
+                        <img src={require("../../assets/img/react.png")}/>
                     </div>
                     <div className="title">
-                        欢迎登录 Alive Push
+                        <h1>
+                            欢迎访问 React SSR
+                        </h1>
                     </div>
                     <div className="form">
                         <div className="form-row">
