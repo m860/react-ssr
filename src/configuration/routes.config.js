@@ -5,6 +5,11 @@ export default [
         component: import("../components/pages/SignIn"),
         exact: true
     }, {
+        title: "Test",
+        path: "/demo/test",
+        component: require("../components/pages/Test"),
+        exact: true
+    }, {
         title: "服务端异步数据",
         path: "/demo/initialstateasync",
         component: require('../components/pages/InitialStateAsyncDemo'),
