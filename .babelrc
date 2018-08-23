@@ -3,6 +3,12 @@
     [
       "env",
       {
+        "targets": {
+          "browsers": [
+            "cover 99.5%",
+            "Android >=4"
+          ]
+        },
         "debug": true
       }
     ],

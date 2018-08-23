@@ -50,3 +50,4 @@
 - [ ] 集成'Karma'
 - 测试api使用[tvmaze](http://www.tvmaze.com/api)
 - [ ] 以`SPA`模式运行时,使用android手机访问页面异常
+- [ ] `.browserslistrc`对`babel-preset-env`没有生效 : babel 7.x 才开始支持
