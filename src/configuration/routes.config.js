@@ -1,5 +1,10 @@
 export default [
     {
+        title: "Index",
+        path: "/",
+        component: import("../components/pages/Index"),
+        exact: true
+    }, {
         title: "登录",
         path: "/signin",
         component: import("../components/pages/SignIn"),
