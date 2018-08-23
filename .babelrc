@@ -1,6 +1,11 @@
 {
   "presets": [
-    "env",
+    [
+      "env",
+      {
+        "debug": true
+      }
+    ],
     "react"
   ],
   "plugins": [

@@ -49,3 +49,4 @@
     - [x] 'Base'基类扩展'updateState',支持`async/await`
 - [ ] 集成'Karma'
 - 测试api使用[tvmaze](http://www.tvmaze.com/api)
+- [ ] 以`SPA`模式运行时,使用android手机访问页面异常
