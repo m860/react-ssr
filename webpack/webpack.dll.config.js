@@ -13,6 +13,7 @@ module.exports = {
     mode: "production",
     entry: {
         dll: [
+            "babel-polyfill",
             'react',
             'react-dom',
             "react-redux",

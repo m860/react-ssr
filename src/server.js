@@ -2,6 +2,7 @@
  * @overview node的启动文件
  * @author jean.h.ma(m860)
  */
+import "babel-polyfill"
 import React from 'react';
 import express from 'express';
 import {renderToStaticMarkup} from 'react-dom/server'

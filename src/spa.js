@@ -2,6 +2,7 @@
  * @overview 客户端的入口
  * @author jean.h.ma(m860)
  */
+import "babel-polyfill"
 import "normalize-css/normalize.css";
 import "font-awesome/css/font-awesome.css";
 import './assets/sass/App.sass'
