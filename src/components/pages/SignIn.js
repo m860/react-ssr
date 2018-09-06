@@ -1,7 +1,6 @@
-import React from "react"
-import BasePage from "./BasePage"
+import React, {Component} from "react"
 
-export default class SignIn extends BasePage {
+export default class SignIn extends Component {
     render() {
         return (
             <div className="signin">

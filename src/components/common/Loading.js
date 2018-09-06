@@ -1,9 +1,8 @@
-import React from "react";
-import Base,{PureBase} from '../Base'
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import ActivityIndicator from './ActivityIndicator'
 
-export default class Loading extends PureBase{
+export default class Loading extends PureComponent{
 	static propTypes = {
 		visible: PropTypes.bool
 	};

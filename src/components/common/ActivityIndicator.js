@@ -1,7 +1,6 @@
-import React from "react";
-import Base,{PureBase} from "../Base";
+import React, {PureComponent} from "react";
 
-export default class ActivityIndicator extends PureBase {
+export default class ActivityIndicator extends PureComponent {
     render() {
         return (
             <svg className="activity-indicator">

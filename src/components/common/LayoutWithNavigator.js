@@ -1,12 +1,11 @@
-import React from 'react'
-import Base,{PureBase} from '../Base'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import Layout from './Layout'
 import Navigator from './Navigator'
 import routes from "../../configuration/routes.config"
 import {Link} from "react-router-dom"
 
-export default class LayoutWithNavigator extends PureBase {
+export default class LayoutWithNavigator extends PureComponent {
     static propTypes = {
         children: PropTypes.any
     };

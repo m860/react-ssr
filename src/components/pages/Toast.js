@@ -1,11 +1,14 @@
-import React from 'react'
-import BasePage from './BasePage'
+import React, {Component} from 'react'
 import LayoutWithNavigator from '../common/LayoutWithNavigator'
 import {connect} from 'react-redux'
 import {showToast} from '../../ar/toast.ar'
+import PropTypes from "prop-types"
 
 @connect()
-export default class Toast extends BasePage {
+export default class Toast extends Component {
+    static propTypes={
+        dispatch:PropTypes.func
+    };
     constructor(props) {
         super(props);
         this.state = {

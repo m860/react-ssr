@@ -1,9 +1,8 @@
-import React from "react";
-import Base,{PureBase} from '../Base'
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Loading from './Loading'
 
-export default class LoadingView extends PureBase {
+export default class LoadingView extends PureComponent {
 	static propTypes = {
 		visible: PropTypes.bool
 	};

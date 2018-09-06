@@ -1,13 +1,10 @@
 /**
  * Created by jean.h.ma on 17/10/2017.
  */
-import React from 'react'
-import Base,{PureBase} from '../Base'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
-import ActivityIndicator from './ActivityIndicator'
-import Loading from './Loading'
 import ToastItem from './ToastItem'
 
 @connect(({toast})=> {
@@ -15,9 +12,10 @@ import ToastItem from './ToastItem'
 		messages: toast.messages
 	}
 })
-export default class Toast extends PureBase {
+export default class Toast extends PureComponent {
 	static propTypes = {
-		...Base.propTypes
+        style:PropTypes.object,
+        className:PropTypes.string
 	};
 
 	render() {

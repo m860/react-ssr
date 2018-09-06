@@ -1,8 +1,7 @@
-import React from 'react'
-import BasePage from './BasePage'
+import React, {PureComponent} from 'react'
 import LayoutWithNavigator from '../common/LayoutWithNavigator'
 
-export default class Http404 extends BasePage {
+export default class Http404 extends PureComponent {
     render() {
         return (
             <LayoutWithNavigator>

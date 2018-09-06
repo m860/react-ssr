@@ -1,11 +1,11 @@
-import React from 'react'
-import Base,{PureBase} from '../Base'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-export default class Navigator extends PureBase {
+export default class Navigator extends PureComponent {
 	static propTypes = {
-		...Base.propTypes
+		style:PropTypes.object,
+		className:PropTypes.string
 	};
 
 	render() {

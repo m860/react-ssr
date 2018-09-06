@@ -1,14 +1,19 @@
-import React from "react"
+import React, {Component} from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
-import BasePage from "./BasePage"
+import PropTypes from "prop-types"
 
-export default class ParameterDemo extends BasePage {
+export default class ParameterDemo extends Component {
     static getInitialProps = ({query, params}) => {
         return {
             query: query,
             params: params
         };
     }
+
+    static propTypes = {
+        query: PropTypes.any,
+        params: PropTypes.any
+    };
 
     constructor(props) {
         super(props);
@@ -29,12 +34,12 @@ export default class ParameterDemo extends BasePage {
     }
 
     componentDidMount() {
-        setTimeout(async () => {
-            const data = await this.getInitialProps();
-            this.setState({
-                query: data.query,
-                params: data.params
-            });
-        }, 1)
+        // setTimeout(async () => {
+        //     const data = await this.getInitialProps();
+        //     this.setState({
+        //         query: data.query,
+        //         params: data.params
+        //     });
+        // }, 1)
     }
 }

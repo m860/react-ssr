@@ -1,12 +1,16 @@
-import React from "react"
+import React, {Component} from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
-import BasePage from "./BasePage"
+import PropTypes from "prop-types"
 
-export default class InitialStateSyncDemo extends BasePage {
+export default class InitialStateSyncDemo extends Component {
     static getInitialProps = () => {
         return {
             message: "我是服务端同步数据"
         }
+    };
+
+    static propTypes={
+        message:PropTypes.string
     };
 
     constructor(props) {
@@ -25,11 +29,11 @@ export default class InitialStateSyncDemo extends BasePage {
     }
 
     componentDidMount() {
-        setTimeout(async () => {
-            const data = await this.getInitialProps();
-            this.setState({
-                message: data.message
-            });
-        }, 1)
+        // setTimeout(async () => {
+        //     const data = await this.getInitialProps();
+        //     this.setState({
+        //         message: data.message
+        //     });
+        // }, 1)
     }
 }

@@ -1,13 +1,9 @@
 /**
  * Created by jean.h.ma on 17/10/2017.
  */
-import React from 'react'
-import Base, {PureBase} from '../Base'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import {connect} from 'react-redux'
-import ActivityIndicator from './ActivityIndicator'
-import Loading from './Loading'
 import Transition from 'react-transition-group/Transition'
 import update from 'immutability-helper'
 import logger from '../../libs/logger'
@@ -27,13 +23,14 @@ const transitionStyles = {
     }
 };
 
-export default class ToastItem extends PureBase {
+export default class ToastItem extends Component {
     static propTypes = {
-        ...Base.propTypes,
         type: PropTypes.oneOf(['info', 'warn', 'error']),
         message: PropTypes.string.isRequired,
         timeout: PropTypes.number.isRequired,
-        duration: PropTypes.number.isRequired
+        duration: PropTypes.number.isRequired,
+        style:PropTypes.object,
+        className:PropTypes.string
     };
 
     static defaultProps = {

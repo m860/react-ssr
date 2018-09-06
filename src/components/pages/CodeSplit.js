@@ -1,8 +1,7 @@
 import React, {PureComponent} from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
-import BasePage from "./BasePage"
 
-export default class CodeSplit extends BasePage {
+export default class CodeSplit extends PureComponent {
     render() {
         return (
             <LayoutWithNavigator>

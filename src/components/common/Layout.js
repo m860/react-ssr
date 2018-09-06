@@ -1,12 +1,10 @@
 /**
  * Created by jean.h.ma on 17/10/2017.
  */
-import React from 'react'
-import Base,{PureBase} from '../Base'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
-import ActivityIndicator from './ActivityIndicator'
 import Loading from './Loading'
 
 @connect(({loading})=> {
@@ -14,9 +12,10 @@ import Loading from './Loading'
 		visible: loading.counter > 0
 	}
 })
-export default class Layout extends PureBase {
+export default class Layout extends PureComponent {
 	static propTypes = {
-		...Base.propTypes
+		style:PropTypes.object,
+		className:PropTypes.string
 	};
 
 	render() {
