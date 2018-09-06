@@ -30,7 +30,7 @@ export default class App extends Component {
                 if (item.path) {
                     routeProps.path = item.path;
                 }
-                if (item.component instanceof Promise) {
+                if (item.component.then) {
                     routeProps.component = generateAsyncComponent(item.component);
                 }
                 else {

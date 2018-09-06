@@ -49,6 +49,15 @@
     - [x] 'Base'基类扩展'updateState',支持`async/await`
 - [ ] 集成'Karma'
 - 测试api使用[tvmaze](http://www.tvmaze.com/api)
-- [ ] 以`SPA`模式运行时,使用android手机访问页面异常
+- [x] 以`SPA`模式运行时,使用android手机访问页面异常.Promise的判断有问题,使用特性判断解决了
 - [ ] `.browserslistrc`对`babel-preset-env`没有生效 : babel 7.x 才开始支持
-- [ ] BasePage 需要废弃掉,所有的组件只使用Component或者PureComponent
+- [x] BasePage 需要废弃掉,所有的组件只使用Component或者PureComponent
+- [ ] 调整`getInitialProps`的实现,目前使用的是直接在Component中定义`static getInitialProps`,修改为mixin的方式实现
+    ```javascript
+    @initialProps(function({query, params}){
+        ...
+    })
+    class ABC extends Component{
+        //
+    }
+    ```
