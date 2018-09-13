@@ -5,7 +5,6 @@ react server-slide render 工程, bundle使用webpack 4.
 [![Build Status](https://travis-ci.org/m860/react-ssr.svg?branch=master)](https://travis-ci.org/m860/react-ssr)
 [![Coverage Status](https://coveralls.io/repos/github/m860/react-ssr/badge.svg?branch=master)](https://coveralls.io/github/m860/react-ssr?branch=master)
 
-
 ## 运行工程
 
 ```shell
