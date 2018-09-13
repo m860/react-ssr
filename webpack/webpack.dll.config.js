@@ -14,6 +14,7 @@ module.exports = {
     entry: {
         dll: [
             "babel-polyfill",
+            "object-path",
             'react',
             'react-dom',
             "react-redux",

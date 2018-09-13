@@ -4,9 +4,7 @@ import ApplicationSetting from './common/ApplicationSetting'
 import Toast from './common/Toast'
 import store from "../libs/store"
 import PropTypes from "prop-types"
-import routeConfig from "../configuration/routes.config"
-import generateAsyncComponent from "../libs/decorators/generateAsyncComponent";
-import {matchPath, Switch, Route} from "react-router-dom";
+import {matchPath, Route, Switch} from "react-router-dom";
 
 export default class App extends Component {
 
@@ -18,28 +16,28 @@ export default class App extends Component {
         })
     };
 
-    get routes() {
-        if (this.props.routes) {
-            return this.props.routes;
-        }
-        else {
-            return routeConfig.map((item) => {
-                let routeProps = {
-                    exact: item.exact || false
-                };
-                if (item.path) {
-                    routeProps.path = item.path;
-                }
-                if (item.component.then) {
-                    routeProps.component = generateAsyncComponent(item.component);
-                }
-                else {
-                    routeProps.component = item.component.default ? item.component.default : item.component;
-                }
-                return routeProps;
-            })
-        }
-    }
+    // get routes() {
+    //     if (this.props.routes) {
+    //         return this.props.routes;
+    //     }
+    //     else {
+    //         return routeConfig.map((item) => {
+    //             let routeProps = {
+    //                 exact: item.exact || false
+    //             };
+    //             if (item.path) {
+    //                 routeProps.path = item.path;
+    //             }
+    //             if (item.component.then) {
+    //                 routeProps.component = generateAsyncComponent(item.component);
+    //             }
+    //             else {
+    //                 routeProps.component = item.component.default ? item.component.default : item.component;
+    //             }
+    //             return routeProps;
+    //         })
+    //     }
+    // }
 
     render() {
         return (
@@ -47,7 +45,7 @@ export default class App extends Component {
 				<span>
 					<ApplicationSetting>
                         <Switch>
-                            {this.routes.map((item, index) => {
+                            {this.props.routes.map((item, index) => {
                                 return (
                                     <Route key={index.toString()}
                                            render={props => {

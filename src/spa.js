@@ -10,19 +10,23 @@ import React from 'react';
 import {HashRouter} from 'react-router-dom';
 import {render} from 'react-dom'
 import App from "./components/App"
+import routeConfig from "./configuration/routes.config"
+import {buildBrowserRoutes} from "./libs/helpers/route";
 
 const root = document.getElementById('view');
 
-const hotRender = Component => {
+const hotRender = (Component, props = {}) => {
     render(
         <HashRouter>
-            <Component/>
+            <Component {...props}/>
         </HashRouter>,
         root
     )
 };
 
-hotRender(App);
+hotRender(App, {
+    routes: buildBrowserRoutes(routeConfig)
+});
 
 if (module.hot) {
     module.hot.accept("./components/App", () => {

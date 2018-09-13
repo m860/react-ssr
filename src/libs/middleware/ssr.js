@@ -9,29 +9,17 @@ import {renderToStaticMarkup} from 'react-dom/server'
 import App from "../../components/App"
 import html from "../html"
 import routeConfig from "../../configuration/routes.config"
-import {forEachAsync} from "../helper";
+import {buildServerRoutes} from "../helpers/route";
 
 let routes = [];
-forEachAsync(routeConfig, async (item) => {
-    let routeProps = {
-        exact: item.exact || false,
-        async: false
-    };
-    if (item.path) {
-        routeProps.path = item.path;
-    }
-    if (item.component instanceof Promise) {
-        routeProps.component = await item.component;
-        routeProps.async = true;
-    }
-    else {
-        routeProps.component = item.component;
-    }
-    if (routeProps.component.default) {
-        routeProps.component = routeProps.component.default
-    }
-    routes.push(routeProps);
-})
+
+async function _initRoutes() {
+    console.log(`初始化路由...`)
+    routes = await buildServerRoutes(routeConfig);
+    console.log(`初始化路由结束,共有${routes.length}个路由配置`);
+}
+
+_initRoutes();
 
 export default async function (req, res, next) {
     if (req.method === "GET") {

@@ -10,6 +10,8 @@ import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import ReactDOM from 'react-dom'
 import App from "./components/App"
+import {buildBrowserRoutes} from "./libs/helpers/route";
+import routeConfig from "./configuration/routes.config"
 
 const root = document.getElementById('view');
 
@@ -31,7 +33,8 @@ if (initialProps && initialProps.async) {
 }
 render(
     <BrowserRouter>
-        <App initialProps={initialProps}/>
+        <App initialProps={initialProps}
+             routes={buildBrowserRoutes(routeConfig)}/>
     </BrowserRouter>,
     root
 );
