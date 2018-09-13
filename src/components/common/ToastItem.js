@@ -28,8 +28,8 @@ export default class ToastItem extends Component {
         message: PropTypes.string.isRequired,
         timeout: PropTypes.number.isRequired,
         duration: PropTypes.number.isRequired,
-        style:PropTypes.object,
-        className:PropTypes.string
+        style: PropTypes.object,
+        className: PropTypes.string
     };
 
     static defaultProps = {
@@ -78,11 +78,11 @@ export default class ToastItem extends Component {
     }
 
     componentDidMount() {
-        this.updateState({
+        this.setState({
             in: {$set: true}
         }, () => {
             this.timer = setTimeout(() => {
-                this.updateState({
+                this.state({
                     in: {$set: false}
                 });
             }, this.props.duration - this.props.timeout * 2);

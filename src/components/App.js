@@ -16,60 +16,50 @@ export default class App extends Component {
         })
     };
 
-    // get routes() {
-    //     if (this.props.routes) {
-    //         return this.props.routes;
-    //     }
-    //     else {
-    //         return routeConfig.map((item) => {
-    //             let routeProps = {
-    //                 exact: item.exact || false
-    //             };
-    //             if (item.path) {
-    //                 routeProps.path = item.path;
-    //             }
-    //             if (item.component.then) {
-    //                 routeProps.component = generateAsyncComponent(item.component);
-    //             }
-    //             else {
-    //                 routeProps.component = item.component.default ? item.component.default : item.component;
-    //             }
-    //             return routeProps;
-    //         })
-    //     }
-    // }
+    static defaultProps = {
+        routes: []
+    };
+
+    _renderRoutes() {
+        if (this.props.routes.length > 0) {
+            return (
+                <Switch>
+                    {this.props.routes.map((item, index) => {
+                        return (
+                            <Route key={index.toString()}
+                                   render={props => {
+                                       if (this.props.initialProps) {
+                                           const matched = matchPath(this.props.initialProps.path, {
+                                               path: item.path,
+                                               exact: item.exact
+                                           });
+                                           if (matched) {
+                                               return (
+                                                   <item.component {...props} {...(this.props.initialProps.props ? this.props.initialProps.props : {})}></item.component>
+                                               );
+                                           }
+                                       }
+                                       return (
+                                           <item.component {...props}></item.component>
+                                       );
+                                   }}
+                                   strict={item.strict}
+                                   exact={item.exact}
+                                   path={item.path}></Route>
+                        );
+                    })}
+                </Switch>
+            );
+        }
+        return null;
+    }
 
     render() {
         return (
             <Provider store={store}>
 				<span>
 					<ApplicationSetting>
-                        <Switch>
-                            {this.props.routes.map((item, index) => {
-                                return (
-                                    <Route key={index.toString()}
-                                           render={props => {
-                                               if (this.props.initialProps) {
-                                                   const matched = matchPath(this.props.initialProps.path, {
-                                                       path: item.path,
-                                                       exact: item.exact
-                                                   });
-                                                   if (matched) {
-                                                       return (
-                                                           <item.component {...props} {...(this.props.initialProps.props ? this.props.initialProps.props : {})}></item.component>
-                                                       );
-                                                   }
-                                               }
-                                               return (
-                                                   <item.component {...props}></item.component>
-                                               );
-                                           }}
-                                           strict={item.strict}
-                                           exact={item.exact}
-                                           path={item.path}></Route>
-                                );
-                            })}
-                        </Switch>
+                        {this._renderRoutes()}
 					</ApplicationSetting>
 					<Toast/>
 				</span>

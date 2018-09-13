@@ -31,6 +31,6 @@ export default class ApplicationSetting extends Component {
             return null;
         }
         console.info('application setting is ready')
-        return React.Children.only(this.props.children);
+        return this.props.children;
     }
 }
