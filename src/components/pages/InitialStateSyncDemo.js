@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
 import PropTypes from "prop-types"
+import {getInitialProps} from "../../libs/helpers/ssr";
 
 export default class InitialStateSyncDemo extends Component {
     static getInitialProps = () => {
@@ -9,8 +10,8 @@ export default class InitialStateSyncDemo extends Component {
         }
     };
 
-    static propTypes={
-        message:PropTypes.string
+    static propTypes = {
+        message: PropTypes.string
     };
 
     constructor(props) {
@@ -29,11 +30,11 @@ export default class InitialStateSyncDemo extends Component {
     }
 
     componentDidMount() {
-        // setTimeout(async () => {
-        //     const data = await this.getInitialProps();
-        //     this.setState({
-        //         message: data.message
-        //     });
-        // }, 1)
+        setTimeout(async () => {
+            const data = getInitialProps(this);
+            this.setState({
+                message: data.message
+            });
+        }, 1)
     }
 }

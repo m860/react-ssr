@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import LayoutWithNavigator from "../common/LayoutWithNavigator"
 import PropTypes from "prop-types"
+import {getInitialProps} from "../../libs/helpers/ssr";
 
 export default class ParameterDemo extends Component {
     static getInitialProps = ({query, params}) => {
@@ -34,12 +35,12 @@ export default class ParameterDemo extends Component {
     }
 
     componentDidMount() {
-        // setTimeout(async () => {
-        //     const data = await this.getInitialProps();
-        //     this.setState({
-        //         query: data.query,
-        //         params: data.params
-        //     });
-        // }, 1)
+        setTimeout(async () => {
+            const data = getInitialProps(this);
+            this.setState({
+                query: data.query,
+                params: data.params
+            });
+        }, 1)
     }
 }

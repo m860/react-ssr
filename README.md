@@ -34,13 +34,14 @@ $ npm run build
 - `npm run build:ssr`:打包生产环境,App使用`SSR`的方式运行,路由使用`BrowserRouter`
 - `npm run build:spa`:打包生产环境,App使用`SPA`的方式运行,路由使用`HashRouter`
 
-## 数据渲染
+## 服务端数据渲染
+
+先看一个简单的例子
 
 ```javascript
-import React from "react"
-import BasePage from "./BasePage"
+import React,{Component} from "react"
 
-export default class PageDemo extends BasePage(){
+export default class PageDemo extends Component{
     static getInitialProps=()=>{
         return {
             message:"hello SSR"
@@ -62,34 +63,64 @@ export default class PageDemo extends BasePage(){
 }
 ```
 
-## 如何配置路由?
+`getInitialProps`方法包含一个参数,结构如下:
 
-路由的配置在文件`routes.config.js`中,如下面代码所示
+```javascript
+static getInitialProps({query,params}){
+    ...
+}
+```
+
+在服务端运行的时候`getInitialProps`由系统自动调用,如果是在客户端执行需要自己手动调用,
+
+```javascript
+import {getInitialProps} from "libs/helpers/ssr.js"
+
+export default class XXX extends Component{
+    componentDidMount(){
+        const initialProps=getInitialProps(this);
+        ...
+    }
+}
+
+```
+
+- query: query参数,对应服务端和客户端的query
+- params: params参数,对应服务端和客户端的params
+
+## 路由配置
+
+- 路由的配置在文件`routes.config.js`中
 
 ```javascript
 export default [
     {
-        title: "首页",
-        path: "/",
-        component: require('../components/pages/Index'),
-        exact: true,
-    }, {
-        title: "服务端异步数据",
-        path: "/demo/initialstateasync",
-        component: require('../components/pages/InitialStateAsyncDemo'),
-        exact: true
-    }, {
-        title: "异步组件实现CodeSplit",
-        path: "/demo/codesplit",
-        component: import("../components/pages/CodeSplit"),
-        exact: true
-    }, {
-        title: "404",
-        component: require("../components/pages/Http404"),
-        exact: true
+        //名称
+        title: ?String,
+        //路径
+        path: String,
+        //组件
+        component: Component|Promise<Component>,
+        //是否使用精确匹配
+        exact: Boolean,
     }
 ]
 ```
+
+- 异步路由的配置使用import,例如:
+
+```javascript
+export default [
+    {
+        title:"Async Route Config",
+        path:"/async/route",
+        component:import("COMPONENT_PATH"),
+        exact:true
+    }
+]
+```
+
+- [ ] 嵌套路由
 
 ## TODO
 
