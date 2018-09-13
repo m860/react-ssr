@@ -71,6 +71,9 @@ static getInitialProps({query,params}){
 }
 ```
 
+- query: query参数,对应服务端和客户端的query
+- params: params参数,对应服务端和客户端的params
+
 在服务端运行的时候`getInitialProps`由系统自动调用,如果是在客户端执行需要自己手动调用,
 
 ```javascript
@@ -84,9 +87,6 @@ export default class XXX extends Component{
 }
 
 ```
-
-- query: query参数,对应服务端和客户端的query
-- params: params参数,对应服务端和客户端的params
 
 ## 路由配置
 
