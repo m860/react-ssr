@@ -19,15 +19,15 @@ console.log('**********************');
 
 var config = webpackBase.getConfig();
 
-config.resolve = {
-    extensions: ["." + webpackBase.EXTENSION_BROWSER + ".js", ".js", "." + webpackBase.EXTENSION_BROWSER + ".json", ".json"]
-};
+// config.resolve = {
+//     extensions: ["." + webpackBase.EXTENSION_BROWSER + ".js", ".js", "." + webpackBase.EXTENSION_BROWSER + ".json", ".json"]
+// };
 config.target = "web";
 config.output = output;
 config.externals = {};
-config.plugins.push(
-    new webpack.IgnorePlugin(new RegExp("\.(" + webpackBase.EXTENSION_SERVER + "\.js|" + webpackBase.EXTENSION_SERVER + "\.json)$"))
-)
+// config.plugins.push(
+//     new webpack.IgnorePlugin(new RegExp("\.(" + webpackBase.EXTENSION_SERVER + "\.js|" + webpackBase.EXTENSION_SERVER + "\.json)$"))
+// )
 config.plugins.push(
     new CopyWebpackPlugin([
         {from: path.join(__dirname, "../build/" + dllManifest.name + ".js")}

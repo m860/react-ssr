@@ -28,9 +28,9 @@ var output = {
 };
 var config = webpackBase.getConfig();
 config.entry = path.join(__dirname, '../src/server.js');
-config.resolve = {
-    extensions: ["." + webpackBase.EXTENSION_SERVER + ".js", ".js", "." + webpackBase.EXTENSION_SERVER + ".json", ".json"]
-};
+// config.resolve = {
+//     extensions: ["." + webpackBase.EXTENSION_SERVER + ".js", ".js", "." + webpackBase.EXTENSION_SERVER + ".json", ".json"]
+// };
 config.target = "node";
 config.output = output;
 config.externals = nodeModules;
@@ -39,9 +39,9 @@ config.plugins.push(
         {from: path.join(__dirname, "../package.json")}
     ])
 );
-config.plugins.push(
-    new webpack.IgnorePlugin(new RegExp("\.(" + webpackBase.EXTENSION_BROWSER + "\.js|" + webpackBase.EXTENSION_BROWSER + "\.json)$"))
-);
+// config.plugins.push(
+//     new webpack.IgnorePlugin(new RegExp("\.(" + webpackBase.EXTENSION_BROWSER + "\.js|" + webpackBase.EXTENSION_BROWSER + "\.json)$"))
+// );
 
 if (process.env.NODE_ENV === webpackBase.ENV_PRODUCTION) {
     //do something

@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import logger from '../../libs/logger'
 
 @connect(({application}) => {
     return {
@@ -28,10 +27,10 @@ export default class ApplicationSetting extends Component {
 
     render() {
         if (!this.props.setting) {
-            logger.info('application setting is undefined')
+            console.info('application setting is undefined')
             return null;
         }
-        logger.info('application setting is ready')
+        console.info('application setting is ready')
         return React.Children.only(this.props.children);
     }
 }

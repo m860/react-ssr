@@ -3,7 +3,6 @@
  * @author jean.h.ma(m860)
  */
 import {matchPath, StaticRouter} from "react-router-dom";
-import logger from "../logger"
 import React from "react"
 import {renderToStaticMarkup} from 'react-dom/server'
 import App from "../../components/App"
@@ -33,7 +32,7 @@ export default async function (req, res, next) {
             return matchResult ? true : false
         });
         if (route) {
-            logger.info(`${req.path} is matched : ${JSON.stringify(matchResult)}`);
+            console.info(`${req.path} is matched : ${JSON.stringify(matchResult)}`);
             let component = route.component;
             let initialProps = {
                 path: req.path,
@@ -49,13 +48,13 @@ export default async function (req, res, next) {
                     query: req.query,
                     params: matchResult ? matchResult.params : null
                 };
-                logger.info(`getInitialProps parameter : ${JSON.stringify(args)}`);
+                console.info(`getInitialProps parameter : ${JSON.stringify(args)}`);
                 // props = await getInitialProps(args);
                 initialProps.props = await getInitialProps(args);
-                logger.info(`initial props : ${JSON.stringify(initialProps)}`);
+                console.info(`initial props : ${JSON.stringify(initialProps)}`);
             }
             else {
-                logger.warn(`path=${route.path}没有配置fetchInitialState`)
+                console.warn(`path=${route.path}没有配置fetchInitialState`)
             }
             const context = {};
             const markup = renderToStaticMarkup(
@@ -66,14 +65,14 @@ export default async function (req, res, next) {
                          initialProps={initialProps}/>
                 </StaticRouter>
             );
-            logger.info(`${req.path}  : ${markup}`)
+            console.info(`${req.path}  : ${markup}`)
             const content = html.getHtml()
                 .replace("#INITIAL_PROPS#", JSON.stringify(initialProps))
                 .replace('#MARKUP#', markup);
             res.send(content);
         }
         else {
-            logger.warn(`${req.url} is not matched`);
+            console.warn(`${req.url} is not matched`);
         }
     }
     next();

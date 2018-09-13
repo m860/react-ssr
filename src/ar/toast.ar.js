@@ -1,5 +1,4 @@
 import update from 'immutability-helper'
-import logger from '../libs/logger'
 import {ToastType} from "../types/ToastType";
 import {ActionType} from "../types/ActionType";
 import {NoAction} from "../configuration/consts";
@@ -38,7 +37,7 @@ export function showToast(toast: ToastType | String): ActionType {
             payload: payload
         });
         setTimeout(() => {
-            logger.info(`hide toast id=${id}`)
+            console.info(`hide toast id=${id}`)
             dispatch({
                 type: ACTION_TOAST_HIDE,
                 payload: id

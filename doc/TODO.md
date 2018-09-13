@@ -42,3 +42,4 @@
 - [x] 以`SPA`模式运行时,使用android手机访问页面异常.Promise的判断有问题,使用特性判断解决了
 - [ ] `.browserslistrc`对`babel-preset-env`没有生效 : babel 7.x 才开始支持
 - [x] BasePage 需要废弃掉,所有的组件只使用Component或者PureComponent
+- [x] 取消`.browser`和`.server`的文件区分,如果存在这种差异,使用特性检查来做

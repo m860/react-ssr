@@ -7,7 +7,6 @@ import React from 'react';
 import express from 'express';
 import {renderToStaticMarkup} from 'react-dom/server'
 import yargs from 'yargs'
-import logger from "./libs/logger"
 import middlewares from "./libs/middleware"
 import favicon from 'serve-favicon'
 // import {validateRouteConfig} from "./libs/validation";
@@ -41,8 +40,8 @@ middlewares.forEach(middleware => {
 
 
 server.listen(port, () => {
-    logger.info(`runtime environment = ${process.env.NODE_ENV}`);
-    logger.info(`address http://127.0.0.1:${port}`);
+    console.info(`runtime environment = ${process.env.NODE_ENV}`);
+    console.info(`address http://127.0.0.1:${port}`);
 });
 
 
