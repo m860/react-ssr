@@ -29,6 +29,7 @@ if (window.__INITIAL_PROPS__) {
 //如果当前访问的页面时异步的则使用render,否则使用hyrate
 let render = ReactDOM.hydrate;
 if (initialProps && initialProps.async) {
+    console.log(`use render`);
     render = ReactDOM.render;
 }
 render(

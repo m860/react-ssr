@@ -2,12 +2,12 @@ export default [
     {
         title: "Index",
         path: "/",
-        component: import("../components/pages/Index"),
+        component: require("../components/pages/Index"),
         exact: true
     }, {
         title: "登录",
         path: "/signin",
-        component: import("../components/pages/SignIn"),
+        component: System.import("../components/pages/SignIn"),
         exact: true
     }, {
         title: "Test",
@@ -47,7 +47,7 @@ export default [
     }, {
         title: "异步组件实现CodeSplit",
         path: "/demo/codesplit",
-        component: import("../components/pages/CodeSplit"),
+        component: System.import("../components/pages/CodeSplit"),
         exact: true
     }, {
         title: "404",
